@@ -139,10 +139,10 @@ function isMOk(cid, m) {
 function prog(cid) {
   const e = totalE(cid); const lvls = getLevels(cid); const lvl = curLvl(cid);
   const idx = lvls.indexOf(lvl);
-  if (idx === lvls.length - 1) return { pct: 100, label: 'NIVEAU MAX', next: null };
+  if (idx === lvls.length - 1) return { pct: 100, label: '🏆 NIVEAU MAXIMUM !' };
   const next = lvls[idx + 1];
   const pct = Math.round(((e - lvl.seuil) / (next.seuil - lvl.seuil)) * 100);
-  return { pct: Math.min(Math.max(pct, 0), 100), label: `${next.label} — encore ${chf(Math.max(0, next.seuil - e))} CHF`, next };
+  return { pct: Math.min(Math.max(pct, 0), 100), label: `${next.emoji} ${next.label} — encore ${chf(Math.max(0, next.seuil - e))} CHF` };
 }
 
 // ── Badge helpers ──
