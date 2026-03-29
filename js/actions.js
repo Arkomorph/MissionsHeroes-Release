@@ -111,7 +111,9 @@ function openPin(cid, mid, action) {
       ? (getDailyTasks(cid).find(x => x.id === mid.split('_')[1])?.lbl || 'Tâche')
       : (getMissions(cid).find(x => x.id === mid)?.nom || '—');
     document.getElementById('pin-err').textContent = '';
-    document.getElementById('pin-ov').classList.add('open');
+    const ov = document.getElementById('pin-ov');
+    applyBoThemeToOverlay(ov);
+    ov.classList.add('open');
     document.getElementById('pin-actions').style.display = 'block';
     document.querySelector('.keypad').style.display = 'none';
     document.querySelector('.pin-dots').style.display = 'none';
@@ -131,12 +133,16 @@ function openPin(cid, mid, action) {
   }
   document.getElementById('pin-lbl').textContent = label;
   document.getElementById('pin-err').textContent = '';
-  document.getElementById('pin-ov').classList.add('open');
+  const ov = document.getElementById('pin-ov');
+  applyBoThemeToOverlay(ov);
+  ov.classList.add('open');
 }
 
 function closePin() {
   PX = null; PV = '';
-  document.getElementById('pin-ov').classList.remove('open');
+  const ov = document.getElementById('pin-ov');
+  ov.classList.remove('open');
+  ov.removeAttribute('style');
   document.getElementById('pin-actions').style.display = 'none';
   document.querySelector('.keypad').style.display = '';
   document.querySelector('.pin-dots').style.display = '';

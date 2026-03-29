@@ -43,6 +43,25 @@ function applyBOTheme() {
   }
 }
 
+function boThemeStyle() {
+  const boThemeId = S.cfg.boTheme || 'theme-louis';
+  const th = (S.catalog.themes || []).find(t => t.id === boThemeId);
+  if (!th) return '';
+  const c = deriveThemeColors(th.principal, th.accent);
+  return Object.entries(c).map(([k, v]) => `--${k}:${v}`).join(';') +
+    `;--font-title:${th.fontTitle};--font-body:${th.fontBody}`;
+}
+
+function isBoOpen() {
+  return document.getElementById('backoffice')?.classList.contains('open');
+}
+
+function applyBoThemeToOverlay(el) {
+  if (!el) return;
+  if (isBoOpen()) el.setAttribute('style', boThemeStyle());
+  else el.removeAttribute('style');
+}
+
 function childThemeVars(cid) {
   if (!cid || cid === '__catalog' || !S.children[cid]) return '';
   const thId = S.children[cid].theme;
@@ -950,6 +969,7 @@ function renderBOBadges() {
 // ── BO Modal (generic) ──
 function openBOModal(title, contentHtml) {
   const ov = document.getElementById('bo-modal-ov');
+  applyBoThemeToOverlay(ov);
   ov.innerHTML = `<div class="bo-modal">
     <button class="bo-modal-close" onclick="closeBOModal()">&times;</button>
     <div class="bo-modal-title">${title}</div>
@@ -962,6 +982,7 @@ function closeBOModal() {
   const ov = document.getElementById('bo-modal-ov');
   ov.classList.remove('open');
   ov.innerHTML = '';
+  ov.removeAttribute('style');
 }
 
 // ── BO Confirm (themed replacement for native confirm) ─��
@@ -969,6 +990,7 @@ let _boConfirmCb = null;
 function boConfirm(msg, onYes) {
   _boConfirmCb = onYes;
   const ov = document.getElementById('bo-confirm-ov');
+  applyBoThemeToOverlay(ov);
   ov.innerHTML = `<div class="bo-confirm">
     <div class="bo-confirm-msg">${escHtml(msg)}</div>
     <div class="bo-confirm-btns">
@@ -983,6 +1005,7 @@ function closeBoConfirm(yes) {
   const ov = document.getElementById('bo-confirm-ov');
   ov.classList.remove('open');
   ov.innerHTML = '';
+  ov.removeAttribute('style');
   if (yes && _boConfirmCb) _boConfirmCb();
   _boConfirmCb = null;
 }
