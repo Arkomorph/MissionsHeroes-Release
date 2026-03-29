@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide de mise en route — Missions Heroes</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <script defer src="https://analytics.iteract.ch/script.js"
+    data-website-id=""></script>
+  <script>
+    document.querySelector('[data-website-id]').dataset.websiteId =
+      location.hostname === 'missionsheroes.iteract.ch'
+        ? '03001dbe-81f6-4b23-8f95-ed7e207df4ad'
+        : '4483a812-2f12-49d3-9d0b-b7014df81b40';
+  </script>
+  <style>
+    :root {
+      --bg:      #030810;
+      --surf:    #080d1a;
+      --card:    #0d1422;
+      --brd:     #0a2040;
+      --brd2:    #14305a;
+      --hi:      #00cfff;
+      --hi2:     #0088ff;
+      --acc:     #ff3d7f;
+      --gold:    #ffb300;
+      --green:   #00e676;
+      --text:    #c8e8ff;
+      --muted:   #2a5070;
+
+      --fs-xs:   0.75rem;
+      --fs-sm:   0.875rem;
+      --fs-base: 1rem;
+      --fs-md:   1.125rem;
+      --fs-lg:   1.25rem;
+      --fs-xl:   1.75rem;
+      --fs-2xl:  2rem;
+      --lh: 1.75;
+      --r:  10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      font-size: var(--fs-base);
+      line-height: var(--lh);
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* LAYOUT */
+    .page-wrap {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--surf);
+      border-right: 1px solid var(--brd);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-logo {
+      padding: 32px 24px 24px;
+      border-bottom: 1px solid var(--brd);
+    }
+    .sidebar-logo .logo-em { font-size: 2rem; display: block; margin-bottom: 6px; filter: drop-shadow(0 0 8px rgba(0,207,255,.3)); }
+    .sidebar-logo .logo-title { font-family: 'Share Tech Mono', monospace; font-size: .9rem; color: #fff; display: block; letter-spacing: .06em; text-transform: uppercase; }
+    .sidebar-logo .logo-sub { font-size: var(--fs-xs); color: var(--muted); margin-top: 2px; }
+    .sidebar-logo .back-link { display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted);text-decoration:none;margin-top:10px;transition:color .2s }
+    .sidebar-logo .back-link:hover { color:var(--hi) }
+    .nav-list { list-style: none; padding: 16px 0 40px; flex: 1; }
+    .nav-list a {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 9px 24px;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color .15s, background .15s;
+      border-left: 3px solid transparent;
+    }
+    .nav-list a:hover { color: var(--text); background: rgba(0,207,255,.04); border-left-color: var(--brd2); }
+    .nav-list a.active { color: #fff; background: rgba(0,207,255,.08); border-left-color: var(--hi); }
+    .nav-list .nav-em { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
+    .nav-list .nav-label { flex: 1; }
+
+    /* MAIN */
+    .main { min-width: 0; padding: 64px 80px 120px; max-width: 900px; }
+
+    /* HERO */
+    .hero { margin-bottom: 72px; padding-bottom: 48px; border-bottom: 1px solid var(--brd); }
+    .hero-tag { display: inline-block; font-family: 'Share Tech Mono', monospace; font-size: var(--fs-xs); font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--hi); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Share Tech Mono', monospace; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.2; color: #fff; margin-bottom: 20px; max-width: 600px; text-transform: uppercase; letter-spacing: .04em; font-weight: 400; }
+    .hero h1 em { font-style: normal; color: var(--hi); }
+    .hero-lead { font-size: var(--fs-md); color: var(--muted); line-height: 1.7; max-width: 560px; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 80px; scroll-margin-top: 32px; }
+    .section + .section { border-top: 1px solid var(--brd); padding-top: 64px; }
+    .section-num { font-family: 'Share Tech Mono', monospace; font-size: var(--fs-xs); color: var(--muted); letter-spacing: .1em; margin-bottom: 8px; }
+    .section > h2 { font-family: 'Share Tech Mono', monospace; font-size: var(--fs-2xl); line-height: 1.2; color: #fff; margin-bottom: 24px; text-transform: uppercase; letter-spacing: .04em; font-weight: 400; }
+    h3 { font-size: var(--fs-lg); font-weight: 800; color: #fff; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--brd); }
+    p { color: var(--text); margin-bottom: 16px; max-width: 660px; opacity: .85; }
+    strong { color: #fff; font-weight: 700; }
+    em { font-style: italic; color: var(--hi); }
+
+    /* BOXES */
+    .box { border-radius: var(--r); margin: 28px 0; overflow: hidden; max-width: 700px; border: 1px solid var(--brd); }
+    .box-header { display: flex; align-items: center; gap: 10px; padding: 12px 20px; font-size: var(--fs-sm); font-weight: 800; letter-spacing: .03em; }
+    .box-body { padding: 18px 20px; font-size: var(--fs-sm); line-height: 1.7; }
+    .box-body p { margin-bottom: 10px; max-width: none; color: inherit; opacity: 1; }
+    .box-body p:last-child { margin-bottom: 0; }
+    .box-body ul { padding-left: 18px; }
+    .box-body li { margin-bottom: 6px; }
+    .box-peda .box-header { background: rgba(0,207,255,.12); color: var(--hi); border-bottom: 1px solid rgba(0,207,255,.15); }
+    .box-peda .box-body { background: rgba(0,207,255,.04); color: var(--text); }
+    .box-limit .box-header { background: rgba(255,61,127,.12); color: var(--acc); border-bottom: 1px solid rgba(255,61,127,.15); }
+    .box-limit .box-body { background: rgba(255,61,127,.04); color: var(--text); }
+    .box-accomp .box-header { background: rgba(0,230,118,.12); color: var(--green); border-bottom: 1px solid rgba(0,230,118,.15); }
+    .box-accomp .box-body { background: rgba(0,230,118,.04); color: var(--text); }
+    .box-info .box-header { background: rgba(255,179,0,.12); color: var(--gold); border-bottom: 1px solid rgba(255,179,0,.15); }
+    .box-info .box-body { background: rgba(255,179,0,.04); color: var(--text); }
+
+    /* TABLES */
+    .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: var(--r); border: 1px solid var(--brd); }
+    table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+    thead th { background: var(--surf); color: var(--hi); font-weight: 700; text-align: left; padding: 12px 16px; font-size: var(--fs-xs); letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; font-family: 'Share Tech Mono', monospace; }
+    tbody tr { border-bottom: 1px solid var(--brd); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:nth-child(even) td { background: rgba(0,207,255,.02); }
+    td { padding: 12px 16px; vertical-align: top; color: var(--text); line-height: 1.5; opacity: .85; }
+    td strong { color: #fff; opacity: 1; }
+    td:first-child { color: #fff; font-weight: 700; white-space: nowrap; opacity: 1; }
+
+    /* FLOW */
+    .flow { display: flex; gap: 0; margin: 28px 0; max-width: 640px; }
+    .flow-step { flex: 1; background: var(--card); border: 1px solid var(--brd); border-right: none; padding: 20px 16px; text-align: center; position: relative; }
+    .flow-step:first-child { border-radius: var(--r) 0 0 var(--r); }
+    .flow-step:last-child { border-right: 1px solid var(--brd); border-radius: 0 var(--r) var(--r) 0; }
+    .flow-step::after { content: '\2192'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); font-size: 1.25rem; color: var(--muted); z-index: 1; background: var(--bg); padding: 2px 1px; }
+    .flow-step:last-child::after { display: none; }
+    .flow-em { font-size: 1.75rem; display: block; margin-bottom: 6px; }
+    .flow-who { font-size: var(--fs-xs); color: var(--muted); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; font-family: 'Share Tech Mono', monospace; }
+    .flow-label { font-size: var(--fs-sm); font-weight: 800; color: #fff; }
+    .flow-desc { font-size: var(--fs-xs); color: var(--text); margin-top: 6px; line-height: 1.4; opacity: .7; }
+
+    /* LEVELS */
+    .levels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+    .level-card { border: 1px solid var(--brd); border-radius: var(--r); padding: 20px; background: var(--card); position: relative; overflow: hidden; }
+    .level-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .level-card.n1::before { background: #00e676; }
+    .level-card.n2::before { background: #4fc3f7; }
+    .level-card.n3::before { background: #ff9800; }
+    .level-card.n4::before { background: #ce93d8; }
+    .level-name { font-weight: 800; color: #fff; margin-bottom: 4px; font-size: var(--fs-md); }
+    .level-seuil { font-size: var(--fs-xs); color: var(--muted); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 10px; font-family: 'Share Tech Mono', monospace; }
+    .level-desc { font-size: var(--fs-sm); color: var(--text); line-height: 1.5; opacity: .8; }
+
+    /* CATEGORIES */
+    .cats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 20px 0; }
+    .cat-pill { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--card); border: 1px solid var(--brd); border-radius: 8px; font-size: var(--fs-sm); transition: border-color .15s; }
+    .cat-pill:hover { border-color: var(--brd2); }
+    .cat-em { font-size: 1.2rem; }
+    .cat-name { font-weight: 700; color: #fff; }
+
+    /* TIMELINE */
+    .timeline { margin: 24px 0; }
+    .tl-item { display: flex; gap: 20px; margin-bottom: 28px; }
+    .tl-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--hi); color: var(--bg); font-size: var(--fs-xs); font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-family: 'Share Tech Mono', monospace; box-shadow: 0 0 12px rgba(0,207,255,.3); }
+    .tl-body { flex: 1; }
+    .tl-title { font-weight: 800; color: #fff; margin-bottom: 8px; font-size: var(--fs-sm); }
+    .tl-desc { font-size: var(--fs-sm); color: var(--text); line-height: 1.6; max-width: none; opacity: .85; }
+    .tl-desc ul { padding-left: 16px; margin-top: 6px; }
+    .tl-desc li { margin-bottom: 4px; }
+
+    /* DUO — choreographie parent/enfant */
+    .duo { display: flex; flex-direction: column; gap: 10px; margin: 28px 0; max-width: 640px; }
+    .duo-msg { padding: 14px 18px; border-radius: var(--r); max-width: 80%; }
+    .duo-msg.enfant { align-self: flex-start; border-left: 3px solid var(--hi); background: rgba(0,207,255,.06); }
+    .duo-msg.parent { align-self: flex-end; border-right: 3px solid var(--gold); background: rgba(255,179,0,.06); text-align: right; }
+    .duo-msg.moment { align-self: center; border: 1px dashed var(--green); background: rgba(0,230,118,.04); text-align: center; max-width: 90%; }
+    .duo-who { font-family: 'Share Tech Mono', monospace; font-size: .68rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .duo-msg.enfant .duo-who { color: var(--hi); }
+    .duo-msg.parent .duo-who { color: var(--gold); }
+    .duo-msg.moment .duo-who { color: var(--green); }
+    .duo-action { font-size: var(--fs-sm); color: var(--text); line-height: 1.5; }
+    .duo-phrase { font-size: var(--fs-sm); font-style: italic; color: var(--hi); margin-top: 6px; line-height: 1.5; }
+    .duo-msg.parent .duo-phrase { color: var(--gold); }
+    .duo-msg.moment .duo-phrase { color: var(--green); font-style: normal; }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; margin: 20px 0; max-width: 640px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; background: var(--card); border: 1px solid var(--brd); border-radius: 8px; margin-bottom: 8px; font-size: var(--fs-sm); color: var(--text); line-height: 1.5; }
+    .checklist li::before { content: '\2610'; font-size: 1.1rem; color: var(--muted); flex-shrink: 0; margin-top: 1px; }
+
+    /* JOURNEY PHASE */
+    .phase { margin: 64px 0 40px; padding: 16px 20px; border-radius: var(--r); font-family: 'Share Tech Mono', monospace; font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+    .phase-avant { background: rgba(255,179,0,.08); color: var(--gold); border: 1px solid rgba(255,179,0,.2); }
+    .phase-quotidien { background: rgba(0,207,255,.08); color: var(--hi); border: 1px solid rgba(0,207,255,.2); }
+    .phase-rituels { background: rgba(0,230,118,.08); color: var(--green); border: 1px solid rgba(0,230,118,.2); }
+    .phase-evolution { background: rgba(206,147,216,.08); color: #ce93d8; border: 1px solid rgba(206,147,216,.2); }
+
+    /* FOOTER */
+    .doc-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--brd); font-size: var(--fs-xs); color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 10px; font-family: 'Share Tech Mono', monospace; text-align: center; }
+    .footer-credit { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: .68rem; color: var(--muted); }
+    .footer-credit svg { width: 12px; height: 12px; color: var(--acc); vertical-align: middle; }
+    .footer-credit a { color: var(--hi); text-decoration: none; display: inline-flex; align-items: center; gap: 2px; }
+    .footer-credit a:hover { text-decoration: underline; }
+    .footer-credit .icon-linkedin { width: 10px; height: 10px; }
+
+    /* QUICK NAV */
+    .qnav{position:fixed;top:14px;right:14px;display:flex;gap:6px;z-index:100}
+    .qnav a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#080d1a;border:1px solid var(--brd);text-decoration:none;transition:border-color .2s,transform .15s,box-shadow .2s}
+    .qnav a:hover{border-color:var(--hi);transform:scale(1.1);box-shadow:0 0 12px rgba(0,207,255,.2)}
+    .qnav a.active{border-color:var(--hi);box-shadow:0 0 8px rgba(0,207,255,.25)}
+    .qnav svg{width:18px;height:18px;fill:var(--muted);transition:fill .2s}
+    .qnav a:hover svg,.qnav a.active svg{fill:var(--hi)}
+
+    /* PRINT */
+    @media print {
+      .sidebar { display: none; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .main { padding: 24px; max-width: none; }
+      body { background: #fff; color: #000; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 40px 24px 80px; max-width: none; }
+      .levels { grid-template-columns: 1fr; }
+      .cats-grid { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; }
+      .flow-step { border-right: 1px solid var(--brd); border-bottom: none; border-radius: 0; }
+      .flow-step:first-child { border-radius: var(--r) var(--r) 0 0; }
+      .flow-step:last-child { border-bottom: 1px solid var(--brd); border-radius: 0 0 var(--r) var(--r); }
+      .flow-step::after { content: '\2193'; right: auto; left: 50%; top: auto; bottom: -16px; transform: translateX(-50%); }
+      .duo-msg { max-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="qnav">
+  <a href="../index.html" title="Accueil"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+  <a href="approche_pedagogique.html" title="Pedagogie"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></a>
+  <a href="manuel-parents.html" title="Manuel parents"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></a>
+  <a href="guide-mise-en-route.html" class="active" title="Guide de mise en route"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-5.99-4.24l8.98-3.73-3.73 8.98-1.52-3.73z"/></svg></a>
+</nav>
+
+<div class="page-wrap">
+
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-em">⚡</span>
+      <span class="logo-title">Missions Heroes</span>
+      <div class="logo-sub">Guide de mise en route</div>
+      <a href="../index.html" class="back-link">&larr; Retour</a>
+    </div>
+    <ul class="nav-list">
+      <li><a href="#avant"><span class="nav-em">🗣️</span><span class="nav-label">Avant de commencer</span></a></li>
+      <li><a href="#jourj"><span class="nav-em">🎯</span><span class="nav-label">Le Jour J</span></a></li>
+      <li><a href="#quotidien"><span class="nav-em">📅</span><span class="nav-label">Le quotidien</span></a></li>
+      <li><a href="#missions"><span class="nav-em">📋</span><span class="nav-label">Les missions</span></a></li>
+      <li><a href="#progression"><span class="nav-em">📈</span><span class="nav-label">La progression</span></a></li>
+      <li><a href="#badges"><span class="nav-em">🏅</span><span class="nav-label">Badges & secrets</span></a></li>
+      <li><a href="#streak"><span class="nav-em">🔥</span><span class="nav-label">Le streak</span></a></li>
+      <li><a href="#dimanche"><span class="nav-em">💵</span><span class="nav-label">Le dimanche</span></a></li>
+      <li><a href="#conseil"><span class="nav-em">🏛️</span><span class="nav-label">Le Conseil</span></a></li>
+      <li><a href="#backoffice"><span class="nav-em">⚙️</span><span class="nav-label">Le back office</span></a></li>
+      <li><a href="#rythme"><span class="nav-em">📆</span><span class="nav-label">Semaines 1 a 4</span></a></li>
+      <li><a href="#longterme"><span class="nav-em">🌱</span><span class="nav-label">A moyen terme</span></a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+
+    <!-- HERO -->
+    <header class="hero">
+      <span class="hero-tag">⚡ Guide pratique</span>
+      <h1>Guide de<br><em>mise en route</em></h1>
+      <p class="hero-lead">Un parcours pas a pas pour lancer Missions Heroes en famille — de la premiere conversation jusqu'a l'autonomie complete de votre enfant.</p>
+    </header>
+
+    <!-- ══════════════════════════════════
+         PHASE : AVANT
+    ══════════════════════════════════ -->
+    <div class="phase phase-avant">Phase 1 — Avant le lancement</div>
+
+    <!-- 01. AVANT DE COMMENCER -->
+    <section class="section" id="avant">
+      <div class="section-num">01</div>
+      <h2>Avant de commencer</h2>
+
+      <p>Missions Heroes ne fonctionne pas si vous la lancez sans preparation. Avant meme d'ouvrir l'application, une conversation avec votre enfant est indispensable. Elle pose les fondations de tout ce qui suivra.</p>
+
+      <h3>Les deux frontieres a expliquer</h3>
+      <p>Le systeme repose sur une distinction fondamentale que votre enfant doit comprendre des le depart :</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Ce que c'est</th><th>Remunere ?</th></tr></thead>
+          <tbody>
+            <tr><td>Missions</td><td>Travail volontaire au service de la famille — trier le courrier, jardiner, cuisiner...</td><td><strong>Oui</strong> — en CHF</td></tr>
+            <tr><td>Taches quotidiennes</td><td>Actes de vie commune — faire son lit, se brosser les dents, ranger ses affaires...</td><td><strong>Non</strong> — c'est du</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="duo">
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Explique les deux types d'activites avant de montrer l'app.</div>
+          <div class="duo-phrase">"Les missions, c'est ton travail pour la famille. Ca rapporte de l'argent parce que c'est un vrai effort. Le journalier, c'est juste ta contribution a la vie commune — comme moi quand je fais la cuisine ou que je paye le loyer."</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Pose des questions, reagit, negocie peut-etre.</div>
+          <div class="duo-phrase">"Et si je fais plus que demande, je gagne plus ?"</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Repond honnetement, avec le cadre.</div>
+          <div class="duo-phrase">"Il y a des missions pour ca — certaines rapportent plus que d'autres. Et si tu fais bien les choses tous les jours, il y a un bonus de regularite."</div>
+        </div>
+      </div>
+
+      <h3>La transparence sur le back office</h3>
+      <p>Vous avez un acces administrateur protege par PIN. <strong>Votre enfant doit le savoir.</strong> Lui cacher cette capacite minerait la confiance et la legitimite du systeme. Dites-lui simplement que vous pouvez ajuster les regles — et que ces ajustements peuvent etre discutes au Conseil de famille.</p>
+
+      <h3>Checklist avant le Jour J</h3>
+      <ul class="checklist">
+        <li>Expliquer la difference missions (payees) / taches quotidiennes (dues)</li>
+        <li>Etre transparent sur l'existence du back office parent</li>
+        <li>Choisir ensemble un moment de la journee pour la validation (ex: chaque soir avant le diner)</li>
+        <li>Decider du jour de versement de l'argent reel (ex: chaque dimanche)</li>
+        <li>Calibrer les montants dans le simulateur du back office</li>
+      </ul>
+
+      <div class="box box-limit">
+        <div class="box-header">⚠️ Si vous sautez cette etape</div>
+        <div class="box-body">
+          <p>Le risque principal : votre enfant commence a negocier une remuneration pour tout geste d'aide familiale. <em>"Combien tu me paies pour debarrasser ?"</em> Si la frontiere n'est pas posee clairement, le systeme derive vers une logique marchande qui mine l'internalisation des habitudes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02. LE JOUR J -->
+    <section class="section" id="jourj">
+      <div class="section-num">02</div>
+      <h2>Le Jour J — Premiere session</h2>
+
+      <p>Le premier jour merite un moment particulier. Pas un lancement en catastrophe entre deux activites — un vrai moment dedie, assis ensemble devant l'ecran.</p>
+
+      <h3>Decouvrir l'interface ensemble</h3>
+      <p>L'ecran principal comporte trois onglets et une barre de statut permanente :</p>
+
+      <!-- Mock-up : barre stats initiale -->
+      <div style="background:#181c2f;border-radius:var(--r);padding:14px 18px;display:flex;align-items:center;gap:18px;margin:20px 0;max-width:540px;font-family:'Nunito',sans-serif">
+        <div style="text-align:center">
+          <div style="font-size:1.5rem;font-weight:800;color:#00e5ff">0.00</div>
+          <div style="font-size:.65rem;color:#888;margin-top:2px">CHF gagnes</div>
+        </div>
+        <div style="width:1px;height:36px;background:#333"></div>
+        <div style="flex:1">
+          <div style="font-size:.8rem;font-weight:700;color:#00e676">🟢 N1 · APPRENTI</div>
+          <div style="background:#333;border-radius:4px;height:6px;margin:6px 0 2px;overflow:hidden"><div style="width:0%;height:100%;background:linear-gradient(90deg,#00e676,#4caf50);border-radius:4px"></div></div>
+          <div style="font-size:.6rem;color:#666">L'aventure commence !</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:1.3rem;font-weight:800;color:#666">0</div>
+          <div style="font-size:.65rem;color:#888">streak</div>
+        </div>
+      </div>
+      <p style="font-size:var(--fs-xs);color:var(--muted);margin-top:-12px">La barre de statut au lancement : tout est a zero. L'aventure commence.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Onglet</th><th>Ce qu'on y trouve</th></tr></thead>
+          <tbody>
+            <tr><td>📅 Taches</td><td>Les taches quotidiennes a cocher chaque jour, le streak, et le moment parole du soir.</td></tr>
+            <tr><td>📋 Missions</td><td>Toutes les missions disponibles, organisees par niveaux. L'enfant choisit librement.</td></tr>
+            <tr><td>🏅 Badges</td><td>La collection de badges. Gagnez-en pour debloquer des missions secretes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Le rituel d'initialisation</h3>
+
+      <div class="duo">
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Ouvre l'app, montre les trois onglets un par un.</div>
+          <div class="duo-phrase">"Regarde, ici c'est tes taches de tous les jours. La, ce sont les missions que tu peux choisir. Et la, tes badges — tu verras, il y a des surprises."</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Explore, clique, decouvre les categories de missions.</div>
+          <div class="duo-phrase">"Je peux faire celle-la ? Et ca rapporte combien ?"</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Laisse l'enfant choisir ses 2-3 premieres missions librement.</div>
+          <div class="duo-phrase">"C'est toi qui decides par quoi tu commences. Prends ce qui te parle."</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Moment cle</div>
+          <div class="duo-action">Faites la premiere mission <strong>ensemble</strong> — pas pour la faire a sa place, mais pour montrer ce qui est attendu.</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Realise la mission, puis appuie sur ✋ Fait !</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Verifie le travail, entre le PIN, valide.</div>
+          <div class="duo-phrase">"Voila, tes premiers CHF sont credites. Tu les verras dimanche en vrai."</div>
+        </div>
+      </div>
+
+      <div class="box box-accomp">
+        <div class="box-header">🤝 Conseil pour le Jour J</div>
+        <div class="box-body">
+          <p>Ne surchargez pas. 2-3 missions choisies + les taches journalieres, c'est largement suffisant pour la premiere journee. Le but est de <strong>creer un cycle complet reussi</strong> (faire → valider → voir le resultat), pas d'optimiser les gains.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         PHASE : AU QUOTIDIEN
+    ══════════════════════════════════ -->
+    <div class="phase phase-quotidien">Phase 2 — Au quotidien</div>
+
+    <!-- 03. LE QUOTIDIEN -->
+    <section class="section" id="quotidien">
+      <div class="section-num">03</div>
+      <h2>Le quotidien — les taches journalieres</h2>
+
+      <p>Chaque jour, un ensemble de taches s'affiche dans l'onglet Taches. Ces taches sont les actes de base de la vie commune, regroupes par moment de la journee.</p>
+
+      <!-- Mock-up : cartes taches journalieres -->
+      <div style="max-width:400px;margin:20px 0;font-family:'Nunito',sans-serif;display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:.7rem;font-weight:700;color:#888;padding:4px 6px;text-transform:uppercase;letter-spacing:1px">🌅 Lever</div>
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px">
+          <div style="width:28px;height:28px;border:2px solid #4caf50;border-radius:6px;background:#4caf5022;display:flex;align-items:center;justify-content:center;color:#4caf50;font-size:.9rem;font-weight:700">✓</div>
+          <div style="color:#4caf50;font-size:.85rem">🛏️ Faire son lit</div>
+        </div>
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-left:3px solid #ff9800">
+          <div style="width:28px;height:28px;border:2px solid #ff9800;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.8rem">⏳</div>
+          <div style="color:#ff9800;font-size:.85rem">🦷 Brosser les dents</div>
+        </div>
+        <div style="font-size:.7rem;font-weight:700;color:#888;padding:4px 6px;text-transform:uppercase;letter-spacing:1px;margin-top:6px">🌙 Coucher</div>
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px">
+          <div style="width:28px;height:28px;border:2px solid #444;border-radius:6px"></div>
+          <div style="color:#e0e0e0;font-size:.85rem">🧺 Mettre au sale</div>
+        </div>
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-top:2px dashed #444">
+          <div style="width:28px;height:28px;border:2px dashed #666;border-radius:6px"></div>
+          <div style="color:#b388ff;font-size:.85rem">💬 Moment parole du soir <span style="font-size:.7rem;color:#888">(libre)</span></div>
+        </div>
+      </div>
+      <p style="font-size:var(--fs-xs);color:var(--muted);margin-top:-12px">De haut en bas : validee, en attente, a faire, et le moment parole (passif, hors streak).</p>
+
+      <h3>Le flux au fil de la journee</h3>
+
+      <div class="duo">
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Se leve, fait son lit, brosse ses dents. Ouvre l'app et coche chaque tache : ✋ Fait !</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Au fil de la journee, continue de cocher au fur et a mesure : ranger ses habits, mettre la table, faire ses devoirs...</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Le soir, prend 2 minutes pour verifier les taches en attente ⏳.</div>
+          <div class="duo-phrase">"Montre-moi tes dents... ok, c'est bon. Le lit est fait ? Parfait."</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Entre le PIN pour chaque tache validee → ✅. Ou demande de refaire si necessaire.</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Moment parole du soir</div>
+          <div class="duo-action">L'enfant peut cocher le moment parole — ou pas. C'est un espace libre, sans consequence sur le streak ni sur l'argent.</div>
+          <div class="duo-phrase">"Qu'est-ce qui t'a rendu fier aujourd'hui ? Qu'est-ce qui etait difficile ?"</div>
+        </div>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 Pourquoi ces taches ne sont pas payees</div>
+        <div class="box-body">
+          <p>Les taches journalieres ne sont pas remunerees a l'unite. Les payer enverrait le message qu'elles sont optionnelles si l'enfant ne veut pas d'argent. L'objectif est l'<strong>internalisation de l'habitude</strong>, pas la conformite monetaire.</p>
+          <p>Si votre enfant demande <em>"combien ca rapporte ?"</em>, la reponse est : <em>"Rien — c'est ce que ca veut dire d'habiter ici ensemble."</em></p>
+        </div>
+      </div>
+
+      <div class="box box-info">
+        <div class="box-header">💡 La validation = un moment de contact</div>
+        <div class="box-body">
+          <p>La validation PIN n'est pas qu'une operation technique. C'est une occasion de <strong>regarder ce que votre enfant a fait, de le nommer, de le reconnaitre</strong>. Meme 30 secondes suffisent. Cette reconnaissance verbale est plus determinante pour la motivation a long terme que la recompense monetaire.</p>
+          <p><strong>Visez moins de 24h</strong> entre le "Fait !" et la validation. Au-dela, la boucle motivationnelle se casse.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. LES MISSIONS -->
+    <section class="section" id="missions">
+      <div class="section-num">04</div>
+      <h2>Les missions — choisir et accomplir</h2>
+
+      <p>Les missions sont le coeur economique du systeme. Contrairement aux taches quotidiennes, elles sont <strong>choisies librement</strong> par l'enfant et <strong>remunerees en CHF</strong>. Elles couvrent 10 categories de la vie familiale :</p>
+
+      <div class="cats-grid">
+        <div class="cat-pill"><span class="cat-em">📬</span><span class="cat-name">Courrier</span></div>
+        <div class="cat-pill"><span class="cat-em">👕</span><span class="cat-name">Lessive</span></div>
+        <div class="cat-pill"><span class="cat-em">🌿</span><span class="cat-name">Jardin</span></div>
+        <div class="cat-pill"><span class="cat-em">💻</span><span class="cat-name">Ordi</span></div>
+        <div class="cat-pill"><span class="cat-em">💰</span><span class="cat-name">Budget</span></div>
+        <div class="cat-pill"><span class="cat-em">🔧</span><span class="cat-name">Atelier</span></div>
+        <div class="cat-pill"><span class="cat-em">🍳</span><span class="cat-name">Cuisine</span></div>
+        <div class="cat-pill"><span class="cat-em">🐱</span><span class="cat-name">Soigneur animal</span></div>
+        <div class="cat-pill"><span class="cat-em">🤍</span><span class="cat-name">Care & Famille</span></div>
+        <div class="cat-pill"><span class="cat-em">🏛️</span><span class="cat-name">Conseil</span></div>
+      </div>
+
+      <h3>Le meme flux de validation</h3>
+
+      <div class="flow">
+        <div class="flow-step">
+          <span class="flow-em">✋</span>
+          <div class="flow-who">Enfant</div>
+          <div class="flow-label">Fait !</div>
+          <div class="flow-desc">L'enfant appuie. La mission passe en ⏳.</div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-em">👀</span>
+          <div class="flow-who">Parent</div>
+          <div class="flow-label">Verification</div>
+          <div class="flow-desc">Le parent verifie que le travail est bien fait.</div>
+        </div>
+        <div class="flow-step">
+          <span class="flow-em">🔑</span>
+          <div class="flow-who">Parent</div>
+          <div class="flow-label">PIN → ✅</div>
+          <div class="flow-desc">Les CHF sont credites.</div>
+        </div>
+      </div>
+
+      <h3>En situation</h3>
+
+      <!-- Mock-up : cartes mission dans les 3 etats -->
+      <div style="max-width:400px;margin:20px 0;font-family:'Nunito',sans-serif;display:flex;flex-direction:column;gap:6px">
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px">
+          <div style="width:28px;height:28px;border:2px solid #444;border-radius:6px"></div>
+          <div style="flex:1"><div style="color:#e0e0e0;font-size:.85rem;font-weight:600">Preparer le repas du soir</div><div style="font-size:.7rem;color:#888">⭐⭐</div></div>
+          <div style="color:#00e5ff;font-weight:800;font-size:.9rem">+3.00</div>
+        </div>
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-left:3px solid #ff9800">
+          <div style="width:28px;height:28px;border:2px solid #ff9800;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.8rem">⏳</div>
+          <div style="flex:1"><div style="color:#ff9800;font-size:.85rem;font-weight:600">Trier la boite aux lettres</div><div style="font-size:.7rem;color:#888">⭐</div></div>
+          <div style="color:#ff9800;font-weight:800;font-size:.9rem">+2.00</div>
+        </div>
+        <div style="background:#1e2236;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;opacity:.7">
+          <div style="width:28px;height:28px;border:2px solid #4caf50;border-radius:6px;background:#4caf5022;display:flex;align-items:center;justify-content:center;color:#4caf50;font-size:.9rem;font-weight:700">✓</div>
+          <div style="flex:1"><div style="color:#4caf50;font-size:.85rem;font-weight:600;text-decoration:line-through">Arroser les plantes</div><div style="font-size:.7rem;color:#888">⭐</div></div>
+          <div style="color:#4caf50;font-weight:800;font-size:.9rem">+2.50</div>
+        </div>
+      </div>
+      <p style="font-size:var(--fs-xs);color:var(--muted);margin-top:-12px">De haut en bas : a faire, en attente ⏳, validee ✓.</p>
+
+      <div class="duo">
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Parcourt la liste des missions, en choisit une qui lui plait.</div>
+          <div class="duo-phrase">"Je vais trier la boite aux lettres !"</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Realise la mission, puis appuie ✋ Fait ! → la mission passe en ⏳.</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Verifie le resultat concretement.</div>
+          <div class="duo-phrase">"Montre-moi la boite aux lettres. Ok, c'est bien trie. Les pubs a la poubelle ?"</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Entre le PIN. Choix : Valider ✅ ou Refaire ↩️.</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Si "Refaire"</div>
+          <div class="duo-action">La mission repasse a zero. C'est l'occasion d'une <strong>conversation</strong>, pas d'un jugement. Expliquer ce qui manque, accompagner.</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Voit ses CHF augmenter dans la barre de statut. Choisit sa prochaine mission.</div>
+        </div>
+      </div>
+
+      <!-- Mock-up : choix Valider / Refaire -->
+      <div style="background:#e8edf5;border-radius:16px;padding:24px 20px;max-width:280px;margin:20px 0;text-align:center;font-family:'Nunito',sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.1)">
+        <div style="font-size:2rem;margin-bottom:6px">🔐</div>
+        <div style="font-weight:800;font-size:.95rem;color:#1a1a2e;letter-spacing:.05em">CODE PARENT</div>
+        <div style="font-size:.75rem;color:#666;margin:6px 0 12px">PIN correct — que faire ?</div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1;padding:10px;background:#00e676;color:#000;border-radius:10px;font-weight:800;font-size:.85rem">✅ Valider</div>
+          <div style="flex:1;padding:10px;background:rgba(255,179,0,.15);color:#ffb300;border:1px solid #ffb300;border-radius:10px;font-weight:800;font-size:.85rem">↩️ Refaire</div>
+        </div>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 Pourquoi le parent valide</div>
+        <div class="box-body">
+          <p>Le regard de l'adulte reste la reference de validation. La reconnaissance vient de l'autre, pas de soi-meme. Ce mecanisme developpe l'honnetete et previent la triche — mais surtout, il cree un moment de <strong>connexion</strong> autour du travail accompli.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. LA PROGRESSION -->
+    <section class="section" id="progression">
+      <div class="section-num">05</div>
+      <h2>La progression — niveaux et gateways</h2>
+
+      <p>Les missions sont organisees en 4 niveaux accessibles progressivement, selon un seuil de CHF cumules. Le compteur ne baisse jamais — meme si l'enfant depense son argent, sa progression est irreversible.</p>
+
+      <div class="levels">
+        <div class="level-card n1">
+          <div class="level-name">🟢 N1 — Apprenti</div>
+          <div class="level-seuil">Acces libre des le depart</div>
+          <div class="level-desc">Les premieres missions. Concretes, accessibles, immediatement utiles.</div>
+        </div>
+        <div class="level-card n2">
+          <div class="level-name">🔵 N2 — Organisateur</div>
+          <div class="level-seuil">Seuil cumule configurable</div>
+          <div class="level-desc">Responsabilites plus complexes. S'ouvre avec une mission budgetaire.</div>
+        </div>
+        <div class="level-card n3">
+          <div class="level-name">🟠 N3 — Expert</div>
+          <div class="level-seuil">Seuil cumule configurable</div>
+          <div class="level-desc">Missions a forte valeur. Requiert un bilan oral devant la famille.</div>
+        </div>
+        <div class="level-card n4">
+          <div class="level-name">🟣 N4 — Maitre</div>
+          <div class="level-seuil">Seuil cumule configurable</div>
+          <div class="level-desc">Le niveau ultime. Gestion complete, budget adulte, leadership familial.</div>
+        </div>
+      </div>
+
+      <h3>La mission gateway</h3>
+      <p>Quand un nouveau niveau se deverrouille, <strong>une seule mission est accessible : la mission gateway.</strong> Toutes les autres restent verrouillees tant qu'elle n'est pas accomplie. Les gateways sont liees au Budget — la competence financiere est le fil rouge de la progression.</p>
+
+      <div class="duo">
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Atteint le seuil du N2. Voit le niveau se deverrouiller... mais une seule mission est accessible.</div>
+          <div class="duo-phrase">"Pourquoi je peux pas faire les autres ?"</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Explique le principe de la gateway.</div>
+          <div class="duo-phrase">"C'est la mission d'entree. Comme quand tu passes un examen avant de pouvoir aller plus loin. Fais celle-la d'abord, et tout le reste s'ouvre."</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Celebration</div>
+          <div class="duo-action">Quand la gateway est validee et que tout le niveau s'ouvre : <strong>celebrez en famille.</strong> Un repas choisi par l'enfant, une sortie, une reconnaissance devant les freres et soeurs. Le systeme numerique ne suffit pas.</div>
+        </div>
+      </div>
+
+      <div class="box box-limit">
+        <div class="box-header">⚠️ Si la gateway bloque</div>
+        <div class="box-body">
+          <p>Si la mission gateway est trop difficile a un moment donne (maladie, periode chargee), elle devient un mur frustrant. Le back office permet de la debloquer manuellement. <strong>A utiliser avec parcimonie, et en le disant a l'enfant.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. BADGES & SECRETS -->
+    <section class="section" id="badges">
+      <div class="section-num">06</div>
+      <h2>Badges et missions secretes</h2>
+
+      <p>Un badge est attribue pour chaque combinaison <strong>categorie x niveau</strong>. Il s'obtient en completant les missions d'une categorie a un niveau donne.</p>
+
+      <!-- Mock-up : badges gagne vs a gagner -->
+      <div style="display:flex;gap:12px;margin:20px 0;max-width:400px;font-family:'Nunito',sans-serif">
+        <div style="background:#1e2236;border-radius:10px;padding:16px;text-align:center;flex:1;border:1px solid #4caf5044">
+          <div style="font-size:2rem">🍳</div>
+          <div style="font-size:.8rem;font-weight:700;color:#e0e0e0;margin:6px 0 2px">Cuisine N1</div>
+          <div style="font-size:.72rem;color:#4caf50;margin-top:6px">✅ Obtenu</div>
+          <div style="font-size:.65rem;color:#00e5ff;margin-top:4px">🔮 Mission secrete deverrouillee !</div>
+        </div>
+        <div style="background:#1e2236;border-radius:10px;padding:16px;text-align:center;flex:1;opacity:.5">
+          <div style="font-size:2rem;filter:grayscale(1)">🍳</div>
+          <div style="font-size:.8rem;font-weight:700;color:#666;margin:6px 0 2px">Cuisine N2</div>
+          <div style="font-size:.72rem;color:#888;margin-top:6px">🔒 A gagner</div>
+          <div style="font-size:.65rem;color:#666;margin-top:4px">🔮 Secret a decouvrir</div>
+        </div>
+      </div>
+
+      <div class="duo">
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Complete toutes les missions Cuisine au N1. Le badge "Cuistot Junior" apparait !</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Decouvre qu'une mission secrete s'est debloquee dans l'onglet Missions.</div>
+          <div class="duo-phrase">"C'est quoi ca ? 'Inventer une recette originale' ? Ca existait pas avant !"</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Accompagne la decouverte, montre l'enthousiasme.</div>
+          <div class="duo-phrase">"C'est parce que t'as gagne ton badge Cuisine ! Chaque categorie a sa mission secrete. Tu veux essayer ?"</div>
+        </div>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 Surprise et specialisation</div>
+        <div class="box-body">
+          <p>Les missions secretes recompensent l'<strong>investissement dans une categorie</strong>, pas la dispersion. L'enfant qui s'y consacre vraiment decouvre une recompense inattendue — ce qui renforce la curiosite et la motivation intrinseque.</p>
+          <p>Si votre enfant ne remarque pas le lien badge → mission secrete, <strong>c'est a vous de le signaler.</strong> L'effet de surprise ne fonctionne que s'il est percu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. LE STREAK -->
+    <section class="section" id="streak">
+      <div class="section-num">07</div>
+      <h2>Le streak — la regularite recompensee</h2>
+
+      <p>Le streak est le seul mecanisme de remuneration lie aux taches quotidiennes. Quand l'enfant enchaine des journees parfaites consecutives, un bonus en CHF est accorde automatiquement.</p>
+
+      <!-- Mock-up : streak counter -->
+      <div style="background:#1e2236;border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:18px;margin:20px 0;max-width:400px;font-family:'Nunito',sans-serif">
+        <div style="font-size:2.4rem;font-weight:800;color:#ff9800;min-width:50px;text-align:center">5</div>
+        <div style="flex:1">
+          <div style="font-size:.75rem;color:#ccc;font-weight:600">jours parfaits consecutifs</div>
+          <div style="background:#333;border-radius:4px;height:6px;margin:8px 0 4px;overflow:hidden"><div style="width:71%;height:100%;background:linear-gradient(90deg,#ff9800,#ffb300);border-radius:4px"></div></div>
+          <div style="font-size:.72rem;color:#ff9800;font-weight:700">Dans 2 jours → +1.00 CHF 🔥</div>
+        </div>
+      </div>
+
+      <div class="duo">
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Enchaine 5 jours ou il a fait toutes ses taches. Voit la barre de progression avancer.</div>
+          <div class="duo-phrase">"Plus que 2 jours pour le bonus !"</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Valide chaque soir normalement. Le 7eme jour, le bonus tombe automatiquement.</div>
+          <div class="duo-phrase">"7 jours d'affilee, bravo ! C'est pas juste ce que tu fais — c'est qui tu deviens."</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Si le streak se casse</div>
+          <div class="duo-action">Le compteur repart de zero <strong>sans drame</strong>. Pas de penalite, pas de dramatisation. Le streak est un miroir, pas un juge.</div>
+          <div class="duo-phrase">"C'est pas grave. Ca repart. L'important c'est pas d'etre parfait, c'est de recommencer."</div>
+        </div>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 L'identite, pas l'acte</div>
+        <div class="box-body">
+          <p>Ce qu'on recompense n'est pas <em>"tu as fait ton lit"</em> — c'est <em>"tu es le genre de personne qui fait son lit tous les jours"</em>. La regularite forge l'identite. Le streak valorise la constance, pas la performance ponctuelle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         PHASE : RITUELS
+    ══════════════════════════════════ -->
+    <div class="phase phase-rituels">Phase 3 — Les rituels</div>
+
+    <!-- 08. LE DIMANCHE -->
+    <section class="section" id="dimanche">
+      <div class="section-num">08</div>
+      <h2>Chaque dimanche — le versement</h2>
+
+      <p>L'application est un compteur virtuel. Le moment ou le parent sort de l'argent physique est irremplacable — c'est la que l'abstraction devient reelle.</p>
+
+      <div class="duo">
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Ouvre l'app, note le total de la semaine. Prepare les pieces ou le billet.</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Pose l'argent sur la table devant l'enfant.</div>
+          <div class="duo-phrase">"Voila tes 5.50 CHF de la semaine. Tu les as gagnes avec 3 missions et un streak."</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Compte l'argent, verifie que ca correspond a ce que l'app affiche.</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Le bilan informel</div>
+          <div class="duo-action">Profitez de ce moment pour poser quelques questions simples. Pas un interrogatoire — une conversation.</div>
+          <div class="duo-phrase">"Quelle mission t'a rapporte le plus ? T'as prefere quoi cette semaine ? Tu comptes faire quoi avec cet argent ?"</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Decide quoi faire de son argent : depenser, epargner, donner.</div>
+          <div class="duo-phrase">"Je garde tout pour m'acheter un livre."</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Respecte le choix. C'est son argent, il l'a gagne.</div>
+          <div class="duo-phrase">"C'est ton choix. T'as bien travaille pour."</div>
+        </div>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 L'abstrait qui devient concret</div>
+        <div class="box-body">
+          <p>Ce rituel enseigne que l'argent est le resultat d'un effort accompli, pas un flux automatique. Le moment physique du versement est irremplacable — il donne du poids a tout le systeme numerique. <strong>Ne le sautez pas, meme si c'est petit.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. LE CONSEIL -->
+    <section class="section" id="conseil">
+      <div class="section-num">09</div>
+      <h2>Le Conseil de famille</h2>
+
+      <p>Le Conseil est a la fois une <strong>mission payee</strong> (une a chaque niveau) et un <strong>mecanisme de gouvernance reelle</strong>. C'est le lieu ou votre enfant peut soulever un probleme avec le systeme, proposer de nouvelles regles, demander une revision des montants.</p>
+
+      <div class="duo">
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Decide de convoquer un Conseil. Prepare un ordre du jour (vous pouvez l'aider).</div>
+          <div class="duo-phrase">"Je voudrais qu'on parle du montant de la mission jardin — et aussi ajouter une mission rangement du garage."</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Accepte la convocation. Prevoit un creneau de 15-20 minutes, au calme.</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Le Conseil</div>
+          <div class="duo-action">Tour de parole, pas d'interruption. L'enfant presente ses sujets. Le parent ecoute, pose des questions, repond serieusement — <strong>meme s'il refuse</strong>.</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Propose un changement de regle avec des arguments.</div>
+          <div class="duo-phrase">"La mission jardin devrait rapporter plus parce que ca prend plus de temps que le courrier."</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Evalue la proposition. Accepte, refuse avec explication, ou propose un compromis.</div>
+          <div class="duo-phrase">"T'as raison, ca prend plus de temps. On ajuste le montant. Par contre, le garage c'est encore trop complique pour toi, on en reparlera au N3."</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Applique les decisions dans le back office. L'enfant marque la mission ✋ Fait ! → PIN → ✅.</div>
+        </div>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 Le mecanisme anti-autoritarisme</div>
+        <div class="box-body">
+          <p>Sans le Conseil, les regles sont imposees d'en haut. Avec lui, elles sont <strong>negociees</strong> — ce qui leur donne une legitimite que l'imposition seule ne peut pas creer. L'enfant apprend la parole en public, la negociation, et la capacite a accepter un refus avec dignite.</p>
+        </div>
+      </div>
+
+      <div class="box box-limit">
+        <div class="box-header">⚠️ Ne pas laisser devenir une formalite</div>
+        <div class="box-body">
+          <p>Si l'enfant prepare un Conseil vide juste pour les CHF, c'est le signe qu'il faut remettre du sens. Le parent s'engage a repondre serieusement, meme quand il refuse. <em>"Le Conseil c'est pas pour les CHF, c'est parce qu'on t'ecoute vraiment."</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         PHASE : CONFIGURATION & EVOLUTION
+    ══════════════════════════════════ -->
+    <div class="phase phase-evolution">Phase 4 — Configuration et evolution</div>
+
+    <!-- 10. LE BACK OFFICE -->
+    <section class="section" id="backoffice">
+      <div class="section-num">10</div>
+      <h2>Le back office parent</h2>
+
+      <p>Le back office est l'interface reservee aux parents, accessible via le bouton ⚙️ Admin et protegee par un code PIN. C'est votre tableau de bord pour configurer, ajuster et suivre le systeme.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Onglet</th><th>Ce que vous pouvez y faire</th></tr></thead>
+          <tbody>
+            <tr><td>📅 Validation</td><td>Corriger les taches d'un jour passe, valider une journee manquee</td></tr>
+            <tr><td>👨‍👧‍👦 Enfants</td><td>Gerer les profils (nom, theme, niveaux), ajouter des enfants</td></tr>
+            <tr><td>📋 Missions</td><td>Modifier les montants, exclure des missions, debloquer une gateway</td></tr>
+            <tr><td>✅ Taches</td><td>Activer ou desactiver des taches, ajouter des taches personnalisees</td></tr>
+            <tr><td>🏅 Badges</td><td>Consulter et modifier les badges du catalogue</td></tr>
+            <tr><td>💰 Economie</td><td>Simulateur de calibrage, montant de base, seuils de niveaux</td></tr>
+            <tr><td>⚙️ Parametres</td><td>Changer le PIN, sauvegarder/restaurer les donnees</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="duo">
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Appuie sur ⚙️ Admin → entre le PIN → accede au back office.</div>
+        </div>
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Utilise l'onglet Economie pour calibrer les montants avec le simulateur. Ajuste si necessaire apres quelques semaines.</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Transparence</div>
+          <div class="duo-action">L'enfant sait que le back office existe. Si vous modifiez quelque chose, dites-le. La transparence est plus precieuse que la perfection du systeme.</div>
+        </div>
+      </div>
+
+      <div class="box box-info">
+        <div class="box-header">💡 Quand utiliser le back office</div>
+        <div class="box-body">
+          <p><strong>Oui :</strong> corriger une erreur, ajuster les montants apres quelques semaines, debloquer une gateway en cas de force majeure, sauvegarder les donnees.</p>
+          <p><strong>Non :</strong> corriger des missions contestees sans dialogue, modifier les regles en secret, annuler une validation apres coup sans explication.</p>
+        </div>
+      </div>
+
+      <p>Pour le detail complet de chaque onglet et le fonctionnement du simulateur de calibrage, consultez le <a href="manuel-parents.html#backoffice" style="color:var(--hi)">Manuel parents</a>.</p>
+    </section>
+
+    <!-- 11. SEMAINES 1 A 4 -->
+    <section class="section" id="rythme">
+      <div class="section-num">11</div>
+      <h2>Semaines 1 a 4 — trouver le rythme</h2>
+
+      <p>Ne lancez pas tout en meme temps. Montez en puissance progressivement sur les quatre premieres semaines.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">S1</div>
+          <div class="tl-body">
+            <div class="tl-title">Semaine 1 — Installer le reflexe</div>
+            <div class="tl-desc">
+              <p>Focus sur les <strong>taches journalieres uniquement</strong>. L'objectif : que le cycle "cocher → valider → recommencer" devienne un automatisme.</p>
+              <ul>
+                <li>Pas de missions cette semaine (ou 1-2 maximum, choisies ensemble le Jour J)</li>
+                <li>Etablir le rituel de validation du soir</li>
+                <li>Observer : votre enfant comprend-il le flux ? Le trouve-t-il intuitif ?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S2</div>
+          <div class="tl-body">
+            <div class="tl-title">Semaine 2 — Les premieres missions</div>
+            <div class="tl-desc">
+              <p>Ajoutez <strong>2-3 missions N1</strong> choisies par l'enfant. Le premier streak de 7 jours est peut-etre a portee.</p>
+              <ul>
+                <li>Laissez l'enfant choisir dans les categories qui l'attirent</li>
+                <li>Validez rapidement : la boucle motivation depende de la reactivite</li>
+                <li>Les premiers CHF apparaissent dans la barre de statut</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S3</div>
+          <div class="tl-body">
+            <div class="tl-title">Semaine 3 — Premier versement reel</div>
+            <div class="tl-desc">
+              <p>Le dimanche, faites le premier <strong>versement en argent reel</strong>. C'est le moment ou tout le systeme prend du poids.</p>
+              <ul>
+                <li>Comptez ensemble, verifiez que ca correspond</li>
+                <li>Discussion informelle : "Ca t'a plu ? Qu'est-ce que tu veux faire avec ?"</li>
+                <li>L'enfant est probablement motive — canalisez, ne surchargez pas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">S4</div>
+          <div class="tl-body">
+            <div class="tl-title">Semaine 4 — Premier bilan</div>
+            <div class="tl-desc">
+              <p>Proposez un premier <strong>mini-Conseil de famille</strong>. Pas forcement la mission formelle — juste une discussion sur ce qui marche et ce qui ne marche pas.</p>
+              <ul>
+                <li>"Qu'est-ce que tu changerais ?" — ecoutez vraiment la reponse</li>
+                <li>Ajustez dans le back office si necessaire (montants, taches, missions exclues)</li>
+                <li>Faites une sauvegarde JSON des donnees</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box box-limit">
+        <div class="box-header">⚠️ Pieges courants des premieres semaines</div>
+        <div class="box-body">
+          <p><strong>Trop de missions trop vite.</strong> L'enfant veut tout faire d'un coup pour gagner plus. Resultats bacles, frustration. Mieux vaut 2 missions bien faites que 6 survolees.</p>
+          <p><strong>Oublier de valider.</strong> Si le parent laisse les ⏳ s'accumuler sans valider, l'enfant perd confiance dans le systeme. Rituel du soir = non-negociable.</p>
+          <p><strong>Confondre missions et taches.</strong> Si l'enfant commence a negocier un prix pour ses taches quotidiennes, reprenez la conversation initiale. La frontiere doit etre claire et repetee.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. A MOYEN TERME -->
+    <section class="section" id="longterme">
+      <div class="section-num">12</div>
+      <h2>A moyen terme — l'evolution du systeme</h2>
+
+      <p>L'objectif de Missions Heroes n'est pas que votre enfant soit paye pour tout, pour toujours. L'objectif est que certaines taches deviennent des <strong>habitudes naturelles</strong> qui n'ont plus besoin du systeme.</p>
+
+      <h3>L'internalisation des habitudes</h3>
+
+      <div class="duo">
+        <div class="duo-msg parent">
+          <div class="duo-who">Parent</div>
+          <div class="duo-action">Apres quelques mois, propose une revision du systeme.</div>
+          <div class="duo-phrase">"Ca fait 3 mois que tu fais ton lit tous les jours sans qu'on ait besoin d'en parler. Tu penses que ca peut sortir de la liste ?"</div>
+        </div>
+        <div class="duo-msg enfant">
+          <div class="duo-who">Enfant</div>
+          <div class="duo-action">Reflechit, negocie, accepte ou refuse.</div>
+          <div class="duo-phrase">"Ok pour le lit, ca je le fais tout seul maintenant. Mais les dents, je prefere garder le rappel."</div>
+        </div>
+        <div class="duo-msg moment">
+          <div class="duo-who">Evolution</div>
+          <div class="duo-action">C'est une conversation, pas une decision unilaterale. L'enfant participe a l'evolution de ses propres regles — c'est ca, l'autonomie reelle.</div>
+        </div>
+      </div>
+
+      <h3>Le parcours budget a travers les niveaux</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Niveau</th><th>Competence budgetaire</th><th>Ce que ca enseigne</th></tr></thead>
+          <tbody>
+            <tr><td>N1</td><td>Creer son tableau, noter ses revenus</td><td>L'argent se compte, se suit</td></tr>
+            <tr><td>N2</td><td>Tenir son budget plusieurs semaines</td><td>La regularite dans la gestion</td></tr>
+            <tr><td>N3</td><td>Presenter son bilan a l'oral</td><td>Synthese, argumentation, transparence</td></tr>
+            <tr><td>N4</td><td>Budget complet : epargne, charges, dons</td><td>La realite adulte : brut ≠ net</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box box-peda">
+        <div class="box-header">🎓 L'analogie finale</div>
+        <div class="box-body">
+          <p>A partir du N3, montrez a votre enfant les vraies deductions salariales suisses (AVS, AC, LPP). Le message : <em>"Meme les adultes ne gardent pas tout ce qu'ils gagnent — et c'est juste, parce que ca finance des choses utiles pour tout le monde."</em></p>
+        </div>
+      </div>
+
+      <h3>Pour aller plus loin</h3>
+      <p>Ce guide vous a donne le parcours de mise en route. Pour approfondir :</p>
+      <ul class="checklist">
+        <li><a href="approche_pedagogique.html" style="color:var(--hi);text-decoration:none"><strong>Approche pedagogique</strong></a> — les fondements scientifiques, la Self-Determination Theory, les limites de chaque mecanique</li>
+        <li><a href="manuel-parents.html" style="color:var(--hi);text-decoration:none"><strong>Manuel parents</strong></a> — le guide complet de l'interface, le simulateur de calibrage, le detail du back office</li>
+      </ul>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="doc-footer">
+      <strong>Missions Heroes</strong> · Guide de mise en route
+      <p class="footer-credit">
+        Concocte avec
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        par <a href="https://www.linkedin.com/in/jonathan-parrat" target="_blank" rel="noopener">Jonathan Parrat<svg class="icon-linkedin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.83-48.3 93.97 0 111.28 61.9 111.28 142.3V448z"/></svg></a>
+        · Iteract, 2026
+      </p>
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('.nav-list a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const l = document.querySelector(`.nav-list a[href="#${e.target.id}"]`);
+      if (l) l.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
