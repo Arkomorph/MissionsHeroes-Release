@@ -53,8 +53,7 @@
     const banner = document.createElement('div');
     banner.id = 'trial-banner';
     Object.assign(banner.style, {
-      position: 'fixed', top: '0', left: '0', right: '0',
-      zIndex: '10000', padding: '8px 16px',
+      padding: '8px 16px',
       background: 'linear-gradient(90deg, #1a1200, #2a1f00, #1a1200)',
       borderBottom: '1px solid #f5a623',
       color: '#f5a623', textAlign: 'center',
@@ -64,8 +63,6 @@
     const plural = daysLeft > 1 ? 's' : '';
     banner.textContent = `\u23F3 P\u00e9riode d\u2019essai : ${daysLeft} jour${plural} restant${plural}`;
     document.body.prepend(banner);
-    // Push page content down so banner doesn't overlap
-    document.body.style.paddingTop = (banner.offsetHeight) + 'px';
   }
 
   // ── Expired overlay on app.html ──
