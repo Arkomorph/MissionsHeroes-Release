@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#00cfff">
+  <title>Missions Heroes</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Josefin+Sans:wght@300;600&family=Righteous&family=Nunito:wght@400;700;800&family=Baloo+2:wght@400;700&family=Patrick+Hand&family=Geist:wght@600&family=Roboto+Condensed:wght@300&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/backoffice.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <style>
+    .qnav{position:fixed;top:8px;right:8px;display:flex;gap:5px;z-index:100}
+    .qnav a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#080d1a;border:1px solid var(--brd,#0a2040);text-decoration:none;transition:border-color .2s,transform .15s,box-shadow .2s}
+    .qnav a:hover{border-color:var(--hi,#00cfff);transform:scale(1.1);box-shadow:0 0 12px rgba(0,207,255,.2)}
+    .qnav svg{width:16px;height:16px;fill:var(--muted,#2a5070);transition:fill .2s}
+    .qnav a:hover svg{fill:var(--hi,#00cfff)}
+    @media(orientation:landscape)and (min-width:700px){.qnav{display:none}}
+  </style>
+  <script defer src="https://analytics.iteract.ch/script.js"
+    data-website-id=""></script>
+  <script>
+    document.querySelector('[data-website-id]').dataset.websiteId =
+      location.hostname === 'missionsheroes.iteract.ch'
+        ? '03001dbe-81f6-4b23-8f95-ed7e207df4ad'
+        : '4483a812-2f12-49d3-9d0b-b7014df81b40';
+  </script>
+</head>
+<body>
+
+<nav class="qnav">
+  <a href="index.html" title="Accueil"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+  <a href="site/approche_pedagogique.html" title="Pédagogie"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></a>
+  <a href="site/manuel-parents.html" title="Manuel parents"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></a>
+</nav>
+
+<!-- ═══ Loader (visible until app is ready) ═══ -->
+<div id="loader" style="position:fixed;inset:0;background:#030810;display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column">
+  <div class="loader-emoji" style="font-size:48px">⚡</div>
+  <div class="loader-text" style="color:#00cfff;font-family:'Share Tech Mono',monospace;margin-top:12px;font-size:14px">Chargement...</div>
+</div>
+
+<!-- ═══ App shell ═══ -->
+<div id="app" class="theme-louis">
+
+  <!-- Sidebar (landscape only) -->
+  <div id="sidebar">
+    <div id="sidebar-children"></div>
+    <div class="side-sep"></div>
+    <div id="sidebar-sections"></div>
+    <div class="side-admin" onclick="openAdmin()" title="Back office">
+      <span style="font-size:var(--fs-xl)">⚙️</span>
+      <span style="font-size:var(--fs-xs);color:var(--muted);display:block;margin-top:2px">Admin</span>
+    </div>
+    <div class="side-sep"></div>
+    <div class="side-links">
+      <a href="index.html" class="side-link" title="Accueil"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Accueil</span></a>
+      <a href="site/approche_pedagogique.html" class="side-link" title="Pédagogie"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg><span>Péda</span></a>
+      <a href="site/manuel-parents.html" class="side-link" title="Manuel parents"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg><span>Manuel</span></a>
+    </div>
+  </div>
+
+  <!-- Right col (portrait: full width, landscape: content area) -->
+  <div id="right-col">
+
+    <!-- Chrome -->
+    <div id="chrome">
+      <div id="child-tabs"></div>
+      <div id="stats-bar">
+        <div>
+          <div class="sb-chf" id="sb-chf">0.00</div>
+          <div style="font-size:var(--fs-xs);color:var(--muted);margin-top:1px">CHF gagnés <button class="tip-btn" data-tip="Total cumulé depuis le début — ne diminue pas quand tu dépenses">?</button></div>
+        </div>
+        <div class="sb-sep"></div>
+        <div class="sb-level">
+          <div class="sb-lvl-name" id="sb-lvl"></div>
+          <div class="sb-prog-row">
+            <div class="sb-prog-track">
+              <div class="sb-prog-fill" id="sb-bar" style="width:0%"></div>
+            </div>
+            <div class="sb-prog-pct" id="sb-pct">0%</div>
+          </div>
+          <div style="font-size:var(--fs-xs);color:var(--muted);margin-top:2px" id="sb-next"></div>
+        </div>
+        <div>
+          <div class="sb-streak" id="sb-streak">0🔥</div>
+          <div class="sb-streak-lbl">streak <button class="tip-btn" data-tip="Journées parfaites consécutives — objectif configurable dans le back office">?</button></div>
+        </div>
+        <span id="offline-badge" style="display:none;background:#ff3d7f;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;align-self:center">OFFLINE</span>
+      </div>
+      <div id="section-nav"></div>
+    </div>
+
+    <!-- Bottom nav -->
+    <div id="bottom-nav"></div>
+
+    <!-- Content -->
+    <div id="content-wrap">
+      <div id="main"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Back office -->
+<div id="backoffice"></div>
+
+<!-- BO Modal -->
+<div id="bo-modal-ov"></div>
+
+<!-- PIN Modal -->
+<div class="overlay" id="pin-ov">
+  <div class="modal">
+    <div class="modal-icon">🔐</div>
+    <div class="modal-title">CODE PARENT</div>
+    <div class="modal-sub" id="pin-lbl"></div>
+    <div class="pin-dots">
+      <div class="pin-dot" id="d0"></div><div class="pin-dot" id="d1"></div>
+      <div class="pin-dot" id="d2"></div><div class="pin-dot" id="d3"></div>
+    </div>
+    <div class="pin-err" id="pin-err"></div>
+    <div class="keypad">
+      <button class="k-btn" onclick="kp('1')">1</button><button class="k-btn" onclick="kp('2')">2</button><button class="k-btn" onclick="kp('3')">3</button>
+      <button class="k-btn" onclick="kp('4')">4</button><button class="k-btn" onclick="kp('5')">5</button><button class="k-btn" onclick="kp('6')">6</button>
+      <button class="k-btn" onclick="kp('7')">7</button><button class="k-btn" onclick="kp('8')">8</button><button class="k-btn" onclick="kp('9')">9</button>
+      <button class="k-btn ghost"></button><button class="k-btn" onclick="kp('0')">0</button><button class="k-btn" onclick="kpDel()">⌫</button>
+    </div>
+    <div id="pin-actions" style="display:none;margin-bottom:12px">
+      <div style="font-size:var(--fs-sm);color:#2a5070;margin-bottom:8px">PIN correct — que faire ?</div>
+      <div style="display:flex;gap:8px">
+        <button style="flex:1;padding:12px;background:#00e676;color:#000;border:none;border-radius:10px;font-family:var(--font-body,'Nunito',sans-serif);font-size:var(--fs-lg);font-weight:800;cursor:pointer" onclick="pinAction('validate')">✅ Valider</button><button class="tip-btn" data-tip="Confirmer que la mission est faite — les CHF sont crédités" style="margin-left:4px">?</button>
+        <button style="flex:1;padding:12px;background:rgba(255,179,0,.15);color:#ffb300;border:1px solid #ffb300;border-radius:10px;font-family:var(--font-body,'Nunito',sans-serif);font-size:var(--fs-lg);font-weight:800;cursor:pointer" onclick="pinAction('redo')">↩️ Refaire</button><button class="tip-btn" data-tip="La mission repasse à faire — rien n'est crédité" style="margin-left:4px">?</button>
+      </div>
+    </div>
+    <button class="btn-cancel" onclick="closePin()">Annuler</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/data.js"></script>
+<script src="js/migration.js"></script>
+<script src="js/state.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/emoji-picker.js"></script>
+<script src="js/render.js"></script>
+<script src="js/backoffice.js"></script>
+<script src="js/actions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
