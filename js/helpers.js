@@ -110,6 +110,7 @@ function computeLevelThresholds(cid) {
 
 function curLvl(cid) {
   const e = totalE(cid); const lvls = getLevels(cid);
+  if (!lvls.length) return { id: '?', label: 'Aucun niveau', color: '#888', bg: '#111', seuil: 0 };
   for (let i = lvls.length - 1; i >= 0; i--) { if (e >= lvls[i].seuil) return lvls[i]; }
   return lvls[0];
 }
@@ -138,6 +139,7 @@ function isMOk(cid, m) {
 
 function prog(cid) {
   const e = totalE(cid); const lvls = getLevels(cid); const lvl = curLvl(cid);
+  if (!lvls.length) return { pct: 0, label: 'Aucun niveau configuré', next: null };
   const idx = lvls.indexOf(lvl);
   if (idx === lvls.length - 1) return { pct: 100, label: 'NIVEAU MAX', next: null };
   const next = lvls[idx + 1];

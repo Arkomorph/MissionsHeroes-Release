@@ -180,7 +180,7 @@ function renderTabs() {
 // ── Stats bar ──
 function renderStatsBar() {
   const ch = getChild(AC);
-  if (!ch || !ch.active) {
+  if (!ch || !ch.active || !getLevels(AC).length) {
     document.getElementById('stats-bar').style.display = 'none';
     return;
   }
