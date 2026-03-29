@@ -28,6 +28,15 @@
   </div>
 </div>
 
+<h2 style="margin-top:3rem">OG Image (partage réseaux sociaux)</h2>
+<div class="row">
+  <div>
+    <h3>1200 x 630</h3>
+    <canvas id="cog" width="1200" height="630" style="max-width:100%;height:auto"></canvas><br>
+    <button onclick="download('cog', 'og-image.png')">Download OG Image</button>
+  </div>
+</div>
+
 <script>
 function drawIcon(canvas) {
   const s = canvas.width;
@@ -79,8 +88,70 @@ function download(id, filename) {
   a.click();
 }
 
+function drawOgImage(canvas) {
+  const w = canvas.width;   // 1200
+  const h = canvas.height;  // 630
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#030810';
+  ctx.fillRect(0, 0, w, h);
+
+  // Subtle border
+  ctx.strokeStyle = '#0a2040';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(16, 16, w - 32, h - 32);
+
+  // Lightning bolt (left side, vertically centered)
+  const boltSize = 280;
+  const bx = 160;  // center x of bolt
+  const by = h / 2; // center y
+  const bolt = new Path2D();
+  bolt.moveTo(bx + boltSize * 0.11,  by - boltSize * 0.45);
+  bolt.lineTo(bx - boltSize * 0.2,   by + boltSize * 0.05);
+  bolt.lineTo(bx - boltSize * 0.02,  by + boltSize * 0.05);
+  bolt.lineTo(bx - boltSize * 0.08,  by + boltSize * 0.45);
+  bolt.lineTo(bx + boltSize * 0.27,  by - boltSize * 0.15);
+  bolt.lineTo(bx + boltSize * 0.07,  by - boltSize * 0.15);
+  bolt.closePath();
+
+  const grad = ctx.createLinearGradient(0, by - boltSize / 2, 0, by + boltSize / 2);
+  grad.addColorStop(0, '#00cfff');
+  grad.addColorStop(1, '#0088ff');
+  ctx.fillStyle = grad;
+  ctx.fill(bolt);
+  ctx.strokeStyle = '#00cfff';
+  ctx.lineWidth = 3;
+  ctx.lineJoin = 'round';
+  ctx.stroke(bolt);
+
+  // Glow effect behind bolt
+  ctx.save();
+  ctx.shadowColor = '#00cfff';
+  ctx.shadowBlur = 40;
+  ctx.fillStyle = grad;
+  ctx.fill(bolt);
+  ctx.restore();
+
+  // Title text
+  const tx = 380;
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 72px Nunito, sans-serif';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Missions Heroes', tx, h / 2 - 40);
+
+  // Tagline
+  ctx.fillStyle = '#00cfff';
+  ctx.font = '28px "Share Tech Mono", monospace';
+  ctx.fillText('Responsabilisation & autonomie', tx, h / 2 + 30);
+  ctx.fillStyle = '#667788';
+  ctx.font = '22px "Share Tech Mono", monospace';
+  ctx.fillText('pour les enfants — zero compte, zero dependance', tx, h / 2 + 70);
+}
+
 drawIcon(document.getElementById('c192'));
 drawIcon(document.getElementById('c512'));
+drawOgImage(document.getElementById('cog'));
 </script>
 </body>
 </html>
