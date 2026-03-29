@@ -94,7 +94,8 @@
 .bo-item-actions{display:flex;gap:4px;flex-shrink:0}
 .bo-icon-btn{width:30px;height:30px;border-radius:6px;border:1px solid var(--brd,#0a2040);background:var(--surf,#080d1a);color:var(--muted,#2a5070);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:var(--fs-base);transition:all .15s}
 .bo-icon-btn:hover{border-color:var(--hi,#00cfff);color:var(--hi,#00cfff)}
-.bo-icon-btn.danger:hover{border-color:var(--danger,#ff3d7f);color:var(--danger,#ff3d7f)}
+.bo-icon-btn.danger{border-color:var(--danger,#ff3d7f);color:var(--danger,#ff3d7f)}
+.bo-icon-btn.danger:hover{background:rgba(255,61,127,.12)}
 .bo-child-sel{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
 .bo-child-btn{padding:6px 12px;border-radius:20px;border:1px solid var(--brd,#0a2040);background:var(--card,#0d1422);color:var(--muted,#2a5070);cursor:pointer;font-size:var(--fs-sm);font-weight:700;transition:all .15s}
 .bo-child-btn.active{background:color-mix(in srgb,var(--hi,#00cfff) 12%,transparent);color:var(--hi,#00cfff);border-color:var(--hi,#00cfff)}

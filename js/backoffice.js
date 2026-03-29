@@ -100,12 +100,12 @@ function renderBO() {
   boEl.innerHTML = `
     <div class="bo-hdr">
       <div class="bo-title">⚙️ BACK OFFICE PARENT</div>
+      <button class="bo-close" onclick="closeBO()">← Retour</button>
       <div class="bo-qnav">
         <a href="index.html" title="Accueil"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
         <a href="site/approche_pedagogique.html" title="Pédagogie"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></a>
         <a href="site/manuel-parents.html" title="Manuel parents"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></a>
       </div>
-      <button class="bo-close" onclick="closeBO()">← Retour</button>
     </div>
     <div class="bo-tabs-wrap"><div class="bo-tabs">${tabHtml}</div></div>
     <div style="overflow-y:auto;flex:1${themeStyle ? ';' + themeStyle : ''}">
@@ -312,6 +312,10 @@ function renderBOEnfants() {
         <div class="bo-item-title">${escHtml(ch.name)} <span style="font-size:var(--fs-sm);color:var(--muted)">${ch.age} ans</span></div>
         <div class="bo-item-sub">${ch.active?'✅ Actif':'🔜 Inactif'} · ${(ch.levels||[]).length} niveaux · ${getMissions(ch.id).length} missions</div>
       </div>
+      <div class="bo-item-actions">
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupChild('${ch.id}')" title="Dupliquer">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelChild('${ch.id}')" title="Supprimer">🗑️</button>
+      </div>
       ${editForm}
     </div>`;
   }).join('');
@@ -347,7 +351,8 @@ function renderChildEditForm(cid) {
       <span style="font-size:var(--fs-xs);color:${l.color};font-weight:800;min-width:24px;height:28px;display:flex;align-items:center">${escHtml(l.id)}</span>
       <div class="bo-field" style="margin:0;flex:1;min-width:60px"><label>Nom</label><input value="${escHtml(l.label)}" onchange="boSetLevel('${cid}',${i},'label',this.value)" class="bo-input" style="width:100%" onclick="event.stopPropagation()"></div>
       ${i === 0 ? '' : `<div class="bo-field" style="margin:0;flex:1;min-width:80px"><label>Gateway ${tipBtn('Mission clé : seule mission accessible à l\'ouverture du niveau')}</label><select onchange="boSetLevel('${cid}',${i},'gatewayMission',this.value||null)" onclick="event.stopPropagation()" class="bo-input" style="width:100%">${gwOpts}</select></div>`}
-      <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelLevel('${cid}',${i})" style="width:26px;height:26px;font-size:var(--fs-sm)">🗑️</button>
+      <button class="bo-icon-btn" onclick="event.stopPropagation();boDupLevel('${cid}',${i})" title="Dupliquer" style="width:26px;height:26px;font-size:var(--fs-sm)">📋</button>
+      <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelLevel('${cid}',${i})" title="Supprimer" style="width:26px;height:26px;font-size:var(--fs-sm)">🗑️</button>
     </div>`;
   }).join('');
 
@@ -387,6 +392,10 @@ function renderBOMissions() {
         <div class="bo-item-sub">${escHtml(getCatLabel(m.cat))} · ${'⭐'.repeat(m.diff||1)}</div>
         ${isSecret(m)?'<div class="bo-item-tags"><span class="tag tag-sec">🔮 Secrète</span></div>':''}
       </div>
+      <div class="bo-item-actions">
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupCatalogMission('${m.id}')" title="Dupliquer">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCatalogMission('${m.id}')" title="Supprimer">🗑️</button>
+      </div>
       ${editForm}
     </div>`;
   }
@@ -419,6 +428,8 @@ function renderBOMissions() {
       </div>
       <div class="bo-item-actions">
         ${gwUnlockBtn}
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupCatalogMission('${m.id}')" title="Dupliquer">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCatalogMission('${m.id}')" title="Supprimer">🗑️</button>
       </div>
       ${editForm}
     </div>`;
@@ -503,6 +514,10 @@ function renderBOMissions() {
             : `<div class="bo-item-title">${escHtml(m.nom)}</div>`}
           <div class="bo-item-sub">${escHtml(m.niv)} · ${chf(missionChf(BO_CHILD, m))} CHF · extra</div>
         </div>
+        <div class="bo-item-actions">
+          <button class="bo-icon-btn" onclick="event.stopPropagation();boDupExtra('${BO_CHILD}','missions',${i})" title="Dupliquer">📋</button>
+          <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelExtra('${BO_CHILD}','missions',${i})" title="Supprimer">🗑️</button>
+        </div>
         ${editForm}
       </div>`;
     }).join('') : '<div style="font-size:var(--fs-sm);color:var(--muted);padding:8px">Aucune mission extra</div>';
@@ -549,7 +564,8 @@ function renderCatSection() {
           </div>
           <div class="bo-field" style="margin:0;flex:1"><label>Label</label><input value="${escHtml(cat.label)}" onchange="boSetCat(${i},'label',this.value)" onclick="event.stopPropagation()"></div>
           <div class="bo-field" style="margin:0;width:40px;flex:0"><label>Couleur</label><input type="color" value="${cat.color}" onchange="boSetCat(${i},'color',this.value)" style="width:32px;height:28px;padding:1px;border:1px solid var(--brd);border-radius:4px;cursor:pointer" onclick="event.stopPropagation()"></div>
-          <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCat(${i})">🗑️</button>
+          <button class="bo-icon-btn" onclick="event.stopPropagation();boDupCat(${i})" title="Dupliquer">📋</button>
+          <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCat(${i})" title="Supprimer">🗑️</button>
         </div>
       </div>`;
     }
@@ -561,7 +577,8 @@ function renderCatSection() {
         <div class="bo-item-sub">${count} mission${count !== 1 ? 's' : ''}</div>
       </div>
       <div class="bo-item-actions">
-        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCat(${i})">🗑️</button>
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupCat(${i})" title="Dupliquer">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCat(${i})" title="Supprimer">🗑️</button>
       </div>
     </div>`;
   }).join('');
@@ -707,6 +724,10 @@ function renderBOTaches() {
           : `<div class="bo-item-title">${escHtml(t.lbl)}</div>`}
         <div class="bo-item-sub">${t.days===null?'Tous les jours':'Jours: '+t.days.join(',')}${t.passive?' · 💬 Passif':''}${isExc?' · <span style="color:var(--danger)">exclu</span>':''}</div>
       </div>
+      <div class="bo-item-actions">
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupDailyTask(${i})" title="Dupliquer">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelDailyTask(${i})" title="Supprimer">🗑️</button>
+      </div>
       ${editForm}
     </div>`;
   }
@@ -752,6 +773,10 @@ function renderBOTaches() {
           : `<div class="bo-item-title">${escHtml(t.lbl)}</div>`}
         <div class="bo-item-sub">${t.days===null?'Tous les jours':'Jours: '+t.days.join(',')}${t.passive?' · 💬 Passif':''} · extra</div>
       </div>
+      <div class="bo-item-actions">
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupExtra('${BO_CHILD}','dailyTasks',${i})" title="Dupliquer">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelExtra('${BO_CHILD}','dailyTasks',${i})" title="Supprimer">🗑️</button>
+      </div>
       ${editForm}
     </div>`;
   }).join('');
@@ -782,7 +807,8 @@ function renderDailySectionsPanel() {
       <div style="font-size:var(--fs-xxl);cursor:pointer;flex-shrink:0" onclick="event.stopPropagation();openEmojiPicker(this,em=>{boSetSection(${i},'em',em)})">${s.em}</div>
       <input value="${escHtml(s.label)}" onchange="boSetSection(${i},'label',this.value)" onclick="event.stopPropagation()" style="flex:1;background:var(--surf);border:1px solid var(--brd);color:var(--text);border-radius:4px;padding:4px 8px;font-size:var(--fs-base);font-weight:700;min-width:0">
       <span style="font-size:var(--fs-xs);color:var(--muted);white-space:nowrap">${taskCount}</span>
-      <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelSection(${i})" style="flex-shrink:0">🗑️</button>
+      <button class="bo-icon-btn" onclick="event.stopPropagation();boDupSection(${i})" title="Dupliquer" style="flex-shrink:0">📋</button>
+      <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelSection(${i})" title="Supprimer" style="flex-shrink:0">🗑️</button>
     </div>`;
   }).join('');
 
@@ -966,7 +992,10 @@ function openBadgeModal(badgeId) {
       </select>
       ${b.secretMissionId ? `<div style="font-size:var(--fs-xs);color:var(--acc);margin-top:4px">Cette mission sera débloquée quand ce badge est gagné</div>` : ''}
     </div>
-    <button class="bo-btn bo-btn-danger" onclick="boDelBadgeById('${badgeId}')" style="margin-top:12px;width:100%;padding:10px;background:rgba(255,61,127,.1);border:1px solid var(--danger);border-radius:8px;color:var(--danger);cursor:pointer;font-weight:700">🗑️ Supprimer ce badge</button>`;
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="bo-btn bo-btn-warn" onclick="boDupBadge('${badgeId}')" style="flex:1;padding:10px;border-radius:8px;cursor:pointer;font-weight:700">📋 Dupliquer</button>
+      <button class="bo-btn bo-btn-danger" onclick="boDelBadgeById('${badgeId}')" style="flex:1;padding:10px;background:rgba(255,61,127,.1);border:1px solid var(--danger);border-radius:8px;color:var(--danger);cursor:pointer;font-weight:700">🗑️ Supprimer</button>
+    </div>`;
 
   openBOModal(`🏅 ${escHtml(b.nm)}`, content);
 }
@@ -1015,7 +1044,8 @@ function renderBOThemes() {
         <div class="bo-item-sub" style="color:${dc.muted||'var(--muted)'};font-family:${th.fontBody}">${escHtml(th.fontTitle.split(',')[0].replace(/'/g,''))} · ${escHtml(th.fontBody.split(',')[0].replace(/'/g,''))}</div>
       </div>
       <div class="bo-item-actions">
-        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelTheme(${i})" style="border-color:${dc.brd||'var(--brd)'};background:${dc.surf||'var(--surf)'}">🗑️</button>
+        <button class="bo-icon-btn" onclick="event.stopPropagation();boDupTheme(${i})" title="Dupliquer" style="border-color:${dc.brd||'var(--brd)'};background:${dc.surf||'var(--surf)'}">📋</button>
+        <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelTheme(${i})" title="Supprimer" style="border-color:${dc.brd||'var(--brd)'};background:${dc.surf||'var(--surf)'}">🗑️</button>
       </div>
       ${editForm}
     </div>`;
@@ -1530,4 +1560,118 @@ function renderExtraDailyEditForm(cid, idx) {
         <div class="bo-field"><label>Passif</label><select onchange="boSetExtra('${cid}','dailyTasks',${idx},'passive',this.value==='true')" onclick="event.stopPropagation()"><option value="false" ${!t.passive?'selected':''}>Non</option><option value="true" ${t.passive?'selected':''}>Oui</option></select></div>
       </div>
       <button class="bo-btn bo-btn-danger" onclick="event.stopPropagation();boDelExtra('${cid}','dailyTasks',${idx})" style="margin-top:6px">🗑️ Supprimer</button>`;
+}
+
+// ── Duplicate functions ─────────────────────
+function boDupChild(cid) {
+  const src = S.children[cid];
+  if (!src) return;
+  const newId = 'child-' + Date.now().toString(36);
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.name += ' (copie)';
+  copy.active = false;
+  // Regenerate IDs for extras to avoid collisions
+  (copy.missions.extra || []).forEach((m, i) => { m.id = 'X-' + newId + '-M' + Date.now().toString(36) + i; });
+  (copy.dailyTasks.extra || []).forEach((t, i) => { t.id = 'X-' + newId + '-D' + Date.now().toString(36) + i; });
+  S.children[newId] = copy;
+  save(); BO_EDIT_CHILD = newId; renderBO();
+}
+function boDelChild(cid) {
+  const ch = S.children[cid];
+  if (!ch) return;
+  if (!confirm(`Supprimer ${ch.name} ? Cette action est irréversible.`)) return;
+  delete S.children[cid];
+  if (BO_EDIT_CHILD === cid) BO_EDIT_CHILD = null;
+  if (BO_CHILD === cid) BO_CHILD = null;
+  save(); renderBO();
+}
+function boDupLevel(cid, idx) {
+  const lvls = S.children[cid].levels;
+  const src = lvls[idx];
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'N' + (lvls.length + 1);
+  copy.label += ' (copie)';
+  copy.gatewayMission = null;
+  lvls.splice(idx + 1, 0, copy);
+  save(); BO_EDIT_CHILD = cid; renderBO();
+}
+function boDupCat(idx) {
+  const src = S.catalog.categories[idx];
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'cat-' + Date.now().toString(36);
+  copy.label += ' (copie)';
+  S.catalog.categories.splice(idx + 1, 0, copy);
+  save(); BO_EDIT_CAT = idx + 1; BO_CATS_OPEN = true; renderBO();
+}
+function boDupCatalogMission(mid) {
+  const src = S.catalog.missions.find(m => m.id === mid);
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'M' + (S.catalog.missions.length + 1).toString().padStart(2, '0') + '_' + Date.now().toString(36);
+  copy.nom += ' (copie)';
+  const srcIdx = S.catalog.missions.indexOf(src);
+  S.catalog.missions.splice(srcIdx + 1, 0, copy);
+  Object.keys(S.children).forEach(cid => {
+    S.children[cid].state.missionStates[copy.id] = 'none';
+  });
+  save(); BO_EDIT_MISSION = copy.id; renderBO();
+}
+function boDupDailyTask(idx) {
+  const src = S.catalog.dailyTasks[idx];
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'dt_' + Date.now().toString(36);
+  copy.lbl += ' (copie)';
+  S.catalog.dailyTasks.splice(idx + 1, 0, copy);
+  save(); BO_EDIT_DAILY = idx + 1; renderBO();
+}
+function boDupSection(idx) {
+  const sections = S.catalog.dailySections || [];
+  const src = sections[idx];
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'sec-' + Date.now().toString(36);
+  copy.label += ' (copie)';
+  sections.splice(idx + 1, 0, copy);
+  save(); BO_SECTIONS_OPEN = true; BO_EDIT_SECTION = idx + 1; renderBO();
+}
+function boDupExtra(cid, type, idx) {
+  const arr = S.children[cid][type].extra;
+  const src = arr[idx];
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'X-' + cid + '-' + Date.now().toString(36);
+  if (copy.nom) copy.nom += ' (copie)';
+  if (copy.lbl) copy.lbl += ' (copie)';
+  arr.splice(idx + 1, 0, copy);
+  if (type === 'missions') {
+    S.children[cid].state.missionStates[copy.id] = 'none';
+    BO_EDIT_EXTRA = 'M:' + (idx + 1);
+  } else {
+    BO_EDIT_EXTRA = 'D:' + (idx + 1);
+  }
+  save(); renderBO();
+}
+function boDupTheme(idx) {
+  const themes = S.catalog.themes || [];
+  const src = themes[idx];
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'theme-' + Date.now().toString(36);
+  copy.label += ' (copie)';
+  themes.splice(idx + 1, 0, copy);
+  save(); BO_EDIT_THEME = idx + 1; renderBO();
+}
+function boDupBadge(badgeId) {
+  const src = S.catalog.badges.find(x => x.id === badgeId);
+  if (!src) return;
+  const copy = JSON.parse(JSON.stringify(src));
+  copy.id = 'B_' + Date.now().toString(36);
+  copy.nm += ' (copie)';
+  copy.secretMissionId = null;
+  S.catalog.badges.push(copy);
+  save(); renderBO();
+  openBadgeModal(copy.id);
 }
