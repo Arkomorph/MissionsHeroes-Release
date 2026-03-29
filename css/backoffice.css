@@ -24,7 +24,7 @@
 }
 
 .bo-title { font-family: var(--font-title, 'Share Tech Mono', monospace); font-size: var(--fs-lg); font-weight: 700; color: var(--warning,#ffb300); }
-.bo-close { margin-left: auto; background: none; border: 1px solid var(--brd,#0a2040); color: var(--text,#c8e8ff); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-family: var(--font-body, 'Nunito', sans-serif); font-weight: 700; font-size: var(--fs-base); flex-shrink: 0; }
+.bo-close { background: none; border: 1px solid var(--brd,#0a2040); color: var(--text,#c8e8ff); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-family: var(--font-body, 'Nunito', sans-serif); font-weight: 700; font-size: var(--fs-base); flex-shrink: 0; }
 .bo-qnav { margin-left: auto; display: none; gap: 6px; }
 @media(orientation:landscape) and (min-width:700px) { .bo-qnav { display: flex; } }
 .bo-qnav a { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--card,#0d1422); border: 1px solid var(--brd,#0a2040); text-decoration: none; transition: border-color .2s, transform .15s; }
