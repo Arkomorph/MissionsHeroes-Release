@@ -56,9 +56,9 @@ function isBoOpen() {
   return document.getElementById('backoffice')?.classList.contains('open');
 }
 
-function applyBoThemeToOverlay(el) {
+function applyBoThemeToOverlay(el, force) {
   if (!el) return;
-  if (isBoOpen()) el.setAttribute('style', boThemeStyle());
+  if (force || isBoOpen()) el.setAttribute('style', boThemeStyle());
   else el.removeAttribute('style');
 }
 

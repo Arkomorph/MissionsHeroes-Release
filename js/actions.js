@@ -97,6 +97,7 @@ let PV = '';
 
 function openPin(cid, mid, action) {
   PX = { cid, mid, action };
+  const forceBO = action === 'admin';
 
   // Skip PIN for non-admin actions when skipPin is enabled
   if (S.cfg.skipPin && action !== 'admin') {
@@ -112,7 +113,7 @@ function openPin(cid, mid, action) {
       : (getMissions(cid).find(x => x.id === mid)?.nom || '—');
     document.getElementById('pin-err').textContent = '';
     const ov = document.getElementById('pin-ov');
-    applyBoThemeToOverlay(ov);
+    applyBoThemeToOverlay(ov, forceBO);
     ov.classList.add('open');
     document.getElementById('pin-actions').style.display = 'block';
     document.querySelector('.keypad').style.display = 'none';
@@ -127,14 +128,14 @@ function openPin(cid, mid, action) {
     const tid = mid.split('_')[1];
     const t = getDailyTasks(cid).find(x => x.id === tid);
     label = t ? t.em + ' ' + t.lbl : 'Tâche';
-  } else {
+  } else if (action !== 'admin') {
     const m = getMissions(cid).find(x => x.id === mid);
     label = m ? m.nom : '—';
   }
-  document.getElementById('pin-lbl').textContent = label;
+  document.getElementById('pin-lbl').textContent = action === 'admin' ? 'Accès Back Office' : label;
   document.getElementById('pin-err').textContent = '';
   const ov = document.getElementById('pin-ov');
-  applyBoThemeToOverlay(ov);
+  applyBoThemeToOverlay(ov, forceBO);
   ov.classList.add('open');
 }
 
