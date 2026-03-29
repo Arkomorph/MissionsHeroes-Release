@@ -52,8 +52,13 @@ function valDay(cid, dk) {
   const pendingTasks = appTasks.filter(t => rec.tasks[t.id] === 'pending');
   if (pendingTasks.length > 0) {
     const names = pendingTasks.map(t => t.em + ' ' + t.lbl).join('\n• ');
-    if (!confirm(`⚠️ ${pendingTasks.length} tâche(s) encore en attente :\n• ${names}\n\nValider quand même ?`)) return;
+    boConfirm(`⚠️ ${pendingTasks.length} tâche(s) encore en attente. Valider quand même ?`, () => valDayExec(cid, dk));
+    return;
   }
+  valDayExec(cid, dk);
+}
+function valDayExec(cid, dk) {
+  const rec = getDR(cid, dk);
   rec.parentValidated = true;
   const strk = streak(cid);
   if (strk > 0 && strk % (S.cfg.streakDays || 7) === 0) {
@@ -311,20 +316,22 @@ function boCycleMissionLevel(cid, mid) {
 }
 
 function resetChild(cid) {
-  if (!confirm(`Tout réinitialiser pour ${getChild(cid).name} ?`)) return;
-  const ms = getMissions(cid);
-  S.children[cid].state = { missionStates: {}, missionDates: {}, daily: {}, weeklyRec: {}, streakBonusBank: 0 };
-  ms.forEach(m => S.children[cid].state.missionStates[m.id] = 'none');
-  save(); renderBO(); render();
-  toast('♻️ Réinitialisé', true);
+  boConfirm(`Tout réinitialiser pour ${getChild(cid).name} ?`, () => {
+    const ms = getMissions(cid);
+    S.children[cid].state = { missionStates: {}, missionDates: {}, daily: {}, weeklyRec: {}, streakBonusBank: 0 };
+    ms.forEach(m => S.children[cid].state.missionStates[m.id] = 'none');
+    save(); renderBO(); render();
+    toast('♻️ Réinitialisé', true);
+  });
 }
 
 function resetMs(cid) {
-  if (!confirm('Réinitialiser les missions ?')) return;
-  const ms = getMissions(cid);
-  ms.forEach(m => S.children[cid].state.missionStates[m.id] = 'none');
-  save(); renderBO(); render();
-  toast('↩️ Missions réinitialisées', true);
+  boConfirm('Réinitialiser les missions ?', () => {
+    const ms = getMissions(cid);
+    ms.forEach(m => S.children[cid].state.missionStates[m.id] = 'none');
+    save(); renderBO(); render();
+    toast('↩️ Missions réinitialisées', true);
+  });
 }
 
 // ── Toast ───────────────────────────────────

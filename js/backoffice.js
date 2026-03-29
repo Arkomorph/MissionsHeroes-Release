@@ -627,10 +627,11 @@ function boDelCat(idx) {
     toast(`⚠️ ${count} mission(s) utilisent cette catégorie`, true);
     return;
   }
-  if (!confirm(`Supprimer la catégorie "${cat.label}" ?`)) return;
-  S.catalog.categories.splice(idx, 1);
-  if (BO_EDIT_CAT === idx) BO_EDIT_CAT = null;
-  save(); renderBO();
+  boConfirm(`Supprimer la catégorie "${cat.label}" ?`, () => {
+    S.catalog.categories.splice(idx, 1);
+    if (BO_EDIT_CAT === idx) BO_EDIT_CAT = null;
+    save(); renderBO();
+  });
 }
 
 function ovLabel(label, field, mid) {
@@ -843,13 +844,15 @@ function boDelSection(idx) {
   const sec = (S.catalog.dailySections || [])[idx];
   if (!sec) return;
   const taskCount = S.catalog.dailyTasks.filter(t => t.section === sec.id).length;
-  if (taskCount > 0) {
-    if (!confirm(`${taskCount} tâche(s) sont dans cette section. Elles seront déplacées dans "Sans section". Continuer ?`)) return;
-    S.catalog.dailyTasks.forEach(t => { if (t.section === sec.id) t.section = null; });
-  }
-  S.catalog.dailySections.splice(idx, 1);
-  if (BO_EDIT_SECTION === idx) BO_EDIT_SECTION = null;
-  save(); renderBO();
+  const msg = taskCount > 0
+    ? `${taskCount} tâche(s) sont dans cette section. Elles seront déplacées dans "Sans section". Continuer ?`
+    : `Supprimer la section "${sec.label}" ?`;
+  boConfirm(msg, () => {
+    if (taskCount > 0) S.catalog.dailyTasks.forEach(t => { if (t.section === sec.id) t.section = null; });
+    S.catalog.dailySections.splice(idx, 1);
+    if (BO_EDIT_SECTION === idx) BO_EDIT_SECTION = null;
+    save(); renderBO();
+  });
 }
 
 function renderDailyEditForm(idx) {
@@ -879,9 +882,10 @@ function boAddDailyTask() {
   save(); BO_EDIT_DAILY = S.catalog.dailyTasks.length - 1; renderBO();
 }
 function boDelDailyTask(idx) {
-  if (!confirm('Supprimer cette tâche ?')) return;
-  S.catalog.dailyTasks.splice(idx, 1);
-  save(); BO_EDIT_DAILY = null; renderBO();
+  boConfirm('Supprimer cette tâche ?', () => {
+    S.catalog.dailyTasks.splice(idx, 1);
+    save(); BO_EDIT_DAILY = null; renderBO();
+  });
 }
 function boToggleDailyExclude(cid, tid) {
   const exc = S.children[cid].dailyTasks.exclude;
@@ -960,6 +964,29 @@ function closeBOModal() {
   ov.innerHTML = '';
 }
 
+// ── BO Confirm (themed replacement for native confirm) ─��
+let _boConfirmCb = null;
+function boConfirm(msg, onYes) {
+  _boConfirmCb = onYes;
+  const ov = document.getElementById('bo-confirm-ov');
+  ov.innerHTML = `<div class="bo-confirm">
+    <div class="bo-confirm-msg">${escHtml(msg)}</div>
+    <div class="bo-confirm-btns">
+      <button class="bo-confirm-cancel" onclick="closeBoConfirm()">Annuler</button>
+      <button class="bo-confirm-ok" onclick="closeBoConfirm(true)">Confirmer</button>
+    </div>
+  </div>`;
+  ov.classList.add('open');
+  ov.onclick = e => { if (e.target === ov) closeBoConfirm(); };
+}
+function closeBoConfirm(yes) {
+  const ov = document.getElementById('bo-confirm-ov');
+  ov.classList.remove('open');
+  ov.innerHTML = '';
+  if (yes && _boConfirmCb) _boConfirmCb();
+  _boConfirmCb = null;
+}
+
 // ── Badge modal ──
 function openBadgeModal(badgeId) {
   const b = S.catalog.badges.find(x => x.id === badgeId);
@@ -1014,10 +1041,11 @@ function boAddBadge(catId, nivId) {
 }
 
 function boDelBadgeById(id) {
-  if (!confirm('Supprimer ce badge ?')) return;
-  const idx = S.catalog.badges.findIndex(x => x.id === id);
-  if (idx >= 0) S.catalog.badges.splice(idx, 1);
-  save(); closeBOModal(); renderBO();
+  boConfirm('Supprimer ce badge ?', () => {
+    const idx = S.catalog.badges.findIndex(x => x.id === id);
+    if (idx >= 0) S.catalog.badges.splice(idx, 1);
+    save(); closeBOModal(); renderBO();
+  });
 }
 
 // ── Themes tab ─────────────────────────────
@@ -1145,10 +1173,11 @@ function boDelTheme(idx) {
     toast(`⚠️ Thème utilisé par ${usedBy.map(c => c.name).join(', ')}`, true);
     return;
   }
-  if (!confirm(`Supprimer le thème "${th.label}" ?`)) return;
-  S.catalog.themes.splice(idx, 1);
-  if (BO_EDIT_THEME === idx) BO_EDIT_THEME = null;
-  save(); renderBO();
+  boConfirm(`Supprimer le thème "${th.label}" ?`, () => {
+    S.catalog.themes.splice(idx, 1);
+    if (BO_EDIT_THEME === idx) BO_EDIT_THEME = null;
+    save(); renderBO();
+  });
 }
 
 // ── Économie tab ──────────────────────────────
@@ -1394,24 +1423,24 @@ function boImport(event) {
     try {
       const data = JSON.parse(e.target.result);
       if (data.version !== 4) { toast('⚠️ Format non reconnu (version ' + data.version + ')', true); return; }
-      if (!confirm('Remplacer toutes les données par le fichier importé ?')) return;
-      S = data;
-      applyPatches(S);
-      // Validate theme references after import
-      const themeIds = (S.catalog.themes || []).map(t => t.id);
-      if (S.cfg.boTheme && !themeIds.includes(S.cfg.boTheme)) {
-        S.cfg.boTheme = themeIds[0] || 'theme-louis';
-        toast('⚠️ Thème BO réinitialisé (référence invalide)', true);
-      }
-      Object.keys(S.children).forEach(cid => {
-        const ch = S.children[cid];
-        if (ch.theme && !themeIds.includes(ch.theme)) {
-          ch.theme = themeIds[0] || 'theme-louis';
-          toast(`⚠️ Thème de ${ch.name} réinitialisé (référence invalide)`, true);
+      boConfirm('Remplacer toutes les données par le fichier importé ?', () => {
+        S = data;
+        applyPatches(S);
+        const themeIds = (S.catalog.themes || []).map(t => t.id);
+        if (S.cfg.boTheme && !themeIds.includes(S.cfg.boTheme)) {
+          S.cfg.boTheme = themeIds[0] || 'theme-louis';
+          toast('⚠️ Thème BO réinitialisé (référence invalide)', true);
         }
+        Object.keys(S.children).forEach(cid => {
+          const ch = S.children[cid];
+          if (ch.theme && !themeIds.includes(ch.theme)) {
+            ch.theme = themeIds[0] || 'theme-louis';
+            toast(`⚠️ Thème de ${ch.name} réinitialisé (référence invalide)`, true);
+          }
+        });
+        save(); renderBO(); render();
+        toast('📥 Import réussi !');
       });
-      save(); renderBO(); render();
-      toast('📥 Import réussi !');
     } catch(err) {
       toast('⚠️ Fichier invalide', true);
     }
@@ -1449,9 +1478,10 @@ function boAddLevel(cid) {
   save(); renderBO();
 }
 function boDelLevel(cid, idx) {
-  if (!confirm('Supprimer ce niveau ?')) return;
-  S.children[cid].levels.splice(idx, 1);
-  save(); renderBO();
+  boConfirm('Supprimer ce niveau ?', () => {
+    S.children[cid].levels.splice(idx, 1);
+    save(); renderBO();
+  });
 }
 
 // ── Mission catalog setters ─────────────────
@@ -1492,15 +1522,15 @@ function boClearOverrides(mid) {
   toast('↩️ Surcharges supprimées');
 }
 function boDelCatalogMission(mid) {
-  if (!confirm('Supprimer cette mission du catalogue ? Les données de progression seront conservées.')) return;
-  const catMissions = S.catalog.missions.filter(m=>m.id!==mid);
-  S.catalog.missions = catMissions;
-  Object.keys(S.children).forEach(cid => {
-    delete S.children[cid].missions.overrides[mid];
-    const ei = S.children[cid].missions.exclude.indexOf(mid);
-    if (ei >= 0) S.children[cid].missions.exclude.splice(ei, 1);
+  boConfirm('Supprimer cette mission du catalogue ? Les données de progression seront conservées.', () => {
+    S.catalog.missions = S.catalog.missions.filter(m => m.id !== mid);
+    Object.keys(S.children).forEach(cid => {
+      delete S.children[cid].missions.overrides[mid];
+      const ei = S.children[cid].missions.exclude.indexOf(mid);
+      if (ei >= 0) S.children[cid].missions.exclude.splice(ei, 1);
+    });
+    save(); BO_EDIT_MISSION = null; renderBO();
   });
-  save(); BO_EDIT_MISSION = null; renderBO();
 }
 function boAddExtra(cid, type) {
   const seq = (S.children[cid][type].extra.length + 1).toString().padStart(2,'0');
@@ -1522,9 +1552,10 @@ function boAddExtra(cid, type) {
   save(); renderBO();
 }
 function boDelExtra(cid, type, idx) {
-  if (!confirm('Supprimer ?')) return;
-  S.children[cid][type].extra.splice(idx, 1);
-  save(); BO_EDIT_EXTRA = null; renderBO();
+  boConfirm('Supprimer ?', () => {
+    S.children[cid][type].extra.splice(idx, 1);
+    save(); BO_EDIT_EXTRA = null; renderBO();
+  });
 }
 function boEditExtra(prefix, idx) {
   const key = prefix + ':' + idx;
@@ -1590,11 +1621,12 @@ function boDupChild(cid) {
 function boDelChild(cid) {
   const ch = S.children[cid];
   if (!ch) return;
-  if (!confirm(`Supprimer ${ch.name} ? Cette action est irréversible.`)) return;
-  delete S.children[cid];
-  if (BO_EDIT_CHILD === cid) BO_EDIT_CHILD = null;
-  if (BO_CHILD === cid) BO_CHILD = null;
-  save(); renderBO();
+  boConfirm(`Supprimer ${ch.name} ? Cette action est irréversible.`, () => {
+    delete S.children[cid];
+    if (BO_EDIT_CHILD === cid) BO_EDIT_CHILD = null;
+    if (BO_CHILD === cid) BO_CHILD = null;
+    save(); renderBO();
+  });
 }
 function boDupLevel(cid, idx) {
   const lvls = S.children[cid].levels;
