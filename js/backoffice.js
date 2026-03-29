@@ -100,6 +100,11 @@ function renderBO() {
   boEl.innerHTML = `
     <div class="bo-hdr">
       <div class="bo-title">⚙️ BACK OFFICE PARENT</div>
+      <div class="bo-qnav">
+        <a href="index.html" title="Accueil"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+        <a href="site/approche_pedagogique.html" title="Pédagogie"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></a>
+        <a href="site/manuel-parents.html" title="Manuel parents"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></a>
+      </div>
       <button class="bo-close" onclick="closeBO()">← Retour</button>
     </div>
     <div class="bo-tabs-wrap"><div class="bo-tabs">${tabHtml}</div></div>
