@@ -558,12 +558,10 @@ function renderCatSection() {
     if (isEditing) {
       return `<div class="bo-item has-override" onclick="BO_EDIT_CAT=null;renderBO()" style="cursor:pointer;flex-wrap:wrap">
         <div style="display:flex;align-items:center;gap:8px;width:100%" onclick="event.stopPropagation()">
-          <div class="bo-field" style="margin:0;width:48px;flex:0"><label>Emoji</label>
-            <div id="cat-em-btn-${i}" style="font-size:var(--fs-xxl);text-align:center;cursor:pointer;background:var(--dim);border:1px solid var(--brd);border-radius:6px;padding:3px 0"
-              onclick="event.stopPropagation();openEmojiPicker(this,em=>{boSetCat(${i},'em',em)})">${em}</div>
-          </div>
-          <div class="bo-field" style="margin:0;flex:1"><label>Label</label><input value="${escHtml(cat.label)}" onchange="boSetCat(${i},'label',this.value)" onclick="event.stopPropagation()"></div>
-          <div class="bo-field" style="margin:0;width:40px;flex:0"><label>Couleur</label><input type="color" value="${cat.color}" onchange="boSetCat(${i},'color',this.value)" style="width:32px;height:28px;padding:1px;border:1px solid var(--brd);border-radius:4px;cursor:pointer" onclick="event.stopPropagation()"></div>
+          <div id="cat-em-btn-${i}" style="font-size:var(--fs-xxl);text-align:center;cursor:pointer;background:var(--dim);border:1px solid var(--brd);border-radius:6px;padding:3px 6px;flex-shrink:0"
+            onclick="event.stopPropagation();openEmojiPicker(this,em=>{boSetCat(${i},'em',em)})">${em}</div>
+          <input type="color" value="${cat.color}" onchange="boSetCat(${i},'color',this.value)" style="width:32px;height:28px;padding:1px;border:1px solid var(--brd);border-radius:4px;cursor:pointer;flex-shrink:0" onclick="event.stopPropagation()">
+          <input value="${escHtml(cat.label)}" onchange="boSetCat(${i},'label',this.value)" onclick="event.stopPropagation()" style="flex:1;background:var(--surf);border:1px solid var(--brd2);color:var(--text);border-radius:6px;padding:7px 10px;font-family:var(--font-body);font-size:var(--fs-base);font-weight:700;min-width:0">
           <button class="bo-icon-btn" onclick="event.stopPropagation();boDupCat(${i})" title="Dupliquer">📋</button>
           <button class="bo-icon-btn danger" onclick="event.stopPropagation();boDelCat(${i})" title="Supprimer">🗑️</button>
         </div>
@@ -1399,6 +1397,19 @@ function boImport(event) {
       if (!confirm('Remplacer toutes les données par le fichier importé ?')) return;
       S = data;
       applyPatches(S);
+      // Validate theme references after import
+      const themeIds = (S.catalog.themes || []).map(t => t.id);
+      if (S.cfg.boTheme && !themeIds.includes(S.cfg.boTheme)) {
+        S.cfg.boTheme = themeIds[0] || 'theme-louis';
+        toast('⚠️ Thème BO réinitialisé (référence invalide)', true);
+      }
+      Object.keys(S.children).forEach(cid => {
+        const ch = S.children[cid];
+        if (ch.theme && !themeIds.includes(ch.theme)) {
+          ch.theme = themeIds[0] || 'theme-louis';
+          toast(`⚠️ Thème de ${ch.name} réinitialisé (référence invalide)`, true);
+        }
+      });
       save(); renderBO(); render();
       toast('📥 Import réussi !');
     } catch(err) {
