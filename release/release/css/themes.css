@@ -1,0 +1,76 @@
+/* ══════════════════════════════════════════════
+   CHILD THEMES
+   Each child has their own CSS palette
+══════════════════════════════════════════════ */
+
+/* Louis — Techno Blue */
+.theme-louis {
+  --bg:       #030810;
+  --surf:     #080d1a;
+  --card:     #0d1422;
+  --brd:      #0a2040;
+  --brd2:     #14305a;
+  --hi:       #00cfff;
+  --hi2:      #0088ff;
+  --hi3:      #4db8ff;
+  --acc:      #ff3d7f;
+  --gold:     #00cfff;
+  --text:     #c8e8ff;
+  --muted:    #2a5070;
+  --dim:      #0a1828;
+  --bar:      linear-gradient(90deg,#003a8c,#0088ff,#00cfff);
+  --lvlcolor: #00cfff;
+  --font-title: 'Share Tech Mono', monospace;
+  --font-body:  'Josefin Sans', sans-serif;
+  --success:  #00e676;
+  --danger:   #ff3d7f;
+  --warning:  #ffb300;
+}
+
+/* Emile — Adventure Orange */
+.theme-emile {
+  --bg:       #1e0e06;
+  --surf:     #2a1206;
+  --card:     #331608;
+  --brd:      #4a2010;
+  --brd2:     #6a3020;
+  --hi:       #ff9a40;
+  --hi2:      #ff7a30;
+  --hi3:      #ffb870;
+  --acc:      #ff3d7f;
+  --gold:     #ffb300;
+  --text:     #ffd8a8;
+  --muted:    #6a3a20;
+  --dim:      #1e0e06;
+  --bar:      linear-gradient(90deg,#8b3a10,#c04a10,#ff7a30);
+  --lvlcolor: #ff9a40;
+  --font-title: 'Righteous', sans-serif;
+  --font-body:  'Nunito', sans-serif;
+  --success:  #00e676;
+  --danger:   #ff3d7f;
+  --warning:  #ffb300;
+}
+
+/* Marius — Spring Farm */
+.theme-marius {
+  --bg:       #0e1a08;
+  --surf:     #131f0a;
+  --card:     #182610;
+  --brd:      #2a5018;
+  --brd2:     #3a6e20;
+  --hi:       #8de84a;
+  --hi2:      #5ab828;
+  --hi3:      #c0f070;
+  --acc:      #ff3d7f;
+  --gold:     #e8d040;
+  --text:     #c8f0a0;
+  --muted:    #3a6020;
+  --dim:      #0e1a08;
+  --bar:      linear-gradient(90deg,#1a5010,#3a9020,#8de84a);
+  --lvlcolor: #8de84a;
+  --font-title: 'Baloo 2', sans-serif;
+  --font-body:  'Patrick Hand', sans-serif;
+  --success:  #00e676;
+  --danger:   #ff3d7f;
+  --warning:  #ffb300;
+}

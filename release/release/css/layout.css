@@ -126,31 +126,15 @@
   min-width: 0;
 }
 
-.sb-lvl-labels {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-}
-
 .sb-lvl-name {
   font-family: var(--font-title,'Share Tech Mono',monospace);
   font-size: var(--fs-sm);
   font-weight: 700;
+  color: var(--hi,#00cfff);
   letter-spacing: .5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.sb-lvl-next {
-  font-family: var(--font-title,'Share Tech Mono',monospace);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: .5px;
-  white-space: nowrap;
-  text-align: right;
-  flex-shrink: 0;
 }
 
 .sb-prog-row {

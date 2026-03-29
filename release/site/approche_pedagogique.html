@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approche pédagogique — Missions Heroes</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<script defer src="https://analytics.iteract.ch/script.js"
+  data-website-id=""></script>
+<script>
+  document.querySelector('[data-website-id]').dataset.websiteId =
+    location.hostname === 'missionsheroes.iteract.ch'
+      ? '03001dbe-81f6-4b23-8f95-ed7e207df4ad'
+      : '4483a812-2f12-49d3-9d0b-b7014df81b40';
+</script>
+<style>
+:root {
+  --bg:    #030810;
+  --surf:  #080d1a;
+  --card:  #0d1422;
+  --brd:   #0a2040;
+  --brd2:  #14305a;
+  --hi:    #00cfff;
+  --hi2:   #0088ff;
+  --acc:   #ff3d7f;
+  --gold:  #ffb300;
+  --text:  #c8e8ff;
+  --muted: #2a5070;
+  --green: #00e676;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;font-size:1rem;color:var(--text);background:var(--bg);line-height:1.7}
+
+/* HEADER */
+header{background:var(--surf);position:relative;overflow:hidden;border-bottom:1px solid var(--brd)}
+.header-inner{max-width:900px;margin:0 auto;padding:64px 32px 56px;position:relative;z-index:1}
+.kicker{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+h1{font-family:'Share Tech Mono',monospace;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:400;line-height:1.15;letter-spacing:.04em;margin-bottom:24px;max-width:680px;color:#fff;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--hi)}
+.header-desc{font-size:1.05rem;color:var(--muted);max-width:520px;line-height:1.65;font-weight:400}
+.header-deco{position:absolute;right:0;top:0;width:40%;height:100%;background:radial-gradient(ellipse at 80% 50%,rgba(0,207,255,.04),transparent 70%);pointer-events:none}
+.header-wave{display:none}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);text-decoration:none;margin-bottom:16px;transition:color .2s}
+.back-link:hover{color:var(--hi)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:10;background:rgba(3,8,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--brd)}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 32px;display:flex;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-link{display:block;padding:14px 20px 12px;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.nav-link:hover{color:var(--hi);border-color:var(--hi)}
+.nav-link.active{color:#fff;border-color:var(--hi)}
+
+/* LAYOUT */
+.page{max-width:900px;margin:0 auto;padding:0 32px 80px}
+
+/* SECTION HEADERS */
+.section-intro{padding:72px 0 0;border-top:1px solid var(--brd);margin-top:72px}
+.sec-num{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h2{font-family:'Share Tech Mono',monospace;font-size:1.6rem;font-weight:400;line-height:1.2;letter-spacing:.04em;margin-bottom:16px;color:#fff;text-transform:uppercase}
+.sec-lead{font-size:1.05rem;color:var(--muted);font-weight:400;max-width:600px;line-height:1.65;padding-bottom:48px;border-bottom:1px solid var(--brd);margin-bottom:48px}
+.sec-lead strong{font-weight:700;color:var(--text)}
+
+/* PRACTICE ITEMS */
+.practice{padding:36px 0;border-bottom:1px solid var(--brd);display:grid;grid-template-columns:110px 1fr;gap:32px;align-items:start}
+.practice:last-child{border-bottom:none}
+.p-rythme{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);line-height:1.5}
+.p-num{font-family:'Share Tech Mono',monospace;font-size:2.6rem;color:var(--brd2);line-height:1;margin-top:6px}
+.practice h3{font-size:1.3rem;font-weight:800;margin-bottom:12px;color:#fff}
+.practice p{color:var(--text);margin-bottom:10px;opacity:.85}
+.practice p:last-child{margin-bottom:0}
+.practice strong{font-weight:700;color:#fff}
+.practice em{font-style:italic;color:var(--hi)}
+
+/* MECHANIC CARDS */
+.mechanic{padding:40px 0;border-bottom:1px solid var(--brd)}
+.mechanic:last-child{border-bottom:none}
+.mechanic h3{font-size:1.3rem;font-weight:800;margin-bottom:20px;color:#fff}
+.mcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.mcol{padding:16px 18px;border-radius:10px;background:var(--card)}
+.mcol.teach{border-left:3px solid var(--hi);box-shadow:inset 2px 0 12px rgba(0,207,255,.06)}
+.mcol.found{border-left:3px solid var(--gold);box-shadow:inset 2px 0 12px rgba(255,179,0,.06)}
+.mcol.limit{border-left:3px solid var(--acc);box-shadow:inset 2px 0 12px rgba(255,61,127,.06)}
+.mcol-lbl{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.mcol p{font-size:.88rem;color:var(--text);line-height:1.6;margin-bottom:6px;opacity:.85}
+.mcol p:last-child{margin-bottom:0}
+
+/* CALIBRATION */
+.calib-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.calib-card{background:var(--card);border:1px solid var(--brd);border-radius:10px;padding:22px}
+.calib-lbl{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.calib-card h4{font-size:1.05rem;font-weight:800;margin-bottom:8px;color:#fff}
+.calib-card p{font-size:.88rem;color:var(--text);line-height:1.6;opacity:.85}
+.calib-rule{background:var(--hi);color:var(--bg);padding:18px 22px;border-radius:10px;font-size:.9rem;line-height:1.6;font-weight:700}
+.calib-rule strong{color:var(--bg)}
+
+/* PULL QUOTE */
+.pull-quote{margin:40px 0;padding:28px 36px;border-left:4px solid var(--gold);background:var(--card);border-radius:0 10px 10px 0}
+.pull-quote p{font-size:1.2rem;font-style:italic;line-height:1.5;color:var(--text)}
+
+/* FOOTER */
+footer{background:var(--surf);color:var(--muted);text-align:center;padding:36px 32px;font-size:.7rem;font-family:'Share Tech Mono',monospace;letter-spacing:1px;border-top:1px solid var(--brd)}
+footer strong{color:var(--hi)}
+.footer-credit{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:4px;font-size:.68rem;color:var(--muted)}
+.footer-credit svg{width:12px;height:12px;color:var(--acc);vertical-align:middle}
+.footer-credit a{color:var(--hi);text-decoration:none;display:inline-flex;align-items:center;gap:2px}
+.footer-credit a:hover{text-decoration:underline}
+.footer-credit .icon-linkedin{width:10px;height:10px}
+
+/* QUICK NAV */
+.qnav{position:fixed;top:14px;right:14px;display:flex;gap:6px;z-index:100}
+.qnav a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#080d1a;border:1px solid var(--brd);text-decoration:none;transition:border-color .2s,transform .15s,box-shadow .2s}
+.qnav a:hover{border-color:var(--hi);transform:scale(1.1);box-shadow:0 0 12px rgba(0,207,255,.2)}
+.qnav a.active{border-color:var(--hi);box-shadow:0 0 8px rgba(0,207,255,.25)}
+.qnav svg{width:18px;height:18px;fill:var(--muted);transition:fill .2s}
+.qnav a:hover svg,.qnav a.active svg{fill:var(--hi)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .header-inner{padding:48px 20px 40px}
+  .page{padding:0 20px 60px}
+  .nav-link{padding:12px 14px 10px}
+  .practice{grid-template-columns:1fr;gap:6px}
+  .p-num{display:none}
+  .mcols{grid-template-columns:1fr}
+  .calib-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="qnav">
+  <a href="../index.html" title="Accueil"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
+  <a href="approche_pedagogique.html" class="active" title="Pédagogie"><svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></a>
+  <a href="manuel-parents.html" title="Manuel parents"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></a>
+</nav>
+
+<header>
+  <div class="header-deco"></div>
+  <div class="header-inner">
+    <a href="../index.html" class="back-link">← Retour</a>
+    <div class="kicker">Document fondateur · Éducation familiale</div>
+    <h1>Missions Heroes —<br><em>Approche pédagogique</em></h1>
+    <p class="header-desc">Un système gamifié de responsabilisation et d'éducation financière pour enfants, ancré dans les neurosciences et la psychologie du développement.</p>
+  </div>
+  <div class="header-wave"></div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-link active" href="#accompagnement">Accompagnement</a>
+    <a class="nav-link" href="#mecaniques">Mécaniques</a>
+    <a class="nav-link" href="#remuneration">Rémunération</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- SECTION 1 -->
+  <div class="section-intro" id="accompagnement">
+    <div class="sec-num">Section 01</div>
+    <h2>Tâches d'accompagnement</h2>
+    <p class="sec-lead">L'application ne fonctionne pas seule. Elle est un outil au service d'une relation éducative, pas un substitut. Pour que le système soit pédagogiquement valide, un ensemble de pratiques parentales doivent l'encadrer.</p>
+  </div>
+
+  <div class="practice">
+    <div><div class="p-rythme">Avant<br>lancement</div><div class="p-num">01</div></div>
+    <div>
+      <h3>Poser les bases verbalement</h3>
+      <p>Avant de montrer l'application à votre enfant, une conversation explicite est nécessaire sur deux frontières fondamentales.</p>
+      <p><strong>La frontière missions / vie commune.</strong> Les missions sont rémunérées parce qu'elles représentent un effort supplémentaire au service de la famille. Les tâches journalières ne sont pas payées parce qu'elles font partie de ce que ça veut dire d'habiter ici ensemble. Si cette distinction n'est pas posée clairement dès le départ, le risque est que votre enfant commence à négocier une rémunération pour tout geste d'aide familiale.</p>
+      <p>Le message à transmettre : <em>"Les missions c'est ton travail pour la famille. Le journalier, c'est juste ta contribution à la vie commune — comme moi quand je fais la cuisine ou que je paye le loyer."</em></p>
+      <p><strong>La transparence sur le back office.</strong> Le parent dispose d'un accès administrateur. Votre enfant doit le savoir. Lui cacher cette capacité minerait la confiance et la légitimité du système. Le back office peut devenir un sujet de Conseil de famille.</p>
+    </div>
+  </div>
+
+  <div class="practice">
+    <div><div class="p-rythme">Jour J</div><div class="p-num">02</div></div>
+    <div>
+      <h3>Rituel d'initialisation</h3>
+      <p>Le premier jour mérite un moment particulier. Présenter l'application ensemble, lire les règles à voix haute, choisir avec votre enfant les premières missions qu'il veut accomplir. Ce moment inaugural ancre le système comme un contrat mutuel, pas une imposition unilatérale.</p>
+    </div>
+  </div>
+
+  <div class="practice">
+    <div><div class="p-rythme">Quotidien</div><div class="p-num">03</div></div>
+    <div>
+      <h3>La validation comme moment de contact</h3>
+      <p>La validation PIN n'est pas qu'une opération technique. C'est une occasion de regarder ce que votre enfant a fait, de le nommer, de le reconnaître. Même 30 secondes : <em>"T'as fait la gamelle de l'animal et la vaisselle, c'est bien."</em> Cette reconnaissance verbale est, selon la recherche, plus déterminante pour la motivation à long terme que la récompense monétaire elle-même.</p>
+      <p>La validation doit intervenir dans les 24 heures. Une attente trop longue déconnecte l'acte de la reconnaissance et casse la boucle motivationnelle.</p>
+    </div>
+  </div>
+
+  <div class="practice">
+    <div><div class="p-rythme">Chaque<br>semaine</div><div class="p-num">04</div></div>
+    <div>
+      <h3>Le versement et le bilan</h3>
+      <p><strong>Le versement en argent réel.</strong> L'application est un compteur virtuel. Le moment où le parent sort de l'argent physique est irremplaçable — c'est là que l'abstraction devient réelle. Ce rituel enseigne que l'argent est le résultat d'un effort accompli, pas un flux automatique.</p>
+      <p><strong>Le bilan informel.</strong> Une question simple suffit : <em>"Comment ça s'est passé cette semaine ? T'as préféré quoi ?"</em> Cette habitude prépare et nourrit les Conseils de famille plus formels.</p>
+    </div>
+  </div>
+
+  <div class="practice">
+    <div><div class="p-rythme">Ponctuel</div><div class="p-num">05</div></div>
+    <div>
+      <h3>Le Conseil de famille</h3>
+      <p>Le Conseil de famille est une mission payée dans chaque niveau, mais il est surtout un espace de gouvernance réelle. Votre enfant peut y soulever un problème avec le système, proposer une nouvelle règle, demander une révision des montants. Le parent s'engage à répondre sérieusement, même s'il n'accepte pas tout.</p>
+      <p>C'est le mécanisme anti-autoritarisme du système. Sans lui, les règles restent imposées d'en haut.</p>
+    </div>
+  </div>
+
+  <div class="practice">
+    <div><div class="p-rythme">À moyen<br>terme</div><div class="p-num">06</div></div>
+    <div>
+      <h3>La stratégie d'internalisation</h3>
+      <p>Le risque principal des systèmes de récompense est de créer une dépendance à la récompense plutôt que d'internaliser les valeurs. L'objectif à moyen terme n'est pas que votre enfant continue à être payé pour tout — c'est que certaines tâches soient devenues des habitudes naturelles.</p>
+      <p>Prévoir explicitement une révision du système après quelques mois : quelles tâches peuvent sortir du système rémunéré parce qu'elles sont devenues des réflexes ? C'est une conversation à avoir avec votre enfant, pas une décision unilatérale.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-intro" id="mecaniques">
+    <div class="sec-num">Section 02</div>
+    <h2>Mécaniques, fondements &amp; limites</h2>
+    <p class="sec-lead">Le système repose sur la <strong>Self-Determination Theory</strong> (Deci &amp; Ryan) et la théorie de la formation des habitudes (Duhigg, Fogg, Clear). La tension centrale : l'<strong>effet d'éviction</strong> — une récompense externe peut réduire la motivation intrinsèque. Le design distingue soigneusement ce qui est payé (effort additionnel) de ce qui est dû (vie commune).</p>
+  </div>
+
+  <div class="mechanic">
+    <h3>Les missions rémunérées</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'elles enseignent</div><p>Le travail a une valeur monétaire. La fierté de contribuer concrètement à la vie familiale. Certaines contributions méritent une reconnaissance économique.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>La SDT montre que les récompenses extrinsèques ne nuisent pas à la motivation intrinsèque lorsqu'elles portent sur des tâches que l'individu ne ferait pas spontanément.</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>Risque de transactionnaliser toute aide. Si votre enfant demande "combien tu me paies ?" avant d'aider, le système a dérivé. La frontière avec les tâches journalières doit être rappelée verbalement.</p></div>
+    </div>
+  </div>
+
+  <div class="mechanic">
+    <h3>Les tâches journalières</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'elles enseignent</div><p>Certaines choses font partie de la vie commune et ne se négocient pas. L'autonomie corporelle et domestique quotidienne n'est pas optionnelle.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>La SDT distingue les comportements qu'on veut internaliser (identité) de ceux qu'on veut obtenir (conformité). Ne pas payer une tâche — mais l'exiger — vise l'internalisation.</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>L'absence de récompense monétaire peut réduire la motivation à court terme. C'est pour ça que le streak complète le dispositif — il récompense la régularité, pas la tâche.</p></div>
+    </div>
+  </div>
+
+  <div class="mechanic">
+    <h3>Le streak — journées parfaites consécutives</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'il enseigne</div><p>La régularité dans le temps a une valeur propre. Ce n'est pas l'acte isolé qui compte — c'est d'être le genre de personne qui le fait tous les jours.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>James Clear (Atomic Habits) : l'identité précède l'habitude. Le streak récompense non pas une tâche, mais l'émergence d'une identité — "je suis quelqu'un de régulier." La durée du streak et le seuil de réussite (proportion de tâches à accomplir pour qu'une journée compte comme parfaite) sont configurables, ce qui permet d'adapter l'exigence à l'âge et au rythme de chaque enfant.</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>Un streak cassé peut être très décourageant. Pas de pénalité, pas de dramatisation visuelle. Le streak repart de 0 discrètement, sans fanfare négative.</p></div>
+    </div>
+  </div>
+
+  <div class="mechanic">
+    <h3>Les niveaux progressifs &amp; missions gateway</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'ils enseignent</div><p>L'effort s'accumule. Les responsabilités se méritent dans le temps. Certaines choses ne sont pas optionnelles avant d'accéder à la suite — analogue aux obligations réelles.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>Flow theory (Csikszentmihalyi) : l'engagement optimal se produit quand le défi est légèrement supérieur à la compétence actuelle. Les missions gateway introduisent des prérequis non négociables.</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>Le seuil du niveau supérieur peut paraître très loin au démarrage. Célébrer chaque déblocage avec un moment réel en famille — le système numérique ne suffit pas.</p></div>
+    </div>
+  </div>
+
+  <div class="mechanic">
+    <h3>Les badges &amp; missions secrètes</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'ils enseignent</div><p>La spécialisation a de la valeur. L'expertise dans un domaine se construit par la pratique répétée. La découverte récompense l'investissement dans une catégorie.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>Les missions secrètes introduisent un mécanisme de surprise — documenté comme facteur de renforcement plus puissant qu'une récompense certaine (variable ratio reinforcement).</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>Si votre enfant ne remarque pas le lien badge → mission secrète, l'effet est perdu. Le parent a un rôle à jouer pour attirer l'attention sur ce moment de découverte.</p></div>
+    </div>
+  </div>
+
+  <div class="mechanic">
+    <h3>Le Conseil de famille</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'il enseigne</div><p>Les règles sont construites par des humains et peuvent évoluer. La parole en public, la négociation, la défense d'une position. La démocratie familiale comme pratique concrète.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>La SDT montre que le soutien à l'autonomie de l'enfant — lui donner une vraie voix dans les décisions qui le concernent — est l'un des prédicteurs les plus solides du bien-être psychologique à long terme.</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>Si le Conseil devient une formalité, l'effet est inverse : votre enfant apprend que la parole ne sert à rien. Le parent doit s'engager à répondre sérieusement, même quand il refuse.</p></div>
+    </div>
+  </div>
+
+  <div class="mechanic">
+    <h3>Le moment parole du soir</h3>
+    <div class="mcols">
+      <div class="mcol teach"><div class="mcol-lbl">Ce qu'il enseigne</div><p>Mettre des mots sur ce qu'on a vécu. Distinguer les succès des difficultés. La conscience de soi comme outil quotidien, pas comme performance.</p></div>
+      <div class="mcol found"><div class="mcol-lbl">Fondement</div><p>Seligman (psychologie positive) : la réflexivité quotidienne est l'une des pratiques les plus robustes pour le développement de l'intelligence émotionnelle et de la résilience. Ce moment n'est intentionnellement pas gamifié.</p></div>
+      <div class="mcol limit"><div class="mcol-lbl">Limite</div><p>Si ce moment est obligatoire ou évalué, il devient une performance. L'enfant doit sentir que c'est un espace libre — le rappel dans l'application est une invitation, pas une contrainte.</p></div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section-intro" id="remuneration">
+    <div class="sec-num">Section 03</div>
+    <h2>La rémunération — principes de calibrage</h2>
+    <p class="sec-lead">La rémunération n'est pas un détail technique — c'est une variable pédagogique à part entière. Mal calibrée, elle peut démotiver ou court-circuiter la progression.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>"L'objectif d'épargne doit être atteignable en 3 à 6 semaines de missions régulières, sans que l'enfant soit obligé de tout faire en même temps."</p>
+  </div>
+
+  <div class="calib-grid">
+    <div class="calib-card">
+      <div class="calib-lbl">Missions ponctuelles</div>
+      <h4>Proportionnel à l'effort réel</h4>
+      <p>Une mission qui demande 2 heures de travail concentré vaut significativement plus qu'une mission de 15 minutes. L'enfant apprend que la valeur monétaire est liée à l'effort et à la complexité.</p>
+    </div>
+    <div class="calib-card">
+      <div class="calib-lbl">Missions récurrentes</div>
+      <h4>Revenu stable sur la durée</h4>
+      <p>Calibrées pour maintenir un revenu stable une fois la phase de découverte passée. Si trop mal payées, l'enfant les délaisse au profit des ponctuelles et perd la régularité.</p>
+    </div>
+    <div class="calib-card">
+      <div class="calib-lbl">Bonus streak</div>
+      <h4>Perceptible, pas dominant</h4>
+      <p>Suffisant pour être remarqué, mais pas assez élevé pour que l'enfant optimise son comportement dans le seul but d'obtenir ce bonus.</p>
+    </div>
+    <div class="calib-card">
+      <div class="calib-lbl">Progression inter-niveaux</div>
+      <h4>Visible et ressentie</h4>
+      <p>Une mission de niveau supérieur devrait valoir l'équivalent de 3 à 4 missions N1. Un enfant qui progresse et ne gagne que marginalement plus n'a pas de raison de continuer.</p>
+    </div>
+  </div>
+
+  <div class="calib-rule">
+    <strong>Révision régulière.</strong> Les montants ne sont pas gravés dans le marbre. Une révision au Conseil de famille tous les 2-3 mois permet d'ajuster selon ce qu'on observe. Cette révision est elle-même un exercice pédagogique — l'enfant participe à la négociation des conditions de sa propre rémunération.
+  </div>
+
+</div>
+
+<footer>
+  <strong>Missions Heroes</strong> · Document fondateur · Usage familial
+  <p class="footer-credit">
+    Concocté avec
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    par <a href="https://www.linkedin.com/in/jonathan-parrat" target="_blank" rel="noopener">Jonathan Parrat<svg class="icon-linkedin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.83-48.3 93.97 0 111.28 61.9 111.28 142.3V448z"/></svg></a>
+    · Iteract, 2026
+  </p>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const l = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (l) l.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

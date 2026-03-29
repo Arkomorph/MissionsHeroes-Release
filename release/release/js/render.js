@@ -187,19 +187,10 @@ function renderStatsBar() {
   document.getElementById('stats-bar').style.display = '';
   const e = totalE(AC), lvl = curLvl(AC), pr = prog(AC), strk = streak(AC);
   document.getElementById('sb-chf').textContent = e.toFixed(2);
-  const lvlEl = document.getElementById('sb-lvl');
-  lvlEl.textContent = lvl.label;
-  lvlEl.style.color = lvl.color;
+  document.getElementById('sb-lvl').textContent = lvl.emoji + ' ' + lvl.label;
   document.getElementById('sb-bar').style.width = pr.pct + '%';
   document.getElementById('sb-pct').textContent = pr.pct + '%';
-  const nextEl = document.getElementById('sb-next');
-  if (pr.next) {
-    nextEl.textContent = pr.label;
-    nextEl.style.color = pr.next.color;
-  } else {
-    nextEl.textContent = pr.label;
-    nextEl.style.color = lvl.color;
-  }
+  document.getElementById('sb-next').textContent = pr.pct < 100 ? pr.label : '';
   document.getElementById('sb-streak').textContent = strk + '🔥';
 }
 
