@@ -1,0 +1,2350 @@
+{
+  "version": 4,
+  "pin": "9245",
+  "catalog": {
+    "categories": [
+      {
+        "id": "courrier",
+        "label": "Courrier",
+        "color": "#4FC3F7",
+        "em": "📬"
+      },
+      {
+        "id": "lessive",
+        "label": "Lessive",
+        "color": "#CE93D8",
+        "em": "👕"
+      },
+      {
+        "id": "jardin",
+        "label": "Jardin",
+        "color": "#A5D6A7",
+        "em": "🌿"
+      },
+      {
+        "id": "ordi",
+        "label": "Ordi",
+        "color": "#80DEEA",
+        "em": "💻"
+      },
+      {
+        "id": "budget",
+        "label": "Budget",
+        "color": "#FFCC80",
+        "em": "💰"
+      },
+      {
+        "id": "atelier",
+        "label": "Atelier",
+        "color": "#BCAAA4",
+        "em": "🔧"
+      },
+      {
+        "id": "cuisine",
+        "label": "Cuisine",
+        "color": "#EF9A9A",
+        "em": "🍳"
+      },
+      {
+        "id": "soigneur-mira",
+        "label": "Soins à Mira",
+        "color": "#F48FB1",
+        "em": "🐱"
+      },
+      {
+        "id": "care-famille",
+        "label": "Care & Famille",
+        "color": "#f3b1cd",
+        "em": "🤍"
+      },
+      {
+        "id": "conseil",
+        "label": "Gouvernance",
+        "color": "#FFD54F",
+        "em": "🏛️"
+      }
+    ],
+    "missions": [
+      {
+        "id": "M01",
+        "cat": "courrier",
+        "nom": "Relever la boîte aux lettres",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "Apporte le courrier à Pépé et pose le notre en une jolie pile sur la table rose",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 1
+        }
+      },
+      {
+        "id": "M02",
+        "cat": "courrier",
+        "nom": "Trier le courrier",
+        "niv": "N1",
+        "chf": 3,
+        "diff": 2,
+        "secret": null,
+        "description": "Il faut jeter la pub et faire un joli tas.\nDemande toujours à maman ou papa avant de jeter !",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 1
+        }
+      },
+      {
+        "id": "M03",
+        "cat": "lessive",
+        "nom": "Trier les habits sales par couleur / matière",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M04",
+        "cat": "lessive",
+        "nom": "Mettre une machine + la faire tourner",
+        "niv": "N1",
+        "chf": 3,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 4
+        }
+      },
+      {
+        "id": "M05",
+        "cat": "jardin",
+        "nom": "Arroser les plantes / le jardin",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M06",
+        "cat": "ordi",
+        "nom": "Organiser les photos du mois en dossiers datés",
+        "niv": "N1",
+        "chf": 4,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M73_mnc47kdp",
+        "cat": "budget",
+        "nom": "Créer ton tableau budget",
+        "niv": "N2",
+        "chf": 3,
+        "diff": 2,
+        "secret": null,
+        "description": "Fait une colonne avec l'argent que tu reçoit et une colonne avec l'argent que du dépense.\nFait les deux sommes.",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M09",
+        "cat": "budget",
+        "nom": "Écrire tes revenus et dépenses de la semaine",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "Prends une feuille et un crayon\nFait deux colonnes, l'une pour tes revenus, l'autre pour tes dépenses\nFait la somme des deux colonnes",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M72_mnbz7mb7",
+        "cat": "budget",
+        "nom": "Lit une vrai facture avec un parent",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 3,
+        "secret": null,
+        "description": "Essaie de comprendre par toi-même ce qu'est une facture !",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M71_mnbyubok",
+        "cat": "budget",
+        "nom": "Écrire le nombre qui représente l'argent que tu as récolté",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "Prends une feuille et un crayon, l'un de tes frères t'aide",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M10",
+        "cat": "atelier",
+        "nom": "Ranger les outils à leur place après utilisation",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M11",
+        "cat": "atelier",
+        "nom": "Nettoyer l'établi",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 1
+        }
+      },
+      {
+        "id": "M12",
+        "cat": "cuisine",
+        "nom": "Vider le compost",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 2,
+        "secret": null,
+        "description": "S'il est plein. ",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M75_mncoxdix",
+        "cat": "cuisine",
+        "nom": "Faire la vaisselle du repas",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M13",
+        "cat": "cuisine",
+        "nom": "Nettoyer le plan de travail après le repas",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M76_mncoza26",
+        "cat": "cuisine",
+        "nom": "Préparer un 4 heures pour tout le monde",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 2,
+        "secret": null,
+        "description": "Et ranger, évidemment",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M14",
+        "cat": "soigneur-mira",
+        "nom": "Changer l'eau et remplir la gamelle de Mira",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 1
+        }
+      },
+      {
+        "id": "M15",
+        "cat": "soigneur-mira",
+        "nom": "Nettoyer la litière",
+        "niv": "N1",
+        "chf": 3,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M45",
+        "cat": "care-famille",
+        "nom": "Lire une histoire à Marius (au moins 10 min)",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M46",
+        "cat": "care-famille",
+        "nom": "Jouer avec Émile dehors 20 min (jeu de son choix)",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M74_mnc5qv3a",
+        "cat": "care-famille",
+        "nom": "Jouer avec Louis 20 min (jeu de son choix) (copie)",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M47",
+        "cat": "care-famille",
+        "nom": "Faire un dessin ou une carte pour quelqu'un de la famille",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M48",
+        "cat": "care-famille",
+        "nom": "Écrire un mot gentil à un proche ou aux grands-parents",
+        "niv": "N1",
+        "chf": 2,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 3
+        }
+      },
+      {
+        "id": "M58",
+        "cat": "conseil",
+        "nom": "Demander et préparer un Conseil de famille",
+        "niv": "N1",
+        "chf": 5,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 4
+        }
+      },
+      {
+        "id": "M16",
+        "cat": "courrier",
+        "nom": "Fabriquer un bac \"À traiter\" pour le courrier",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M73_mnc4c2r5",
+        "cat": "courrier",
+        "nom": "Fabriquer un bac \"À archiver\" pour le courrier",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M17",
+        "cat": "courrier",
+        "nom": "Saisir les factures du mois dans un tableau",
+        "niv": "N4",
+        "chf": 7,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M18",
+        "cat": "lessive",
+        "nom": "Plier et ranger le linge propre",
+        "niv": "N2",
+        "chf": 4,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M19",
+        "cat": "lessive",
+        "nom": "Gérer une lessive complète de A à Z (trier → ranger)",
+        "niv": "N2",
+        "chf": 7,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M20",
+        "cat": "jardin",
+        "nom": "Désherber une zone définie",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M21",
+        "cat": "jardin",
+        "nom": "Ramasser les feuilles mortes",
+        "niv": "N2",
+        "chf": 5,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M22",
+        "cat": "ordi",
+        "nom": "Supprimer les doublons photos d'un dossier",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M23",
+        "cat": "budget",
+        "nom": "Tenir ton budget 2 semaines consécutives sans oubli",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 2,
+        "secret": null,
+        "description": "Rempli ton tableau pendant deux semaines.",
+        "recurrence": {
+          "type": "weekly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "M24",
+        "cat": "atelier",
+        "nom": "Faire l'inventaire des outils (liste complète)",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M25",
+        "cat": "atelier",
+        "nom": "Nettoyer et ranger après un projet bricolage",
+        "niv": "N2",
+        "chf": 5,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M26",
+        "cat": "cuisine",
+        "nom": "Aider à préparer un plat simple (commis de cuisine)",
+        "niv": "N2",
+        "chf": 5,
+        "diff": 1,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M27",
+        "cat": "soigneur-mira",
+        "nom": "Brosser Mira",
+        "niv": "N2",
+        "chf": 4,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "daily",
+          "nombre": 1
+        }
+      },
+      {
+        "id": "M28",
+        "cat": "soigneur-mira",
+        "nom": "Gérer les soins de Mira 3 jours d'affilée",
+        "niv": "N2",
+        "chf": 7,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M49",
+        "cat": "care-famille",
+        "nom": "Donner un massage des épaules à papa ou maman (5 min)",
+        "niv": "N2",
+        "chf": 4,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M50",
+        "cat": "care-famille",
+        "nom": "Préparer le petit-déjeuner au lit pour quelqu'un",
+        "niv": "N2",
+        "chf": 5,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M51",
+        "cat": "care-famille",
+        "nom": "Faire une activité créative avec Émile (Lego, dessin, jeu)",
+        "niv": "N2",
+        "chf": 4,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M52",
+        "cat": "care-famille",
+        "nom": "Inventer et raconter une histoire à Marius (sans livre)",
+        "niv": "N2",
+        "chf": 4,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M53",
+        "cat": "care-famille",
+        "nom": "Gérer le bain ou la douche de Marius (supervisé)",
+        "niv": "N2",
+        "chf": 5,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M54",
+        "cat": "care-famille",
+        "nom": "Prendre soin de quelqu'un de malade (tisane, couverture)",
+        "niv": "N2",
+        "chf": 5,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M59",
+        "cat": "conseil",
+        "nom": "Préparer un ordre du jour pour le Conseil de famille",
+        "niv": "N2",
+        "chf": 6,
+        "diff": 2,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 4
+        }
+      },
+      {
+        "id": "M29",
+        "cat": "courrier",
+        "nom": "Crée un tableau pour saisir les factures",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M30",
+        "cat": "lessive",
+        "nom": "Gérer 2 machines en autonomie dans la semaine",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M31",
+        "cat": "jardin",
+        "nom": "Tondre la pelouse (supervisé)",
+        "niv": "N3",
+        "chf": 14,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M32",
+        "cat": "jardin",
+        "nom": "Préparer un carré potager (retourner, nettoyer)",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M33",
+        "cat": "ordi",
+        "nom": "Classer toutes les photos d'une année entière",
+        "niv": "N3",
+        "chf": 14,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M35",
+        "cat": "atelier",
+        "nom": "Organiser entièrement l'atelier (zones + rangement)",
+        "niv": "N3",
+        "chf": 14,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M36",
+        "cat": "cuisine",
+        "nom": "Préparer le repas du soir de A à Z (recette choisie)",
+        "niv": "N3",
+        "chf": 14,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M37",
+        "cat": "soigneur-mira",
+        "nom": "Tenir un carnet de soins de Mira sur 1 mois",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M42",
+        "cat": "budget",
+        "nom": "Présenter ton bilan de 4 semaines à l'oral",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "Explique tes revenus et tes dépenses d'un mois.",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M55",
+        "cat": "care-famille",
+        "nom": "Préparer une surprise pour un anniversaire (déco + gâteau)",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M56",
+        "cat": "care-famille",
+        "nom": "Organiser une soirée jeu de société pour toute la famille",
+        "niv": "N3",
+        "chf": 12,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M60",
+        "cat": "conseil",
+        "nom": "Animer le Conseil de famille",
+        "niv": "N3",
+        "chf": 10,
+        "diff": 3,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 4
+        }
+      },
+      {
+        "id": "M38",
+        "cat": "courrier",
+        "nom": "Créer un système d'archivage complet pour la famille",
+        "niv": "N4",
+        "chf": 22,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M39",
+        "cat": "lessive",
+        "nom": "Gérer toute la lessive de la famille sur 2 semaines",
+        "niv": "N4",
+        "chf": 22,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M40",
+        "cat": "jardin",
+        "nom": "Planifier et réaliser un aménagement jardin (projet)",
+        "niv": "N4",
+        "chf": 25,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M41",
+        "cat": "ordi",
+        "nom": "Créer un album photo de famille (PDF ou diaporama)",
+        "niv": "N4",
+        "chf": 22,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M43",
+        "cat": "cuisine",
+        "nom": "Planifier le menu, faire les courses + cuisiner un repas",
+        "niv": "N4",
+        "chf": 25,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M44",
+        "cat": "soigneur-mira",
+        "nom": "Préparer Mira pour une visite vétérinaire (dossier)",
+        "niv": "N4",
+        "chf": 20,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M57",
+        "cat": "care-famille",
+        "nom": "Organiser une sortie complète pour la famille",
+        "niv": "N4",
+        "chf": 22,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M61",
+        "cat": "conseil",
+        "nom": "Proposer une nouvelle règle familiale au Conseil",
+        "niv": "N4",
+        "chf": 18,
+        "diff": 4,
+        "secret": null,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 4
+        }
+      },
+      {
+        "id": "S01",
+        "cat": "courrier",
+        "nom": "Créer une newsletter mensuelle de la famille",
+        "niv": "N2",
+        "chf": 10,
+        "diff": 4,
+        "description": "",
+        "recurrence": {
+          "type": "monthly",
+          "nombre": 2
+        }
+      },
+      {
+        "id": "S02",
+        "cat": "lessive",
+        "nom": "[🔮] Apprendre à repasser une chemise",
+        "niv": "N2",
+        "chf": 9,
+        "diff": 4,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S03",
+        "cat": "jardin",
+        "nom": "Planter des légumes ou herbes aromatiques",
+        "niv": "N2",
+        "chf": 10,
+        "diff": 2,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S04",
+        "cat": "ordi",
+        "nom": "[🔮] Créer un tutoriel vidéo pour la famille",
+        "niv": "N3",
+        "chf": 15,
+        "diff": 3,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S05",
+        "cat": "budget",
+        "nom": "Planifier et Négocier un achat personnel",
+        "niv": "N3",
+        "chf": 14,
+        "diff": 2,
+        "description": "Choisis quelque chose que tu aimerais, réfléchi à comment convaincre que c'est un bon achat.",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "M74_mnc58e5a",
+        "cat": "budget",
+        "nom": "Calculer combien tu peux économiser",
+        "niv": "N3",
+        "chf": 14,
+        "diff": 3,
+        "description": "Sur une année",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S06",
+        "cat": "atelier",
+        "nom": "[🔮] Réaliser un projet bricolage en autonomie",
+        "niv": "N3",
+        "chf": 16,
+        "diff": 3,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S07",
+        "cat": "cuisine",
+        "nom": "[🔮] Inventer et réaliser une recette originale",
+        "niv": "N3",
+        "chf": 15,
+        "diff": 3,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S08",
+        "cat": "soigneur-mira",
+        "nom": "[🔮] Créer le carnet de santé complet de Mira",
+        "niv": "N2",
+        "chf": 10,
+        "diff": 2,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S09",
+        "cat": "care-famille",
+        "nom": "Organiser une journée surprise pour la famille",
+        "niv": "N3",
+        "chf": 15,
+        "diff": 3,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      },
+      {
+        "id": "S10",
+        "cat": "conseil",
+        "nom": "Proposer une charte de la famille",
+        "niv": "N4",
+        "chf": 24,
+        "diff": 4,
+        "description": "",
+        "recurrence": {
+          "type": "once",
+          "nombre": 0
+        }
+      }
+    ],
+    "dailyTasks": [
+      {
+        "id": "dt8",
+        "em": "🛏️",
+        "lbl": "Faire ton lit",
+        "days": null,
+        "passive": false,
+        "description": "Aère ta chambre, tapote ton coussin et plie ton duvet en deux !",
+        "section": "lever"
+      },
+      {
+        "id": "dt6",
+        "em": "🦷",
+        "lbl": "Brosser tes dents",
+        "days": null,
+        "passive": false,
+        "description": "Au moins deux minutes ! Ranger tes affaires et rincer le lavabo, ça fait parti du truc !",
+        "section": "lever"
+      },
+      {
+        "id": "dt_mnbt9cci",
+        "em": "👔",
+        "lbl": "Reprendre les habits de la veille",
+        "days": null,
+        "passive": false,
+        "description": "Habille-toi avec les vêtements que tu à mis de côté hier soir !",
+        "section": "lever"
+      },
+      {
+        "id": "dt_mncrjk0a",
+        "em": "👔",
+        "lbl": "Coiffer tes cheveux",
+        "days": null,
+        "passive": false,
+        "description": "",
+        "section": "lever"
+      },
+      {
+        "id": "dt3",
+        "em": "🎓",
+        "lbl": "Préparer ton sac pour demain",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "passive": false,
+        "description": "Ce qui est sale va dans les panier. Demande à papa ou maman !",
+        "section": "coucher"
+      },
+      {
+        "id": "dt_mnbujsb0",
+        "em": "🗑️",
+        "lbl": "Trier tes habits",
+        "days": null,
+        "passive": false,
+        "description": "Ce qui est sale va dans les panier. Demande à papa ou maman !",
+        "section": "coucher"
+      },
+      {
+        "id": "dt_mnbufqrd",
+        "em": "👔",
+        "lbl": "Plier et ranger mes habits du jour",
+        "days": null,
+        "passive": false,
+        "description": "Ce qui est encore propre, tu le plie en une jolie pile, que tu range toujours au même endroit !",
+        "section": "coucher"
+      },
+      {
+        "id": "dt5",
+        "em": "👟",
+        "lbl": "Ranger tes chaussures et ta veste",
+        "days": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "passive": false,
+        "description": "Chaque chose à sa place : ta veste sur un cintre, tes chaussures sur le tablar, et ton sac en dehors du chemin !",
+        "section": "midi"
+      },
+      {
+        "id": "dt_mnbtoq2k",
+        "em": "👋",
+        "lbl": "Laver les mains",
+        "days": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "passive": false,
+        "description": "On lave les mains après l'école !",
+        "section": "midi"
+      },
+      {
+        "id": "dt_mnbubt8y",
+        "em": "👋",
+        "lbl": "Laver les mains",
+        "days": null,
+        "passive": false,
+        "description": "On lave les mains !",
+        "section": "souper"
+      },
+      {
+        "id": "dt2",
+        "em": "🥄",
+        "lbl": "Débarrasser tes affaires",
+        "days": null,
+        "passive": false,
+        "description": "N'oublie rien : Assiette, couverts et verre !",
+        "section": "diner"
+      },
+      {
+        "id": "dt_mnbtthkm",
+        "em": "👋",
+        "lbl": "Laver les mains",
+        "days": null,
+        "passive": false,
+        "description": "Lave tes petites mains qui collent !",
+        "section": "diner"
+      },
+      {
+        "id": "dt1",
+        "em": "🥄",
+        "lbl": "Débarrasser tes affaires",
+        "days": null,
+        "passive": false,
+        "description": "N'oublie rien : Assiette, couverts et verre !",
+        "section": "souper"
+      },
+      {
+        "id": "dt10",
+        "em": "🚲",
+        "lbl": "Jouer dehors",
+        "days": [
+          0,
+          3,
+          6
+        ],
+        "passive": false,
+        "description": "Vas prendre l'air 1 heure environ !",
+        "section": "aprem"
+      },
+      {
+        "id": "dt_mnbu8xqm",
+        "em": "📚",
+        "lbl": "Faire mes devoirs",
+        "days": [
+          3
+        ],
+        "passive": false,
+        "description": "Avance un peu ton travail",
+        "section": "aprem"
+      },
+      {
+        "id": "dt_mnbualys",
+        "em": "📚",
+        "lbl": "Faire mes devoirs",
+        "days": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "passive": false,
+        "description": "Avance un peu ton travail !",
+        "section": "retour-aprem"
+      },
+      {
+        "id": "dt9",
+        "em": "🚿",
+        "lbl": "Douche",
+        "days": [
+          0,
+          3
+        ],
+        "passive": false,
+        "description": "",
+        "section": "aprem"
+      },
+      {
+        "id": "dt4",
+        "em": "👟",
+        "lbl": "Ranger tes chaussures et ta veste",
+        "days": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "passive": false,
+        "description": "Chaque chose à sa place : ta veste sur un cintre, tes chaussures sur le tablar, et ton sac en dehors du chemin !\n",
+        "section": "retour-aprem"
+      },
+      {
+        "id": "dt_mnbtcdqq",
+        "em": "🚲",
+        "lbl": "Jouer dehors",
+        "days": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "passive": false,
+        "description": "Profite de jouer 30 minutes dehors, pour nettoyer le stress de ta journée !\n",
+        "section": "retour-aprem"
+      },
+      {
+        "id": "dt7",
+        "em": "🦷",
+        "lbl": "Brosser les dents",
+        "days": null,
+        "passive": false,
+        "description": "Au moins deux minutes ! Ranger tes affaires et rincer le lavabo, ça fait parti du truc !",
+        "section": "coucher"
+      },
+      {
+        "id": "dt_mnbuhs8t",
+        "em": "🧻",
+        "lbl": "Pipi !",
+        "days": null,
+        "passive": false,
+        "description": "Toujours, pour un bon dodo !",
+        "section": "coucher"
+      },
+      {
+        "id": "dt11",
+        "em": "💬",
+        "lbl": "Raconter tes émotions",
+        "days": null,
+        "passive": true,
+        "description": "Prends un moment pour raconter ce qui te traverse à quelqu'un de la famille",
+        "section": "coucher"
+      }
+    ],
+    "badges": [
+      {
+        "id": "BC1",
+        "nm": "Facteur Junior",
+        "em": "📬",
+        "img": null,
+        "catId": "courrier",
+        "nivId": "N1",
+        "secretMissionId": "M02"
+      },
+      {
+        "id": "BC2",
+        "nm": "Gestionnaire",
+        "em": "📂",
+        "img": null,
+        "catId": "courrier",
+        "nivId": "N2",
+        "secretMissionId": "S01"
+      },
+      {
+        "id": "BC3",
+        "nm": "Archiviste Pro",
+        "em": "🗂️",
+        "img": null,
+        "catId": "courrier",
+        "nivId": "N3",
+        "secretMissionId": "M29"
+      },
+      {
+        "id": "BL1",
+        "nm": "Trieuse",
+        "em": "👕",
+        "img": null,
+        "catId": "lessive",
+        "nivId": "N1",
+        "secretMissionId": "M04"
+      },
+      {
+        "id": "BL2",
+        "nm": "Lavandier",
+        "em": "🌀",
+        "img": null,
+        "catId": "lessive",
+        "nivId": "N2",
+        "secretMissionId": "S02"
+      },
+      {
+        "id": "BL3",
+        "nm": "Chef du Linge",
+        "em": "✨",
+        "img": null,
+        "catId": "lessive",
+        "nivId": "N3",
+        "secretMissionId": null
+      },
+      {
+        "id": "BJ1",
+        "nm": "Jardinier",
+        "em": "🌱",
+        "img": null,
+        "catId": "jardin",
+        "nivId": "N1",
+        "secretMissionId": null
+      },
+      {
+        "id": "BJ2",
+        "nm": "Désherbeur",
+        "em": "🌿",
+        "img": null,
+        "catId": "jardin",
+        "nivId": "N2",
+        "secretMissionId": "S03"
+      },
+      {
+        "id": "BJ3",
+        "nm": "Paysagiste",
+        "em": "🏡",
+        "img": null,
+        "catId": "jardin",
+        "nivId": "N3",
+        "secretMissionId": null
+      },
+      {
+        "id": "BO1",
+        "nm": "Organisateur",
+        "em": "📁",
+        "img": null,
+        "catId": "ordi",
+        "nivId": "N1",
+        "secretMissionId": null
+      },
+      {
+        "id": "BO2",
+        "nm": "Data Manager",
+        "em": "💾",
+        "img": null,
+        "catId": "ordi",
+        "nivId": "N2",
+        "secretMissionId": null
+      },
+      {
+        "id": "BO3",
+        "nm": "Photo Master",
+        "em": "📸",
+        "img": null,
+        "catId": "ordi",
+        "nivId": "N3",
+        "secretMissionId": "S04"
+      },
+      {
+        "id": "BB1",
+        "nm": "Économe",
+        "em": "💰",
+        "img": null,
+        "catId": "budget",
+        "nivId": "N1",
+        "secretMissionId": "M72_mnbz7mb7"
+      },
+      {
+        "id": "BB2",
+        "nm": "Comptable",
+        "em": "📊",
+        "img": null,
+        "catId": "budget",
+        "nivId": "N2",
+        "secretMissionId": "M23"
+      },
+      {
+        "id": "BB3",
+        "nm": "Financier",
+        "em": "🏦",
+        "img": null,
+        "catId": "budget",
+        "nivId": "N3",
+        "secretMissionId": "S05"
+      },
+      {
+        "id": "BA1",
+        "nm": "Apprenti Bricoleur",
+        "em": "🔧",
+        "img": null,
+        "catId": "atelier",
+        "nivId": "N1",
+        "secretMissionId": null
+      },
+      {
+        "id": "BA2",
+        "nm": "Inventoriste",
+        "em": "📋",
+        "img": null,
+        "catId": "atelier",
+        "nivId": "N2",
+        "secretMissionId": null
+      },
+      {
+        "id": "BA3",
+        "nm": "Chef d'Atelier",
+        "em": "🏭",
+        "img": null,
+        "catId": "atelier",
+        "nivId": "N3",
+        "secretMissionId": "S06"
+      },
+      {
+        "id": "BK1",
+        "nm": "Plongeur",
+        "em": "🍽️",
+        "img": null,
+        "catId": "cuisine",
+        "nivId": "N1",
+        "secretMissionId": "M76_mncoza26"
+      },
+      {
+        "id": "BK2",
+        "nm": "Commis",
+        "em": "👨‍🍳",
+        "img": null,
+        "catId": "cuisine",
+        "nivId": "N2",
+        "secretMissionId": null
+      },
+      {
+        "id": "BK3",
+        "nm": "Chef Cuisto",
+        "em": "🍳",
+        "img": null,
+        "catId": "cuisine",
+        "nivId": "N3",
+        "secretMissionId": "S07"
+      },
+      {
+        "id": "BM1",
+        "nm": "Soigneur",
+        "em": "🐾",
+        "img": null,
+        "catId": "soigneur-mira",
+        "nivId": "N1",
+        "secretMissionId": "M15"
+      },
+      {
+        "id": "BM2",
+        "nm": "Maître Chat",
+        "em": "🐱",
+        "img": null,
+        "catId": "soigneur-mira",
+        "nivId": "N2",
+        "secretMissionId": "S08"
+      },
+      {
+        "id": "BM3",
+        "nm": "Véto Junior",
+        "em": "💊",
+        "img": null,
+        "catId": "soigneur-mira",
+        "nivId": "N3",
+        "secretMissionId": null
+      },
+      {
+        "id": "BF1",
+        "nm": "Petit Attentionné",
+        "em": "💝",
+        "img": null,
+        "catId": "care-famille",
+        "nivId": "N1",
+        "secretMissionId": "M48"
+      },
+      {
+        "id": "BF2",
+        "nm": "Soignant du Cœur",
+        "em": "🤗",
+        "img": null,
+        "catId": "care-famille",
+        "nivId": "N2",
+        "secretMissionId": null
+      },
+      {
+        "id": "BF3",
+        "nm": "Pilier de Famille",
+        "em": "🏠",
+        "img": null,
+        "catId": "care-famille",
+        "nivId": "N3",
+        "secretMissionId": "S09"
+      },
+      {
+        "id": "BF4",
+        "nm": "Chef de Clan",
+        "em": "👑",
+        "img": null,
+        "catId": "care-famille",
+        "nivId": "N4",
+        "secretMissionId": null
+      },
+      {
+        "id": "BQ1",
+        "nm": "Citoyen Familial",
+        "em": "🏛️",
+        "img": null,
+        "catId": "conseil",
+        "nivId": "N1",
+        "secretMissionId": null
+      },
+      {
+        "id": "BQ2",
+        "nm": "Voix au Chapitre",
+        "em": "🗳️",
+        "img": null,
+        "catId": "conseil",
+        "nivId": "N2",
+        "secretMissionId": null
+      },
+      {
+        "id": "BQ3",
+        "nm": "Animateur",
+        "em": "🎙️",
+        "img": null,
+        "catId": "conseil",
+        "nivId": "N3",
+        "secretMissionId": null
+      },
+      {
+        "id": "BQ4",
+        "nm": "Législateur",
+        "em": "⚖️",
+        "img": null,
+        "catId": "conseil",
+        "nivId": "N4",
+        "secretMissionId": "S10"
+      },
+      {
+        "id": "B_mnc4d4u7",
+        "nm": "Secrétaire Général",
+        "em": "🏅",
+        "img": null,
+        "catId": "courrier",
+        "nivId": "N4",
+        "secretMissionId": "M38"
+      }
+    ],
+    "dailySections": [
+      {
+        "id": "lever",
+        "label": "En me levant",
+        "em": "🌅"
+      },
+      {
+        "id": "matin",
+        "label": "Le matin",
+        "em": "☀️"
+      },
+      {
+        "id": "midi",
+        "label": "En rentrant à midi",
+        "em": "🏠"
+      },
+      {
+        "id": "diner",
+        "label": "Au dîner",
+        "em": "🍽️"
+      },
+      {
+        "id": "aprem",
+        "label": "L'après-midi",
+        "em": "⛅"
+      },
+      {
+        "id": "retour-aprem",
+        "label": "En rentrant après l'école",
+        "em": "🎒"
+      },
+      {
+        "id": "soir",
+        "label": "En rentrant du sport",
+        "em": "🌆"
+      },
+      {
+        "id": "souper",
+        "label": "Au souper",
+        "em": "🥘"
+      },
+      {
+        "id": "coucher",
+        "label": "Avant d'aller au lit",
+        "em": "🌙"
+      }
+    ],
+    "themes": [
+      {
+        "id": "theme-louis",
+        "label": "Techno Bleu",
+        "principal": "#00cfff",
+        "accent": "#ff3d7f",
+        "fontTitle": "'Share Tech Mono', monospace",
+        "fontBody": "'Josefin Sans', sans-serif"
+      },
+      {
+        "id": "theme-emile",
+        "label": "Aventure Orange",
+        "principal": "#ff9a40",
+        "accent": "#ff3d7f",
+        "fontTitle": "'Righteous', sans-serif",
+        "fontBody": "'Nunito', sans-serif"
+      },
+      {
+        "id": "theme-marius",
+        "label": "Ferme Verte",
+        "principal": "#8de84a",
+        "accent": "#ff3d7f",
+        "fontTitle": "'Baloo 2', sans-serif",
+        "fontBody": "'Patrick Hand', sans-serif"
+      }
+    ]
+  },
+  "children": {
+    "louis": {
+      "name": "Louis",
+      "age": 10,
+      "emoji": "🧨",
+      "active": true,
+      "theme": "theme-louis",
+      "levels": [
+        {
+          "id": "N1",
+          "label": "APPRENTI",
+          "emoji": "🟢",
+          "color": "#00E676",
+          "bg": "#071A0F",
+          "seuil": 0,
+          "gatewayMission": null
+        },
+        {
+          "id": "N2",
+          "label": "ORGANISATEUR",
+          "emoji": "🔵",
+          "color": "#00BFFF",
+          "bg": "#001828",
+          "seuil": 29,
+          "gatewayMission": "M73_mnc47kdp"
+        },
+        {
+          "id": "N3",
+          "label": "EXPERT",
+          "emoji": "🟠",
+          "color": "#FFB300",
+          "bg": "#1E1400",
+          "seuil": 104,
+          "gatewayMission": "M74_mnc58e5a"
+        },
+        {
+          "id": "N4",
+          "label": "MAÎTRE",
+          "emoji": "🟣",
+          "color": "#D05070",
+          "bg": "#1E0810",
+          "seuil": 198,
+          "gatewayMission": "M42"
+        }
+      ],
+      "missions": {
+        "include": "*",
+        "exclude": [
+          "M71_mnbyubok",
+          "M74_mnc5qv3a"
+        ],
+        "overrides": {
+          "M42": {
+            "niv": "N4"
+          }
+        },
+        "extra": []
+      },
+      "dailyTasks": {
+        "include": "*",
+        "exclude": [
+          "dt_mncrjk0a"
+        ],
+        "overrides": {},
+        "extra": []
+      },
+      "state": {
+        "missionStates": {
+          "M01": "none",
+          "M02": "none",
+          "M03": "none",
+          "M04": "none",
+          "M05": "none",
+          "M06": "none",
+          "M07": "none",
+          "M08": "none",
+          "M09": "none",
+          "M10": "none",
+          "M11": "none",
+          "M12": "none",
+          "M13": "none",
+          "M14": "none",
+          "M15": "none",
+          "M45": "none",
+          "M46": "none",
+          "M47": "done",
+          "M48": "none",
+          "M58": "none",
+          "M16": "none",
+          "M17": "none",
+          "M18": "none",
+          "M19": "none",
+          "M20": "none",
+          "M21": "none",
+          "M22": "none",
+          "M23": "none",
+          "M24": "none",
+          "M25": "none",
+          "M26": "none",
+          "M27": "none",
+          "M28": "none",
+          "M49": "none",
+          "M50": "none",
+          "M51": "none",
+          "M52": "none",
+          "M53": "none",
+          "M54": "none",
+          "M59": "none",
+          "M29": "none",
+          "M30": "none",
+          "M31": "none",
+          "M32": "none",
+          "M33": "none",
+          "M35": "none",
+          "M36": "none",
+          "M37": "none",
+          "M42": "none",
+          "M55": "none",
+          "M56": "none",
+          "M60": "none",
+          "M38": "none",
+          "M39": "none",
+          "M40": "none",
+          "M41": "none",
+          "M43": "none",
+          "M44": "none",
+          "M57": "none",
+          "M61": "none",
+          "S01": "none",
+          "S02": "none",
+          "S03": "none",
+          "S04": "none",
+          "S05": "none",
+          "S06": "none",
+          "S07": "none",
+          "S08": "none",
+          "S09": "none",
+          "S10": "none",
+          "M71_mnbyubok": "none",
+          "M72_mnbz7mb7": "none",
+          "M73_mnbz7xjl": "none",
+          "M73_mnc47kdp": "none",
+          "M73_mnc4c2r5": "none",
+          "M74_mnc58e5a": "none",
+          "M74_mnc5qv3a": "none",
+          "M75_mncoxdix": "none",
+          "M76_mncoza26": "none"
+        },
+        "missionDates": {
+          "M01": "2026-03-29",
+          "M47": "2026-03-30",
+          "M48": "2026-03-29"
+        },
+        "daily": {
+          "2026-03-29": {
+            "tasks": {
+              "dt8": "none",
+              "dt6": "none",
+              "dt_mnbt9cci": "none",
+              "dt3": "none",
+              "dt_mnbujsb0": "none",
+              "dt_mnbufqrd": "none",
+              "dt5": "none",
+              "dt_mnbtoq2k": "none",
+              "dt_mnbubt8y": "none",
+              "dt2": "none",
+              "dt_mnbtthkm": "none",
+              "dt1": "none",
+              "dt10": "none",
+              "dt_mnbu8xqm": "none",
+              "dt_mnbualys": "none",
+              "dt9": "none",
+              "dt4": "none",
+              "dt_mnbtcdqq": "none",
+              "dt7": "none",
+              "dt_mnbuhs8t": "none",
+              "dt11": "none"
+            },
+            "parentValidated": false
+          },
+          "2026-03-30": {
+            "tasks": {
+              "dt8": "none",
+              "dt6": "none",
+              "dt_mnbt9cci": "none",
+              "dt3": "none",
+              "dt_mnbujsb0": "none",
+              "dt_mnbufqrd": "none",
+              "dt5": "none",
+              "dt_mnbtoq2k": "none",
+              "dt_mnbubt8y": "none",
+              "dt2": "none",
+              "dt_mnbtthkm": "none",
+              "dt1": "none",
+              "dt10": "none",
+              "dt_mnbu8xqm": "none",
+              "dt_mnbualys": "none",
+              "dt9": "none",
+              "dt4": "none",
+              "dt_mnbtcdqq": "none",
+              "dt7": "none",
+              "dt_mnbuhs8t": "none",
+              "dt11": "none"
+            },
+            "parentValidated": false
+          }
+        },
+        "weeklyRec": {},
+        "streakBonusBank": 0
+      },
+      "baseN1": 2.1,
+      "seuilPct": 0.9,
+      "secretBonus": 1
+    },
+    "emile": {
+      "name": "Émile",
+      "age": 8,
+      "emoji": "👍",
+      "active": true,
+      "theme": "theme-emile",
+      "levels": [
+        {
+          "id": "N1",
+          "label": "MILOU 1",
+          "emoji": "⭐",
+          "color": "#00ff00",
+          "bg": "#001400",
+          "seuil": 0,
+          "gatewayMission": null
+        },
+        {
+          "id": "N2",
+          "label": "MILOU 2",
+          "emoji": "⭐",
+          "color": "#0080ff",
+          "bg": "#000a14",
+          "seuil": 26,
+          "gatewayMission": "M73_mnc47kdp"
+        },
+        {
+          "id": "N3",
+          "label": "MILOU 3",
+          "emoji": "⭐",
+          "color": "#ff8000",
+          "bg": "#140a00",
+          "seuil": 93,
+          "gatewayMission": "M74_mnc58e5a"
+        },
+        {
+          "id": "N4",
+          "label": "MILOU CHEF",
+          "emoji": "⭐",
+          "color": "#ff00ff",
+          "bg": "#140014",
+          "seuil": 176,
+          "gatewayMission": "M42"
+        }
+      ],
+      "missions": {
+        "include": "*",
+        "exclude": [
+          "M71_mnbyubok",
+          "M46"
+        ],
+        "overrides": {
+          "M42": {
+            "niv": "N4"
+          }
+        },
+        "extra": []
+      },
+      "dailyTasks": {
+        "include": "*",
+        "exclude": [],
+        "overrides": {},
+        "extra": []
+      },
+      "state": {
+        "missionStates": {
+          "M01": "none",
+          "M02": "none",
+          "M03": "none",
+          "M04": "none",
+          "M05": "none",
+          "M06": "none",
+          "M07": "none",
+          "M08": "none",
+          "M09": "none",
+          "M10": "none",
+          "M11": "none",
+          "M12": "none",
+          "M13": "none",
+          "M14": "none",
+          "M15": "none",
+          "M45": "none",
+          "M46": "none",
+          "M47": "none",
+          "M48": "none",
+          "M58": "none",
+          "M16": "none",
+          "M17": "none",
+          "M18": "none",
+          "M19": "none",
+          "M20": "none",
+          "M21": "none",
+          "M22": "none",
+          "M23": "none",
+          "M24": "none",
+          "M25": "none",
+          "M26": "none",
+          "M27": "none",
+          "M28": "none",
+          "M49": "none",
+          "M50": "none",
+          "M51": "none",
+          "M52": "none",
+          "M53": "none",
+          "M54": "none",
+          "M59": "none",
+          "M29": "none",
+          "M30": "none",
+          "M31": "none",
+          "M32": "none",
+          "M33": "none",
+          "M35": "none",
+          "M36": "none",
+          "M37": "none",
+          "M42": "none",
+          "M55": "none",
+          "M56": "none",
+          "M60": "none",
+          "M38": "none",
+          "M39": "none",
+          "M40": "none",
+          "M41": "none",
+          "M43": "none",
+          "M44": "none",
+          "M57": "none",
+          "M61": "none",
+          "S01": "none",
+          "S02": "none",
+          "S03": "none",
+          "S04": "none",
+          "S05": "none",
+          "S06": "none",
+          "S07": "none",
+          "S08": "none",
+          "S09": "none",
+          "S10": "none",
+          "M71_mnbyubok": "none",
+          "M72_mnbz7mb7": "none",
+          "M73_mnbz7xjl": "none",
+          "M73_mnc47kdp": "none",
+          "M73_mnc4c2r5": "none",
+          "M74_mnc58e5a": "none",
+          "M74_mnc5qv3a": "none",
+          "M75_mncoxdix": "none",
+          "M76_mncoza26": "none"
+        },
+        "missionDates": {},
+        "daily": {
+          "2026-03-29": {
+            "tasks": {
+              "dt8": "none",
+              "dt6": "none",
+              "dt_mnbt9cci": "none",
+              "dt3": "none",
+              "dt_mnbujsb0": "none",
+              "dt_mnbufqrd": "none",
+              "dt5": "none",
+              "dt_mnbtoq2k": "none",
+              "dt_mnbubt8y": "none",
+              "dt2": "none",
+              "dt_mnbtthkm": "none",
+              "dt1": "none",
+              "dt10": "none",
+              "dt_mnbu8xqm": "none",
+              "dt_mnbualys": "none",
+              "dt9": "none",
+              "dt4": "none",
+              "dt_mnbtcdqq": "none",
+              "dt7": "none",
+              "dt_mnbuhs8t": "none",
+              "dt11": "none"
+            },
+            "parentValidated": false
+          },
+          "2026-03-30": {
+            "tasks": {
+              "dt8": "pending",
+              "dt6": "pending",
+              "dt_mnbt9cci": "none",
+              "dt3": "none",
+              "dt_mnbujsb0": "none",
+              "dt_mnbufqrd": "none",
+              "dt5": "none",
+              "dt_mnbtoq2k": "none",
+              "dt_mnbubt8y": "none",
+              "dt2": "none",
+              "dt_mnbtthkm": "none",
+              "dt1": "none",
+              "dt10": "none",
+              "dt_mnbu8xqm": "none",
+              "dt_mnbualys": "none",
+              "dt9": "none",
+              "dt4": "none",
+              "dt_mnbtcdqq": "none",
+              "dt7": "none",
+              "dt_mnbuhs8t": "none",
+              "dt11": "none",
+              "dt_mncrjk0a": "pending"
+            },
+            "parentValidated": false
+          }
+        },
+        "weeklyRec": {},
+        "streakBonusBank": 0
+      },
+      "baseN1": 2.1,
+      "seuilPct": 0.8,
+      "secretBonus": 1
+    },
+    "marius": {
+      "name": "Marius",
+      "age": 4,
+      "emoji": "🦁",
+      "active": true,
+      "theme": "theme-marius",
+      "levels": [
+        {
+          "id": "N1",
+          "label": "PETIT CHAT",
+          "emoji": "⭐",
+          "color": "#00ff00",
+          "bg": "#001400",
+          "seuil": 0,
+          "gatewayMission": null
+        },
+        {
+          "id": "N2",
+          "label": "MATOU",
+          "emoji": "⭐",
+          "color": "#0080ff",
+          "bg": "#000a14",
+          "seuil": 26,
+          "gatewayMission": null
+        },
+        {
+          "id": "N3",
+          "label": "ROI DE LA JUNGLE",
+          "emoji": "⭐",
+          "color": "#ff8000",
+          "bg": "#140a00",
+          "seuil": 93,
+          "gatewayMission": null
+        }
+      ],
+      "missions": {
+        "include": "*",
+        "exclude": [
+          "M09",
+          "M45"
+        ],
+        "overrides": {},
+        "extra": []
+      },
+      "dailyTasks": {
+        "include": "*",
+        "exclude": [
+          "dt_mnbu8xqm",
+          "dt_mnbualys",
+          "dt3",
+          "dt_mncrjk0a"
+        ],
+        "overrides": {},
+        "extra": []
+      },
+      "state": {
+        "missionStates": {
+          "M01": "none",
+          "M02": "none",
+          "M03": "none",
+          "M04": "none",
+          "M05": "none",
+          "M06": "none",
+          "M07": "none",
+          "M08": "none",
+          "M09": "none",
+          "M10": "none",
+          "M11": "none",
+          "M12": "none",
+          "M13": "none",
+          "M14": "none",
+          "M15": "none",
+          "M45": "none",
+          "M46": "none",
+          "M47": "none",
+          "M48": "none",
+          "M58": "none",
+          "M16": "none",
+          "M17": "none",
+          "M18": "none",
+          "M19": "none",
+          "M20": "none",
+          "M21": "none",
+          "M22": "none",
+          "M23": "none",
+          "M24": "none",
+          "M25": "none",
+          "M26": "none",
+          "M27": "none",
+          "M28": "none",
+          "M49": "none",
+          "M50": "none",
+          "M51": "none",
+          "M52": "none",
+          "M53": "none",
+          "M54": "none",
+          "M59": "none",
+          "M29": "none",
+          "M30": "none",
+          "M31": "none",
+          "M32": "none",
+          "M33": "none",
+          "M35": "none",
+          "M36": "none",
+          "M37": "none",
+          "M42": "none",
+          "M55": "none",
+          "M56": "none",
+          "M60": "none",
+          "M38": "none",
+          "M39": "none",
+          "M40": "none",
+          "M41": "none",
+          "M43": "none",
+          "M44": "none",
+          "M57": "none",
+          "M61": "none",
+          "S01": "none",
+          "S02": "none",
+          "S03": "none",
+          "S04": "none",
+          "S05": "none",
+          "S06": "none",
+          "S07": "none",
+          "S08": "none",
+          "S09": "none",
+          "S10": "none",
+          "M71_mnbyubok": "none",
+          "M72_mnbz7mb7": "none",
+          "M73_mnbz7xjl": "none",
+          "M73_mnc47kdp": "none",
+          "M73_mnc4c2r5": "none",
+          "M74_mnc58e5a": "none",
+          "M74_mnc5qv3a": "none",
+          "M75_mncoxdix": "none",
+          "M76_mncoza26": "none"
+        },
+        "daily": {
+          "2026-03-29": {
+            "tasks": {
+              "dt8": "none",
+              "dt6": "none",
+              "dt_mnbt9cci": "none",
+              "dt3": "none",
+              "dt_mnbujsb0": "none",
+              "dt_mnbufqrd": "none",
+              "dt5": "none",
+              "dt_mnbtoq2k": "none",
+              "dt_mnbubt8y": "none",
+              "dt2": "none",
+              "dt_mnbtthkm": "none",
+              "dt1": "none",
+              "dt10": "none",
+              "dt_mnbu8xqm": "none",
+              "dt_mnbualys": "none",
+              "dt9": "none",
+              "dt4": "none",
+              "dt_mnbtcdqq": "none",
+              "dt7": "none",
+              "dt_mnbuhs8t": "none",
+              "dt11": "none"
+            },
+            "parentValidated": false
+          }
+        },
+        "weeklyRec": {},
+        "streakBonusBank": 0,
+        "missionDates": {}
+      },
+      "baseN1": 2.1,
+      "seuilPct": 0.8,
+      "secretBonus": 1
+    }
+  },
+  "cfg": {
+    "malus": 0.1,
+    "bonus": 0.2,
+    "streakBonus": 1.7,
+    "streakDays": 7,
+    "fontSize": 1,
+    "statusColors": {
+      "success": "#00e676",
+      "danger": "#ff3d7f",
+      "warning": "#ffb300"
+    },
+    "streakPct": 0.8
+  },
+  "patchVersion": 14
+}
