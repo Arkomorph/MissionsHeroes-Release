@@ -1,5 +1,5 @@
 #!/bin/bash
-NAS_HOST="192.168.1.10"
+NAS_HOST="iteract.ch"
 NAS_PORT="30022"
 NAS_USER="jonathan"
 NAS_WEB="/volume1/web/missionsheroes/"
