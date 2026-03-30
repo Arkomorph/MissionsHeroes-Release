@@ -139,8 +139,6 @@ function applyTheme(cid) {
 
 // ── Main render ──
 function render() {
-  EXPANDED_MISSION = null;
-  EXPANDED_DAILY = null;
   applyTheme(AC);
   renderTabs();
   renderStatsBar();

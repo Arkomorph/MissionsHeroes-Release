@@ -8,8 +8,8 @@
 
 // ── Navigation ──────────────────────────────
 
-function selChild(id) { AC = id; track('Changement enfant', { enfant: getChild(id)?.name }); render(); }
-function selSub(cid, tab) { ST[cid] = tab; track('Changement onglet', { enfant: getChild(cid)?.name, onglet: tab }); render(); }
+function selChild(id) { AC = id; EXPANDED_MISSION = null; EXPANDED_DAILY = null; track('Changement enfant', { enfant: getChild(id)?.name }); render(); }
+function selSub(cid, tab) { ST[cid] = tab; EXPANDED_MISSION = null; EXPANDED_DAILY = null; track('Changement onglet', { enfant: getChild(cid)?.name, onglet: tab }); render(); }
 
 // ── Daily actions ───────────────────────────
 
