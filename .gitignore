@@ -5,3 +5,8 @@ desktop.ini
 
 # Claude Code - local settings (personal, not shared)
 .claude/settings.local.json
+
+# Backend — data files stay on NAS, never committed
+backend/data/*.json
+!backend/data/.gitkeep
+backend/node_modules/

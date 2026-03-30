@@ -52,6 +52,13 @@
     document.getElementById('loader').style.display = 'none';
     render();
 
+    // 8. Connect SSE for real-time sync across devices
+    storage.onRemoteChange = async () => {
+      await reloadFromRemote();
+      render();
+    };
+    storage.connectSSE();
+
   } catch (e) {
     console.error('[app] Bootstrap failed:', e);
     const loader = document.getElementById('loader');

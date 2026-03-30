@@ -4,6 +4,7 @@
 const storage = (() => {
   const KEY = 'mh_v4';
   let _offline = false;
+  let _onRemoteChange = null;
 
   function _localLoad() {
     const raw = localStorage.getItem(KEY);
@@ -44,7 +45,7 @@ const storage = (() => {
 
     fetch(MH_CONFIG.API_BASE + '/state', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Client-Id': MH_CONFIG.CLIENT_ID },
       body: JSON.stringify(state)
     }).then(() => {
       if (_offline) {
@@ -67,5 +68,29 @@ const storage = (() => {
     if (el) el.style.display = _offline ? 'inline' : 'none';
   }
 
-  return { load, save, isOffline };
+  // ── SSE real-time sync ──
+  function connectSSE() {
+    if (MH_CONFIG.STORAGE_BACKEND !== 'remote') return;
+
+    const es = new EventSource(MH_CONFIG.API_BASE + '/events');
+
+    es.addEventListener('state_changed', (e) => {
+      const data = JSON.parse(e.data);
+      if (data.origin === MH_CONFIG.CLIENT_ID) return;
+      if (_onRemoteChange) _onRemoteChange();
+    });
+
+    es.onerror = () => {
+      if (!_offline) { _offline = true; _updateBadge(); }
+    };
+
+    es.onopen = () => {
+      if (_offline) { _offline = false; _updateBadge(); }
+    };
+  }
+
+  return {
+    load, save, isOffline, connectSSE,
+    set onRemoteChange(fn) { _onRemoteChange = fn; }
+  };
 })();

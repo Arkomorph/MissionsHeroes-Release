@@ -42,6 +42,19 @@ async function initState() {
 }
 
 // ══════════════════════════════════════════════
+// RELOAD FROM REMOTE (SSE-triggered)
+// ══════════════════════════════════════════════
+async function reloadFromRemote() {
+  const fresh = await storage.load();
+  if (!fresh) return;
+  S = fresh;
+  clearCache();
+  _catColorMap = null;
+  _catLabelMap = null;
+  _catEmojiMap = null;
+}
+
+// ══════════════════════════════════════════════
 // SAVE (with cache invalidation)
 // ══════════════════════════════════════════════
 function save() {
