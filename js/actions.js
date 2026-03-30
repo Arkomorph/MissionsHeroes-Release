@@ -19,12 +19,12 @@ function dailyAction(cid, tid, dk) {
   const status = rec.tasks[tid] || 'none';
   if (status === 'done') return;
   if (status === 'pending') {
-    openPin(cid, 'DAILY_' + tid + '_' + dk, 'daily');
+    openPin(cid, 'DAILY::' + tid + '::' + dk, 'daily');
     return;
   }
   // Skip pending state when PIN is disabled — validate directly
   if (S.cfg.skipPin) {
-    openPin(cid, 'DAILY_' + tid + '_' + dk, 'daily');
+    openPin(cid, 'DAILY::' + tid + '::' + dk, 'daily');
     return;
   }
   rec.tasks[tid] = 'pending';
@@ -109,7 +109,7 @@ function openPin(cid, mid, action) {
     // Show validate/redo choice
     PV = ''; updateDots();
     document.getElementById('pin-lbl').textContent = action === 'daily' || action === 'redo_daily'
-      ? (getDailyTasks(cid).find(x => x.id === mid.split('_')[1])?.lbl || 'Tâche')
+      ? (getDailyTasks(cid).find(x => x.id === mid.split('::')[1])?.lbl || 'Tâche')
       : (getMissions(cid).find(x => x.id === mid)?.nom || '—');
     document.getElementById('pin-err').textContent = '';
     const ov = document.getElementById('pin-ov');
@@ -125,7 +125,7 @@ function openPin(cid, mid, action) {
   PV = ''; updateDots();
   let label = '—';
   if (action === 'daily' || action === 'redo_daily') {
-    const tid = mid.split('_')[1];
+    const tid = mid.split('::')[1];
     const t = getDailyTasks(cid).find(x => x.id === tid);
     label = t ? t.em + ' ' + t.lbl : 'Tâche';
   } else if (action !== 'admin') {
@@ -201,8 +201,8 @@ function pinAction(choice) {
       toast('↩️ Mission à refaire');
     }
     if (ctx.action === 'daily' || ctx.action === 'redo_daily') {
-      const parts = ctx.mid.split('_');
-      const tid = parts[1]; const dk = parts.slice(2).join('_');
+      const parts = ctx.mid.split('::');
+      const tid = parts[1]; const dk = parts[2];
       getDR(ctx.cid, dk).tasks[tid] = 'none';
       save(); render();
       toast('↩️ Tâche à refaire');
@@ -226,8 +226,8 @@ function pinAction(choice) {
     toast(`✅ +${chf(missionChf(ctx.cid, m))} CHF — Bravo ${getChild(ctx.cid).name} ! 🎉`);
   }
   if (ctx.action === 'daily') {
-    const parts = ctx.mid.split('_');
-    const tid = parts[1]; const dk = parts.slice(2).join('_');
+    const parts = ctx.mid.split('::');
+    const tid = parts[1]; const dk = parts[2];
     getDR(ctx.cid, dk).tasks[tid] = 'done';
     save(); render();
     toast(`✅ Tâche validée !`);

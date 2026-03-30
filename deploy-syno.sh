@@ -22,9 +22,14 @@ scp -O -P $NAS_PORT \
   backend/package.json \
   ${NAS_USER}@${NAS_HOST}:${NAS_BACKEND}
 
-echo "→ Redémarrage du serveur API..."
-ssh -p $NAS_PORT ${NAS_USER}@${NAS_HOST} \
-  "cd ${NAS_BACKEND} && pm2 restart missionsheroes-api"
+if [ "$1" = "--restart" ]; then
+  echo ""
+  echo "⚠️  Restart demandé. Connecte-toi au NAS :"
+  echo "   ssh -p $NAS_PORT $NAS_USER@$NAS_HOST"
+  echo "   sudo kill \$(ps aux | grep 'node.*missionsheroes.*server.js' | grep -v grep | awk '{print \$2}')"
+  echo "   cd $NAS_BACKEND && sudo nohup node server.js >> /var/log/missionsheroes.log 2>&1 &"
+fi
 
+echo ""
 echo "✅ Déploiement Syno terminé !"
 echo "   → https://missionsheroes.iteract.ch"

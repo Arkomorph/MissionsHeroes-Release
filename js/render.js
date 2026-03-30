@@ -397,8 +397,8 @@ function rDailyCard(cid, t, dk, rec) {
   const isNa = !app;
   const isExpanded = EXPANDED_DAILY === t.id;
   let check = '', actionClick = '';
-  if (isDone)      { check = '✓'; actionClick = `onclick="event.stopPropagation();openPin('${cid}','DAILY_${t.id}_${dk}','redo_daily')"`; }
-  else if (isPend) { check = '⏳'; actionClick = `onclick="event.stopPropagation();openPin('${cid}','DAILY_${t.id}_${dk}','daily')"`; }
+  if (isDone)      { check = '✓'; actionClick = `onclick="event.stopPropagation();openPin('${cid}','DAILY::${t.id}::${dk}','redo_daily')"`; }
+  else if (isPend) { check = '⏳'; actionClick = `onclick="event.stopPropagation();openPin('${cid}','DAILY::${t.id}::${dk}','daily')"`; }
   else if (!isNa)  { actionClick = `onclick="event.stopPropagation();dailyAction('${cid}','${t.id}','${dk}')"`; }
 
   const desc = t.description ? escHtml(t.description) : '';
