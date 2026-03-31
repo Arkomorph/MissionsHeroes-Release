@@ -16,6 +16,14 @@ scp -O -P $NAS_PORT -r \
   manifest.json \
   ${NAS_USER}@${NAS_HOST}:${NAS_WEB}
 
+echo "→ Restauration favicon orange (Syno = orange, GitHub = bleu)..."
+ssh -p $NAS_PORT ${NAS_USER}@${NAS_HOST} "
+  cd ${NAS_WEB}
+  sed -i \"s|fill='%2300cfff'|fill='%23ffb300'|g\" index.html app.html
+  sed -i 's|fill=\"#00cfff\"|fill=\"#ffb300\"|g' index.html
+  for f in site/*.html; do sed -i \"s|fill='%2300cfff'|fill='%23ffb300'|g\" \"\$f\"; done
+"
+
 echo "→ Déploiement backend sur Syno..."
 scp -O -P $NAS_PORT \
   backend/server.js \
