@@ -5,6 +5,7 @@ const storage = (() => {
   const KEY = 'mh_v4';
   let _offline = false;
   let _onRemoteChange = null;
+  let _onMergedState = null;
 
   function _localLoad() {
     const raw = localStorage.getItem(KEY);
@@ -47,10 +48,12 @@ const storage = (() => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Client-Id': MH_CONFIG.CLIENT_ID },
       body: JSON.stringify(state)
-    }).then(() => {
-      if (_offline) {
-        _offline = false;
-        _updateBadge();
+    }).then(r => r.json()).then(merged => {
+      if (_offline) { _offline = false; _updateBadge(); }
+      // Apply server-merged state back to local (fixes stale fields)
+      if (merged && merged.children) {
+        _localSave(merged);
+        if (_onMergedState) _onMergedState(merged);
       }
     }).catch(e => {
       console.error('[storage] Remote save failed:', e.message);
@@ -91,6 +94,7 @@ const storage = (() => {
 
   return {
     load, save, isOffline, connectSSE,
-    set onRemoteChange(fn) { _onRemoteChange = fn; }
+    set onRemoteChange(fn) { _onRemoteChange = fn; },
+    set onMergedState(fn) { _onMergedState = fn; }
   };
 })();

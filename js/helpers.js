@@ -171,6 +171,18 @@ function isSecretOk(cid, m) {
   return earnedBadges(cid).includes(badge.id);
 }
 
+// ── Sync timestamps ──
+
+function touchMissionState(cid, mid) {
+  if (!S.children[cid].state.missionStateTs) S.children[cid].state.missionStateTs = {};
+  S.children[cid].state.missionStateTs[mid] = Date.now();
+}
+
+function touchDaily(cid, dk) {
+  if (!S.children[cid].state.dailyTs) S.children[cid].state.dailyTs = {};
+  S.children[cid].state.dailyTs[dk] = Date.now();
+}
+
 // ── Recurrence ──
 
 function currentWindowStart(type) {
@@ -204,6 +216,27 @@ function recurrenceSlotsFull(m) {
     }
   });
   return count >= nombre;
+}
+
+// ── Recurrence reset (extracted for reuse after SSE + periodic check) ──
+
+function resetExpiredRecurrences() {
+  let changed = false;
+  Object.keys(S.children).forEach(cid => {
+    const st = S.children[cid].state;
+    getMissions(cid).forEach(m => {
+      if (!m.recurrence || m.recurrence.type === 'once') return;
+      const state = st.missionStates[m.id];
+      if (state !== 'done' && state !== 'pending') return;
+      const dt = st.missionDates?.[m.id];
+      if (!dt || !isInCurrentWindow(dt, m.recurrence.type)) {
+        st.missionStates[m.id] = 'none';
+        touchMissionState(cid, m.id);
+        changed = true;
+      }
+    });
+  });
+  return changed;
 }
 
 // ── Streak ──

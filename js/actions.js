@@ -28,6 +28,7 @@ function dailyAction(cid, tid, dk) {
     return;
   }
   rec.tasks[tid] = 'pending';
+  touchDaily(cid, dk);
   track('Tâche journalière demandée', { enfant: getChild(cid)?.name, tache: tid });
   save(); render();
   toast('⏳ En attente de validation parent');
@@ -37,12 +38,14 @@ function togglePassive(cid, tid, dk) {
   const rec = getDR(cid, dk);
   const cur = rec.tasks[tid];
   rec.tasks[tid] = (cur === true || cur === 'done') ? 'none' : 'done';
+  touchDaily(cid, dk);
   track('Moment parole', { enfant: getChild(cid)?.name, tache: tid });
   save(); render();
 }
 
 function setDT(cid, dk, tid, val) {
   getDR(cid, dk).tasks[tid] = val ? 'done' : 'none';
+  touchDaily(cid, dk);
   save();
 }
 
@@ -60,6 +63,7 @@ function valDay(cid, dk) {
 function valDayExec(cid, dk) {
   const rec = getDR(cid, dk);
   rec.parentValidated = true;
+  touchDaily(cid, dk);
   const strk = streak(cid);
   if (strk > 0 && strk % (S.cfg.streakDays || 7) === 0) {
     if (!rec.streakBonus) {
@@ -81,11 +85,13 @@ function markPending(cid, mid) {
   // Skip pending state when PIN is disabled — go straight to validate/redo choice
   if (S.cfg.skipPin) {
     S.children[cid].state.missionStates[mid] = 'pending';
+    touchMissionState(cid, mid);
     save();
     openPin(cid, mid, 'validate');
     return;
   }
   S.children[cid].state.missionStates[mid] = 'pending';
+  touchMissionState(cid, mid);
   save(); render();
   toast('⏳ Mission notée — demande la validation !');
 }
@@ -197,6 +203,7 @@ function pinAction(choice) {
       const m = getMissions(ctx.cid).find(x => x.id === ctx.mid);
       track('Mission à refaire', { enfant: getChild(ctx.cid)?.name, mission: m?.nom });
       S.children[ctx.cid].state.missionStates[ctx.mid] = 'none';
+      touchMissionState(ctx.cid, ctx.mid);
       save(); render();
       toast('↩️ Mission à refaire');
     }
@@ -204,6 +211,7 @@ function pinAction(choice) {
       const parts = ctx.mid.split('::');
       const tid = parts[1]; const dk = parts[2];
       getDR(ctx.cid, dk).tasks[tid] = 'none';
+      touchDaily(ctx.cid, dk);
       save(); render();
       toast('↩️ Tâche à refaire');
     }
@@ -216,6 +224,7 @@ function pinAction(choice) {
     S.children[ctx.cid].state.missionStates[ctx.mid] = 'done';
     if (!S.children[ctx.cid].state.missionDates) S.children[ctx.cid].state.missionDates = {};
     S.children[ctx.cid].state.missionDates[ctx.mid] = new Date().toISOString().slice(0, 10);
+    touchMissionState(ctx.cid, ctx.mid);
     save(); render();
     const ms = getMissions(ctx.cid); const m = ms.find(x => x.id === ctx.mid);
     track('Mission validée', { enfant: getChild(ctx.cid)?.name, mission: m?.nom, chf: missionChf(ctx.cid, m) });
@@ -229,6 +238,7 @@ function pinAction(choice) {
     const parts = ctx.mid.split('::');
     const tid = parts[1]; const dk = parts[2];
     getDR(ctx.cid, dk).tasks[tid] = 'done';
+    touchDaily(ctx.cid, dk);
     save(); render();
     toast(`✅ Tâche validée !`);
   }
@@ -283,6 +293,7 @@ function boUnlockGateway(cid, mid) {
   S.children[cid].state.missionStates[mid] = 'done';
   if (!S.children[cid].state.missionDates) S.children[cid].state.missionDates = {};
   S.children[cid].state.missionDates[mid] = new Date().toISOString().slice(0, 10);
+  touchMissionState(cid, mid);
   save(); renderBO();
   toast('🔓 Gateway débloquée manuellement');
 }
@@ -325,8 +336,9 @@ function boCycleMissionLevel(cid, mid) {
 function resetChild(cid) {
   boConfirm(`Tout réinitialiser pour ${getChild(cid).name} ?`, () => {
     const ms = getMissions(cid);
-    S.children[cid].state = { missionStates: {}, missionDates: {}, daily: {}, weeklyRec: {}, streakBonusBank: 0 };
-    ms.forEach(m => S.children[cid].state.missionStates[m.id] = 'none');
+    const now = Date.now();
+    S.children[cid].state = { missionStates: {}, missionStateTs: {}, missionDates: {}, daily: {}, dailyTs: {}, weeklyRec: {}, streakBonusBank: 0 };
+    ms.forEach(m => { S.children[cid].state.missionStates[m.id] = 'none'; S.children[cid].state.missionStateTs[m.id] = now; });
     save(); renderBO(); render();
     toast('♻️ Réinitialisé', true);
   });
@@ -335,7 +347,9 @@ function resetChild(cid) {
 function resetMs(cid) {
   boConfirm('Réinitialiser les missions ?', () => {
     const ms = getMissions(cid);
-    ms.forEach(m => S.children[cid].state.missionStates[m.id] = 'none');
+    const now = Date.now();
+    ms.forEach(m => { S.children[cid].state.missionStates[m.id] = 'none'; S.children[cid].state.missionStateTs[m.id] = now; });
+    S.children[cid].state.missionDates = {};
     save(); renderBO(); render();
     toast('↩️ Missions réinitialisées', true);
   });
