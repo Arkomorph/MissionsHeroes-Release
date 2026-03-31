@@ -338,7 +338,7 @@ function resetChild(cid) {
   boConfirm(`Tout réinitialiser pour ${getChild(cid).name} ?`, () => {
     const ms = getMissions(cid);
     const now = Date.now();
-    S.children[cid].state = { missionStates: {}, missionStateTs: {}, missionDates: {}, daily: {}, dailyTs: {}, weeklyRec: {}, streakBonusBank: 0 };
+    S.children[cid].state = { missionStates: {}, missionStateTs: {}, missionDates: {}, missionEarningsBank: 0, earnedBadgeIds: [], daily: {}, dailyTs: {}, weeklyRec: {}, streakBonusBank: 0 };
     ms.forEach(m => { S.children[cid].state.missionStates[m.id] = 'none'; S.children[cid].state.missionStateTs[m.id] = now; });
     save(); renderBO(); render();
     toast('♻️ Réinitialisé', true);
@@ -351,6 +351,8 @@ function resetMs(cid) {
     const now = Date.now();
     ms.forEach(m => { S.children[cid].state.missionStates[m.id] = 'none'; S.children[cid].state.missionStateTs[m.id] = now; });
     S.children[cid].state.missionDates = {};
+    S.children[cid].state.missionEarningsBank = 0;
+    S.children[cid].state.earnedBadgeIds = [];
     save(); renderBO(); render();
     toast('↩️ Missions réinitialisées', true);
   });

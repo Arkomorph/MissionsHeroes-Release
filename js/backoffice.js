@@ -1299,8 +1299,7 @@ function renderBOParams() {
     </div>
     <div class="bo-sec" style="padding-top:0">
       <div class="bo-sec-title">🗑️ RÉINITIALISATIONS</div>
-      ${activeChildren.map(ch=>`<button class="bo-btn bo-btn-danger" onclick="resetChild('${ch.id}')">♻️ Tout réinitialiser — ${escHtml(ch.emoji)} ${escHtml(ch.name)} ${tipBtn('DANGER : efface toute la progression (missions, tâches, badges, CHF). Irréversible.')}</button>`).join('')}
-      ${activeChildren.map(ch=>`<button class="bo-btn bo-btn-warn" onclick="resetMs('${ch.id}')">↩️ Missions seulement — ${escHtml(ch.emoji)} ${escHtml(ch.name)} ${tipBtn('Remet les missions à zéro sans toucher au journalier ni aux CHF')}</button>`).join('')}
+      ${activeChildren.map(ch=>`<div style="display:flex;gap:8px;margin-bottom:6px"><button class="bo-btn bo-btn-danger" style="flex:1" onclick="resetChild('${ch.id}')">♻️ Tout — ${escHtml(ch.emoji)} ${escHtml(ch.name)} ${tipBtn('DANGER : efface toute la progression (missions, tâches, badges, CHF, banque). Irréversible.')}</button><button class="bo-btn bo-btn-warn" style="flex:1" onclick="resetMs('${ch.id}')">↩️ Missions — ${escHtml(ch.emoji)} ${escHtml(ch.name)} ${tipBtn('Remet missions, badges et banque CHF à zéro sans toucher au journalier')}</button></div>`).join('')}
     </div>`;
 }
 
