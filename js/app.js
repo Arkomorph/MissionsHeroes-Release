@@ -55,9 +55,9 @@
     storage.connectSSE();
 
     // 9. Periodic midnight check — reset recurrences when day changes
-    let _lastDay = new Date().toISOString().slice(0, 10);
+    let _lastDay = localDate();
     setInterval(() => {
-      const today = new Date().toISOString().slice(0, 10);
+      const today = localDate();
       if (today !== _lastDay) {
         _lastDay = today;
         if (resetExpiredRecurrences()) { save(); render(); }

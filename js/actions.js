@@ -223,7 +223,7 @@ function pinAction(choice) {
     const badgesBefore = earnedBadges(ctx.cid).length;
     S.children[ctx.cid].state.missionStates[ctx.mid] = 'done';
     if (!S.children[ctx.cid].state.missionDates) S.children[ctx.cid].state.missionDates = {};
-    S.children[ctx.cid].state.missionDates[ctx.mid] = new Date().toISOString().slice(0, 10);
+    S.children[ctx.cid].state.missionDates[ctx.mid] = localDate();
     touchMissionState(ctx.cid, ctx.mid);
     save(); render();
     const ms = getMissions(ctx.cid); const m = ms.find(x => x.id === ctx.mid);
@@ -292,7 +292,7 @@ function toggleMissionExclude(cid, mid) {
 function boUnlockGateway(cid, mid) {
   S.children[cid].state.missionStates[mid] = 'done';
   if (!S.children[cid].state.missionDates) S.children[cid].state.missionDates = {};
-  S.children[cid].state.missionDates[mid] = new Date().toISOString().slice(0, 10);
+  S.children[cid].state.missionDates[mid] = localDate();
   touchMissionState(cid, mid);
   save(); renderBO();
   toast('🔓 Gateway débloquée manuellement');

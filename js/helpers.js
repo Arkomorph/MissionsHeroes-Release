@@ -20,7 +20,13 @@ function escHtml(s) {
 
 // ── Time / status helpers ──
 
-function todayKey() { return new Date().toISOString().slice(0, 10); }
+function localDate(d) {
+  if (!d) d = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+}
+
+function todayKey() { return localDate(); }
 
 function isApplicable(t) {
   return t.days === null
@@ -187,9 +193,9 @@ function touchDaily(cid, dk) {
 
 function currentWindowStart(type) {
   const d = new Date(); d.setHours(0,0,0,0);
-  if (type === 'daily') return d.toISOString().slice(0,10);
-  if (type === 'weekly') { const day = d.getDay(); d.setDate(d.getDate() - (day === 0 ? 6 : day - 1)); return d.toISOString().slice(0,10); }
-  if (type === 'monthly') return d.toISOString().slice(0,7) + '-01';
+  if (type === 'daily') return localDate(d);
+  if (type === 'weekly') { const day = d.getDay(); d.setDate(d.getDate() - (day === 0 ? 6 : day - 1)); return localDate(d); }
+  if (type === 'monthly') return localDate(d).slice(0,7) + '-01';
   if (type === 'yearly') return d.getFullYear() + '-01-01';
   return null;
 }
@@ -246,7 +252,7 @@ function streak(cid) {
   const d = new Date();
   d.setHours(0, 0, 0, 0);
   for (let i = 0; i < 60; i++) {
-    const k = d.toISOString().slice(0, 10);
+    const k = localDate(d);
     const rec = S.children[cid].state.daily[k];
     if (!rec || !rec.parentValidated) {
       if (i === 0) {
@@ -268,7 +274,7 @@ function streak(cid) {
 function purgeDailyRecords() {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - 90);
-  const cutoffKey = cutoff.toISOString().slice(0, 10);
+  const cutoffKey = localDate(cutoff);
   let purged = false;
   Object.keys(S.children).forEach(cid => {
     const daily = S.children[cid].state.daily;

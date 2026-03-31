@@ -229,7 +229,7 @@ function renderBOValidation() {
   const days = [];
   for (let i = 0; i < 7; i++) {
     const d = new Date(); d.setDate(d.getDate() - i);
-    days.push(d.toISOString().slice(0, 10));
+    days.push(localDate(d));
   }
 
   let alertHtml = '';
