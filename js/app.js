@@ -54,15 +54,16 @@
     };
     storage.connectSSE();
 
-    // 9. Periodic midnight check — reset recurrences when day changes
+    // 9. Check recurrences when tab becomes visible (e.g. next morning)
     let _lastDay = localDate();
-    setInterval(() => {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) return;
       const today = localDate();
       if (today !== _lastDay) {
         _lastDay = today;
         if (resetExpiredRecurrences()) { save(); render(); }
       }
-    }, 60000);
+    });
 
     // 10. Debug tools (console)
     window._MH_OrigDate = Date;
