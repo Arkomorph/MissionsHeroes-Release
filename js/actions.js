@@ -225,6 +225,7 @@ function pinAction(choice) {
     if (!S.children[ctx.cid].state.missionDates) S.children[ctx.cid].state.missionDates = {};
     S.children[ctx.cid].state.missionDates[ctx.mid] = localDate();
     touchMissionState(ctx.cid, ctx.mid);
+    persistBadges(ctx.cid);
     save(); render();
     const ms = getMissions(ctx.cid); const m = ms.find(x => x.id === ctx.mid);
     track('Mission validée', { enfant: getChild(ctx.cid)?.name, mission: m?.nom, chf: missionChf(ctx.cid, m) });

@@ -80,9 +80,10 @@ function missionChf(cid, m) {
 }
 
 function earnM(cid) {
-  return getMissions(cid)
+  const current = getMissions(cid)
     .filter(m => S.children[cid].state.missionStates[m.id] === 'done')
     .reduce((a, m) => a + missionChf(cid, m), 0);
+  return current + (S.children[cid].state.missionEarningsBank || 0);
 }
 
 function earnD(cid) {
@@ -159,14 +160,29 @@ function isSecret(m) {
   return S.catalog.badges.some(b => b.secretMissionId === m.id);
 }
 
+function persistBadges(cid) {
+  if (!S.children[cid].state.earnedBadgeIds) S.children[cid].state.earnedBadgeIds = [];
+  const stored = S.children[cid].state.earnedBadgeIds;
+  const ms = getMissions(cid);
+  S.catalog.badges.forEach(b => {
+    if (stored.includes(b.id)) return;
+    const bms = ms.filter(m => m.cat === b.catId && missionNiv(cid, m) === b.nivId && !isSecret(m));
+    if (bms.length > 0 && bms.every(m => S.children[cid].state.missionStates[m.id] === 'done')) {
+      stored.push(b.id);
+    }
+  });
+}
+
 function earnedBadges(cid) {
   const key = 'badges_' + cid;
   if (_cache[key]) return _cache[key];
+  const stored = S.children[cid].state.earnedBadgeIds || [];
   const ms = getMissions(cid);
-  const result = S.catalog.badges.filter(b => {
+  const current = S.catalog.badges.filter(b => {
     const bms = ms.filter(m => m.cat === b.catId && missionNiv(cid, m) === b.nivId && !isSecret(m));
     return bms.length > 0 && bms.every(m => S.children[cid].state.missionStates[m.id] === 'done');
   }).map(b => b.id);
+  const result = [...new Set([...stored, ...current])];
   _cache[key] = result;
   return result;
 }
@@ -232,10 +248,14 @@ function resetExpiredRecurrences() {
     const st = S.children[cid].state;
     getMissions(cid).forEach(m => {
       if (!m.recurrence || m.recurrence.type === 'once') return;
-      const state = st.missionStates[m.id];
-      if (state !== 'done' && state !== 'pending') return;
+      if (st.missionStates[m.id] !== 'done') return;
       const dt = st.missionDates?.[m.id];
       if (!dt || !isInCurrentWindow(dt, m.recurrence.type)) {
+        // Bank CHF before resetting
+        if (!st.missionEarningsBank) st.missionEarningsBank = 0;
+        st.missionEarningsBank += missionChf(cid, m);
+        // Persist badges before resetting
+        persistBadges(cid);
         st.missionStates[m.id] = 'none';
         touchMissionState(cid, m.id);
         changed = true;
