@@ -243,14 +243,12 @@
   gap: 12px;
   padding: 13px 14px;
   background: var(--card,#0d1422);
-  border-bottom: 1px solid var(--brd,#0a2040);
+  border-bottom: 1px solid rgba(255,255,255,.08);
   cursor: pointer;
   user-select: none;
   transition: background .15s;
   min-height: 52px;
 }
-
-.d-card:last-child { border-bottom: none; }
 .d-card:active { background: var(--dim,#0a1828); }
 .d-card.checked { background: rgba(0,40,20,.4); }
 .d-card.na { opacity: .3; pointer-events: none; }
